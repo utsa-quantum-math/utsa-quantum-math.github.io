@@ -26,6 +26,10 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
+# Posts are news items. Namespace them under /news/ like every other content
+# type, rather than leaving them at Jekyll's root-level dated default.
+permalink: /news/:year/:month/:day/:title/
+
 collections:
   talks:
     output: true

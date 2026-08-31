@@ -49,7 +49,7 @@ bundle exec jekyll serve --livereload
 | `series`    | `_series/`    | `/seminars/:name/` |
 | `people`    | `_people/`    | `/people/:name/` |
 | `resources` | `_resources/` | `/resources/:name/` |
-| news        | `_posts/`     | `/news/...`      |
+| news        | `_posts/`     | `/news/:year/:month/:day/:title/` |
 
 `_talks/TEMPLATE.md` is the canonical schema and is excluded from the build.
 Required keys: `series`, `date`, `end`, `title`, `speaker.name`. Everything
