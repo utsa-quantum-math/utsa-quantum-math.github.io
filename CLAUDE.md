@@ -58,6 +58,12 @@ absent `slides:` key simply means no slides button.
 
 `series` on a talk must match the `slug` of a file in `_series/`.
 
+`_people/TEMPLATE.md` is the equivalent schema for a person, also excluded.
+Required keys: `title` (the person's name — a person record's title *is* their
+name) and `group`. `group` must match an `id` in `_data/people_groups.yml`; a
+value that does not is not silently dropped, it surfaces under an "Ungrouped"
+heading on `/people/` so the typo is visible.
+
 ## Conventions that are easy to violate
 
 **Timezones.** Every `date:` and `end:` carries an explicit UTC offset:
@@ -114,6 +120,18 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
    Known rough edges.)
 3. Talks join it by setting `series: <slug>`.
 
+## Adding a person
+
+1. Copy `_people/TEMPLATE.md` to `_people/<surname>-<given>.md`. The file name
+   is load-bearing: `/people/` sorts on it, so lead with the surname. Keep the
+   file name ASCII even when the name has diacritics — `Dueñez` is
+   `duenez-eduardo.md`, and the diacritics live in `title:`.
+2. Set `group:` to an id from `_data/people_groups.yml`. New categories go in
+   that file; the index reads it for both grouping and order.
+3. A person's page lists the talks they have given, matched on
+   `speaker.name == title`. The two strings must agree exactly, so prefer
+   copying the name rather than retyping it.
+
 ## Known rough edges
 
 - **No per-talk `.ics`.** Talk pages offer a Google Calendar template link and
@@ -124,8 +142,11 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
   Fixed properly by the same generator plugin.
 - **Fonts load from Google Fonts.** Self-hosting Source Serif 4 in
   `assets/fonts/` is a small improvement if the dependency bothers you.
-- `_people/` and `_resources/` exist but are unused; `people.md` and
-  `resources.md` are placeholder pages.
+- **Speaker-to-person linking is by string equality.** A person page finds
+  talks by matching `speaker.name` against the person's `title`. Rename either
+  and the link silently breaks. A `speaker: <slug>` reference into `_people/`
+  would be sturdier; it needs the talk template to resolve the slug first.
+- `_resources/` exists but is unused; `resources.md` is a placeholder page.
 
 ## Phasing
 
@@ -133,8 +154,9 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
 - **Phase 1:** import the ~12 historical talks from
   `https://sciences.utsa.edu/mathematics/quantum-mathematics/seminars.html`;
   write the real landing-page copy; add real Fall talks.
-- **Phase 2:** `_people` and `_resources` for real; an Action that converts a
-  filled `new-talk` issue into a PR.
+- **Phase 2:** `_people` done — nine records imported from the department
+  faculty page, grouped by `_data/people_groups.yml`. Remaining: `_resources`
+  for real; an Action that converts a filled `new-talk` issue into a PR.
 - **Phase 3:** auto-generated flyer PDFs from a print stylesheet; Pagefind
   search; tag index pages; per-talk `.ics`.
 

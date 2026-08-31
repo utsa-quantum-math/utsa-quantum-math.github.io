@@ -1,0 +1,16 @@
+# Ordering and headings for the /people/ index. A person joins a group by
+# setting `group:` to one of these ids. Adding a group here and using its id
+# in a person record is all it takes; the index reads this file.
+- id: faculty
+  title: Faculty
+  blurb: Members of the Department of Mathematics at UTSA.
+
+- id: collaborators-utsa
+  title: Collaborators in other departments
+  blurb: UTSA colleagues outside the Department of Mathematics.
+
+- id: collaborators-external
+  title: Collaborators at other universities
+
+- id: students
+  title: Students

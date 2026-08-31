@@ -50,7 +50,7 @@ defaults:
   - scope: { path: "", type: series }
     values: { layout: series }
   - scope: { path: "", type: people }
-    values: { layout: page }
+    values: { layout: person }
   - scope: { path: "", type: resources }
     values: { layout: page }
   - scope: { path: "" }
@@ -68,3 +68,4 @@ exclude:
   - CONTRIBUTING.md
   - .ruby-version
   - _talks/TEMPLATE.md
+  - _people/TEMPLATE.md

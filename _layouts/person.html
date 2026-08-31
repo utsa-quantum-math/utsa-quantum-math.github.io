@@ -1,0 +1,47 @@
+---
+layout: default
+---
+<article class="wrap">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ '/people/' | relative_url }}">People</a>
+    <span>/</span> {{ page.title }}
+  </nav>
+
+  <h1>{{ page.title }}</h1>
+
+  {%- capture affil -%}
+    {{ page.rank }}{% if page.department %}, {{ page.department }}{% endif %}{% if page.institution %}, {{ page.institution }}{% endif %}
+  {%- endcapture -%}
+  {%- assign affil = affil | strip -%}
+  {%- if affil != "" %}<p class="lede">{{ affil }}{% if page.role %} &middot; {{ page.role }}{% endif %}</p>{% endif %}
+
+  {%- if page.profile or page.website or page.email %}
+  <div class="actions">
+    {%- if page.profile %}<a class="btn" href="{{ page.profile }}">UTSA profile</a>{% endif -%}
+    {%- if page.website %}<a class="btn" href="{{ page.website }}">Website</a>{% endif -%}
+    {%- if page.email %}<a class="btn" href="mailto:{{ page.email }}">{{ page.email }}</a>{% endif -%}
+  </div>
+  {%- endif %}
+
+  {%- if content != "" %}<div class="prose">{{ content }}</div>{% endif %}
+
+  {%- comment -%}
+    Talks are matched on the speaker's name, so a talk record joins a person
+    record by `speaker.name` equalling this page's `title`.
+  {%- endcomment -%}
+  {%- assign mine = site.talks | where_exp: "t", "t.speaker.name == page.title" | sort: "date" | reverse -%}
+  {%- if mine.size > 0 %}
+  <h2 class="section">Talks</h2>
+  <ul class="talk-list">
+    {%- for t in mine %}{% include talk-row.html talk=t compact=true %}{% endfor -%}
+  </ul>
+  {%- endif %}
+
+  {%- if page.interests and page.interests.size > 0 %}
+  <div class="tags">
+    {%- for i in page.interests %}<span class="tag">{{ i }}</span>{% endfor -%}
+  </div>
+  {%- endif %}
+
+</article>

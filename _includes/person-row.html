@@ -1,0 +1,17 @@
+{%- assign p = include.person -%}
+{%- assign nm = p.title | split: " " -%}
+<li class="talk-row">
+  <div class="avatar" aria-hidden="true">{{ nm.first | slice: 0, 1 | upcase }}{% if nm.size > 1 %}{{ nm.last | slice: 0, 1 | upcase }}{% endif %}</div>
+  <div class="rowbody">
+    <a class="rowtitle" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+    {%- capture affil -%}
+      {{ p.rank }}{% if p.department %}, {{ p.department }}{% endif %}{% if p.institution %}, {{ p.institution }}{% endif %}
+    {%- endcapture -%}
+    {%- assign affil = affil | strip -%}
+    {%- if affil != "" %}<div class="rowspeaker">{{ affil }}</div>{% endif %}
+    <div class="rowmeta">
+      {%- if p.role %}<span>{{ p.role }}</span>{% endif -%}
+      {%- if p.interests and p.interests.size > 0 %}<span>{{ p.interests | join: ", " }}</span>{% endif -%}
+    </div>
+  </div>
+</li>

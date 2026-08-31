@@ -1,0 +1,46 @@
+---
+layout: default
+title: People
+permalink: /people/
+---
+{%- comment -%}
+  Generated from the _people collection, grouped and ordered by
+  _data/people_groups.yml. Do not hand-write entries here.
+{%- endcomment -%}
+<div class="wrap">
+  <h1>People</h1>
+  <p class="lede">Faculty and collaborators working on quantum mathematics at UTSA.</p>
+
+  {%- assign gids = site.data.people_groups | map: "id" | join: "," -%}
+  {%- assign gids = "," | append: gids | append: "," -%}
+
+  {%- for g in site.data.people_groups -%}
+    {%- assign members = site.people | where: "group", g.id | sort: "slug" -%}
+    {%- if members.size > 0 %}
+  <h2 class="section">{{ g.title }}</h2>
+  {%- if g.blurb %}<p class="empty">{{ g.blurb }}</p>{% endif %}
+  <ul class="talk-list">
+    {%- for p in members %}{% include person-row.html person=p %}{% endfor -%}
+  </ul>
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%}
+    Anyone whose `group:` is missing or does not match an id in
+    _data/people_groups.yml would otherwise vanish from this page without a
+    build error. Surface them instead of dropping them.
+  {%- endcomment -%}
+  {%- assign orphans = "" | split: "" -%}
+  {%- for p in site.people -%}
+    {%- assign key = "," | append: p.group | append: "," -%}
+    {%- unless gids contains key -%}{%- assign orphans = orphans | push: p -%}{%- endunless -%}
+  {%- endfor -%}
+  {%- if orphans.size > 0 %}
+  <h2 class="section">Ungrouped</h2>
+  <p class="empty">These records have no recognised <code>group:</code>. Fix the
+  key, or add the group to <code>_data/people_groups.yml</code>.</p>
+  <ul class="talk-list">
+    {%- for p in orphans %}{% include person-row.html person=p %}{% endfor -%}
+  </ul>
+  {%- endif %}
+</div>
