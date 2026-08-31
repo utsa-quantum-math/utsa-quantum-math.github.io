@@ -1,0 +1,27 @@
+---
+layout: default
+---
+{%- assign now = site.time -%}
+{%- assign sorted = site.talks | sort: "date" -%}
+<div class="wrap">
+  <section class="hero">
+    <h1>{{ site.title }}</h1>
+    <p class="lede">{{ site.tagline }}</p>
+    <div class="prose">{{ content }}</div>
+  </section>
+
+  <section>
+    <h2 class="section">Next meetings</h2>
+    <ul class="talk-list">
+      {%- assign shown = 0 -%}
+      {%- for t in sorted -%}
+        {%- if t.date >= now and shown < 3 -%}
+          {% include talk-row.html talk=t %}
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+    {%- if shown == 0 %}<p class="empty">Nothing scheduled at the moment.</p>{% endif %}
+    <p><a href="{{ '/seminars/' | relative_url }}">All seminars and the full archive</a></p>
+  </section>
+</div>

@@ -1,0 +1,42 @@
+---
+layout: default
+title: Seminars
+permalink: /seminars/
+---
+{%- assign now = site.time -%}
+<div class="wrap">
+  <h1>Seminars</h1>
+  <p class="lede">Each series keeps its own page, calendar and archive.</p>
+
+  {%- assign active = site.series | where: "active", true | sort: "start" | reverse -%}
+  {%- for s in active %}
+  <div class="talk-row">
+    <div class="rowbody">
+      <a class="rowtitle" href="{{ s.url | relative_url }}">{{ s.title }}</a>
+      <div class="rowspeaker">{{ s.subtitle }}</div>
+      <div class="rowmeta">
+        {%- if s.calendar %}<a href="{{ s.calendar | relative_url }}">Calendar</a>{% endif -%}
+        {%- assign n = site.talks | where: "series", s.slug | size -%}
+        <span>{{ n }} meeting{% if n != 1 %}s{% endif %}</span>
+      </div>
+    </div>
+  </div>
+  {%- endfor %}
+
+  {%- assign inactive = site.series | where_exp: "s", "s.active != true" | sort: "start" | reverse -%}
+  {%- if inactive.size > 0 %}
+  <h2 class="section">Concluded series</h2>
+  <ul class="talk-list">
+    {%- for s in inactive %}
+    <li class="talk-row compact"><div class="rowdate">{{ s.start | date: "%Y" }}</div>
+    <div class="rowbody"><a class="rowtitle" href="{{ s.url | relative_url }}">{{ s.title }}</a></div></li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+
+  <h2 class="section">Complete archive</h2>
+  {%- assign all = site.talks | sort: "date" | reverse -%}
+  <ul class="talk-list">
+    {%- for t in all %}{% include talk-row.html talk=t compact=true %}{% endfor -%}
+  </ul>
+</div>

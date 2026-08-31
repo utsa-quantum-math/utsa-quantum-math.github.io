@@ -1,0 +1,19 @@
+<footer class="colophon">
+  <div class="wrap">
+    <p class="disclaimer">
+      Maintained by members of the quantum mathematics group in the
+      <a href="https://sciences.utsa.edu/mathematics/">Department of Mathematics</a>
+      at The University of Texas at San Antonio. This site is not an official
+      publication of the University.
+    </p>
+    <p class="colophon-links">
+      <a href="{{ '/seminars/feed.xml' | relative_url }}">Talks feed</a>
+      <a href="{{ '/news/feed.xml' | relative_url }}">News feed</a>
+      <a href="https://github.com/{{ site.repository }}">Source</a>
+      {%- if page.path %}
+      <a href="https://github.com/{{ site.repository }}/edit/main/{{ page.path }}">Edit this page</a>
+      {%- endif %}
+    </p>
+    <p class="license">Content licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY&nbsp;4.0</a>; site code MIT.</p>
+  </div>
+</footer>

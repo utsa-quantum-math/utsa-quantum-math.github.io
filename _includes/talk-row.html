@@ -1,0 +1,23 @@
+{%- assign t = include.talk -%}
+<li class="talk-row{% if include.compact %} compact{% endif %}{% if t.canceled %} canceled{% endif %}">
+  {%- if include.compact -%}
+  <div class="rowdate">{{ t.date | date: "%-d %b" }}</div>
+  {%- else -%}
+  <div class="datechip"><span class="mon">{{ t.date | date: "%b" }}</span><span class="day">{{ t.date | date: "%-d" }}</span></div>
+  {%- endif -%}
+  <div class="rowbody">
+    <a class="rowtitle" href="{{ t.url | relative_url }}">{{ t.title }}</a>
+    <div class="rowspeaker">{{ t.speaker.name }}{% if t.speaker.affiliation %}, {{ t.speaker.affiliation }}{% endif %}</div>
+    <div class="rowmeta">
+      {%- if t.canceled %}<span class="flag">Canceled</span>{% endif -%}
+      {%- unless include.compact -%}
+        <span>{{ t.date | date: "%-l:%M" }}&ndash;{{ t.end | date: "%-l:%M %p" }}</span>
+        {%- if t.location.room %}<span>{{ t.location.room }}</span>{% endif -%}
+      {%- endunless -%}
+      {%- if t.flyer %}<a href="{{ t.flyer | relative_url }}">Flyer</a>{% endif -%}
+      {%- if t.slides %}<a href="{{ t.slides | relative_url }}">Slides</a>{% endif -%}
+      {%- if t.notes %}<a href="{{ t.notes | relative_url }}">Notes</a>{% endif -%}
+      {%- if t.video %}<a href="{{ t.video }}">Recording</a>{% endif -%}
+    </div>
+  </div>
+</li>

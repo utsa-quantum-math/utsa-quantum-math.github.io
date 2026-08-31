@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /seminars/feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title }} — talks</title>
+    <link>{{ '/seminars/' | absolute_url }}</link>
+    <atom:link href="{{ '/seminars/feed.xml' | absolute_url }}" rel="self" type="application/rss+xml" />
+    <description>Seminar talks of the quantum mathematics group at UTSA.</description>
+    <language>en-us</language>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    {%- assign items = site.talks | sort: "date" | reverse -%}
+    {%- for t in items limit: 40 %}
+    <item>
+      <title>{{ t.date | date: "%-d %b %Y" }} — {{ t.title | xml_escape }}</title>
+      <link>{{ t.url | absolute_url }}</link>
+      <guid isPermaLink="true">{{ t.url | absolute_url }}</guid>
+      <pubDate>{{ t.date | date_to_rfc822 }}</pubDate>
+      <description>{{ t.speaker.name | xml_escape }}{% if t.speaker.affiliation %} ({{ t.speaker.affiliation | xml_escape }}){% endif %}. {{ t.content | strip_html | strip_newlines | truncate: 600 | xml_escape }}</description>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

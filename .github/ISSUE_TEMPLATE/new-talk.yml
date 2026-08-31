@@ -1,0 +1,50 @@
+name: Propose a seminar talk
+description: Fill this in and a maintainer will add it to the site.
+title: "[Talk] "
+labels: ["talk"]
+body:
+  - type: input
+    id: series
+    attributes:
+      label: Which seminar series
+      placeholder: Quantum error correction (Fall 2026)
+    validations: {required: true}
+  - type: input
+    id: date
+    attributes:
+      label: Date and time
+      description: Include the end time.
+      placeholder: 3 October 2026, 3:00-4:00 pm
+    validations: {required: true}
+  - type: input
+    id: title
+    attributes:
+      label: Title of the talk
+    validations: {required: true}
+  - type: input
+    id: speaker
+    attributes:
+      label: Speaker, affiliation, and homepage
+      placeholder: Jane Doe, Rice University, https://example.edu/~jdoe
+    validations: {required: true}
+  - type: input
+    id: room
+    attributes:
+      label: Room
+      placeholder: BSB 3.03.02
+  - type: textarea
+    id: abstract
+    attributes:
+      label: Abstract
+      description: Markdown is fine. For math use \( ... \) and \[ ... \].
+    validations: {required: true}
+  - type: textarea
+    id: links
+    attributes:
+      label: References and links
+      description: One per line. arXiv numbers, DOIs, slides, anything.
+  - type: markdown
+    attributes:
+      value: |
+        Prefer to do it yourself? Copy `_talks/TEMPLATE.md`, fill it in, and
+        open a pull request. See CONTRIBUTING.md.

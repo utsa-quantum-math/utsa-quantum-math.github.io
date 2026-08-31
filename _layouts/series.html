@@ -1,0 +1,42 @@
+---
+layout: default
+---
+{%- assign all = site.talks | where: "series", page.slug | sort: "date" -%}
+{%- assign now = site.time -%}
+<article class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/seminars/' | relative_url }}">Seminars</a> <span>/</span> {{ page.title }}</nav>
+  <h1>{{ page.title }}</h1>
+  {%- if page.subtitle %}<p class="lede">{{ page.subtitle }}</p>{% endif %}
+
+  <div class="actions">
+    {%- if page.calendar %}<a class="btn" href="{{ page.calendar | relative_url }}">Subscribe to calendar</a>{% endif -%}
+    <a class="btn" href="{{ '/seminars/feed.xml' | relative_url }}">RSS</a>
+    {%- if page.reading_list %}<a class="btn" href="{{ page.reading_list | relative_url }}">Reading list</a>{% endif -%}
+  </div>
+
+  {%- if content != "" %}<div class="prose">{{ content }}</div>{% endif %}
+
+  {%- assign upcoming = "" | split: "" -%}
+  {%- assign past = "" | split: "" -%}
+  {%- for t in all -%}
+    {%- if t.date >= now -%}{%- assign upcoming = upcoming | push: t -%}
+    {%- else -%}{%- assign past = past | push: t -%}{%- endif -%}
+  {%- endfor -%}
+
+  {%- if upcoming.size > 0 %}
+  <h2 class="section">Upcoming</h2>
+  <ul class="talk-list">
+    {%- for t in upcoming %}{% include talk-row.html talk=t %}{% endfor -%}
+  </ul>
+  {%- endif %}
+
+  {%- if past.size > 0 %}
+  <h2 class="section">Past</h2>
+  <ul class="talk-list">
+    {%- assign rpast = past | reverse -%}
+    {%- for t in rpast %}{% include talk-row.html talk=t compact=true %}{% endfor -%}
+  </ul>
+  {%- endif %}
+
+  {%- if all.size == 0 %}<p class="empty">No meetings scheduled yet. Add one in <code>_talks/</code>.</p>{% endif %}
+</article>

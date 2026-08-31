@@ -1,0 +1,20 @@
+---
+layout: default
+title: News
+permalink: /news/
+---
+<div class="wrap">
+  <h1>News</h1>
+  <ul class="talk-list">
+    {%- for post in site.posts %}
+    <li class="talk-row compact">
+      <div class="rowdate">{{ post.date | date: "%-d %b %Y" }}</div>
+      <div class="rowbody">
+        <a class="rowtitle" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <div class="rowspeaker">{{ post.excerpt | strip_html | truncate: 160 }}</div>
+      </div>
+    </li>
+    {%- endfor %}
+  </ul>
+  {%- if site.posts.size == 0 %}<p class="empty">No news yet.</p>{% endif %}
+</div>

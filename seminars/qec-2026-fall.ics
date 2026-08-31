@@ -1,0 +1,47 @@
+---
+layout: null
+permalink: /seminars/qec-2026-fall.ics
+series_slug: qec-2026-fall
+---
+{%- assign s = site.series | where: "slug", page.series_slug | first -%}
+{%- assign items = site.talks | where: "series", page.series_slug | sort: "date" -%}
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//UTSA Quantum Mathematics//Seminar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:{{ s.title }}
+X-WR-TIMEZONE:America/Chicago
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+TZNAME:CDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+TZNAME:CST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+{%- for t in items %}
+BEGIN:VEVENT
+UID:{{ t.url | absolute_url }}
+DTSTAMP:{{ site.time | date: "%Y%m%dT%H%M%S" }}Z
+DTSTART;TZID=America/Chicago:{{ t.date | date: "%Y%m%dT%H%M%S" }}
+DTEND;TZID=America/Chicago:{{ t.end | date: "%Y%m%dT%H%M%S" }}
+SUMMARY:{{ t.title | replace: ';', ' ' | replace: ',', ' ' }} ({{ t.speaker.name | replace: ',', ' ' }})
+LOCATION:{{ t.location.room | default: '' | replace: ',', ' ' }}
+URL:{{ t.url | absolute_url }}
+DESCRIPTION:{{ t.speaker.name }}{% if t.speaker.affiliation %} ({{ t.speaker.affiliation }}){% endif %}. {{ t.summary | default: t.title | strip_newlines | replace: ';', ' ' | replace: ',', ' ' }} Details: {{ t.url | absolute_url }}
+{%- if t.canceled %}
+STATUS:CANCELLED
+{%- endif %}
+END:VEVENT
+{%- endfor %}
+END:VCALENDAR

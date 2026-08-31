@@ -1,0 +1,71 @@
+---
+layout: default
+---
+{%- assign ser = site.series | where: "slug", page.series | first -%}
+{%- assign gcal_start = page.date | date: "%Y%m%dT%H%M%S" -%}
+{%- assign gcal_end = page.end | date: "%Y%m%dT%H%M%S" -%}
+<article class="wrap talk">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ '/seminars/' | relative_url }}">Seminars</a>
+    {%- if ser %} <span>/</span> <a href="{{ ser.url | relative_url }}">{{ ser.title }}</a>{% endif %}
+    <span>/</span> {{ page.date | date: "%-d %B %Y" }}
+  </nav>
+
+  {%- if page.canceled %}<p class="banner">This meeting was canceled.</p>{% endif %}
+
+  <h1 class="talk-title">{{ page.title }}</h1>
+
+  <div class="speaker">
+    {%- assign nm = page.speaker.name | split: " " -%}
+    <div class="avatar" aria-hidden="true">{{ nm.first | slice: 0, 1 | upcase }}{% if nm.size > 1 %}{{ nm.last | slice: 0, 1 | upcase }}{% endif %}</div>
+    <div>
+      <div class="speaker-name">
+        {%- if page.speaker.url -%}<a href="{{ page.speaker.url }}">{{ page.speaker.name }}</a>
+        {%- else -%}{{ page.speaker.name }}{%- endif -%}
+      </div>
+      {%- if page.speaker.affiliation %}<div class="speaker-affil">{{ page.speaker.affiliation }}</div>{% endif %}
+    </div>
+  </div>
+
+  <div class="factbar">
+    <span>{{ page.date | date: "%A %-d %B %Y" }}</span>
+    <span>{{ page.date | date: "%-l:%M" }}&ndash;{{ page.end | date: "%-l:%M %p %Z" }}</span>
+    {%- if page.location.room -%}
+    <span>{% if page.location.map %}<a href="{{ page.location.map }}">{{ page.location.room }}</a>{% else %}{{ page.location.room }}{% endif %}{% if page.location.campus %}, {{ page.location.campus }}{% endif %}</span>
+    {%- endif -%}
+    {%- if page.location.online %}<span><a href="{{ page.location.online }}">Join online</a></span>{% endif -%}
+  </div>
+
+  <div class="actions">
+    <a class="btn primary" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text={{ page.title | uri_escape }}&amp;dates={{ gcal_start }}/{{ gcal_end }}&amp;ctz=America/Chicago&amp;location={{ page.location.room | default: '' | uri_escape }}&amp;details={{ page.url | absolute_url | uri_escape }}">Add to calendar</a>
+    {%- if ser %}<a class="btn" href="{{ ser.calendar | relative_url }}">Subscribe to series</a>{% endif -%}
+    {%- if page.flyer %}<a class="btn" href="{{ page.flyer | relative_url }}">Flyer (PDF)</a>{% endif -%}
+    {%- if page.slides %}<a class="btn" href="{{ page.slides | relative_url }}">Slides</a>{% endif -%}
+    {%- if page.notes %}<a class="btn" href="{{ page.notes | relative_url }}">Notes</a>{% endif -%}
+    {%- if page.video %}<a class="btn" href="{{ page.video }}">Recording</a>{% endif -%}
+  </div>
+
+  <div class="prose abstract">
+    <h2 class="section">Abstract</h2>
+    {{ content }}
+  </div>
+
+  {%- if page.references and page.references.size > 0 %}
+  <section class="refs">
+    <h2 class="section">References</h2>
+    <ul>
+      {%- for r in page.references %}
+      <li>{{ r.text }}{% if r.url %} <a href="{{ r.url }}">{{ r.label | default: "link" }}</a>{% endif %}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif %}
+
+  {%- if page.tags and page.tags.size > 0 %}
+  <div class="tags">
+    {%- for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor -%}
+  </div>
+  {%- endif %}
+
+</article>

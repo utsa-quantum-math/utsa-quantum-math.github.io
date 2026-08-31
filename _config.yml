@@ -1,0 +1,66 @@
+title: Quantum Mathematics
+tagline: A research group at The University of Texas at San Antonio
+description: >-
+  Seminars, people, and resources of the quantum mathematics research group
+  at The University of Texas at San Antonio.
+url: "https://utsa-quantum-math.github.io"
+baseurl: ""
+repository: utsa-quantum-math/utsa-quantum-math.github.io
+
+timezone: America/Chicago
+
+# A seminar site is mostly about meetings that have not happened yet. Jekyll
+# suppresses future-dated collection documents by default, which would hide
+# every upcoming talk until the day it occurs.
+future: true
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  math_engine: null
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+collections:
+  talks:
+    output: true
+    permalink: /talks/:name/
+  series:
+    output: true
+    permalink: /seminars/:name/
+  people:
+    output: true
+    permalink: /people/:name/
+  resources:
+    output: true
+    permalink: /resources/:name/
+
+defaults:
+  - scope: { path: "", type: talks }
+    values: { layout: talk }
+  - scope: { path: "", type: series }
+    values: { layout: series }
+  - scope: { path: "", type: people }
+    values: { layout: page }
+  - scope: { path: "", type: resources }
+    values: { layout: page }
+  - scope: { path: "" }
+    values: { layout: page }
+
+feed:
+  path: /news/feed.xml
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - CLAUDE.md
+  - CONTRIBUTING.md
+  - .ruby-version
+  - _talks/TEMPLATE.md
