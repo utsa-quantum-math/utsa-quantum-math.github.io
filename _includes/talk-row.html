@@ -1,8 +1,9 @@
 {%- assign t = include.talk -%}
 {%- include speaker.html talk=t -%}
+{%- include term.html date=t.date -%}
 <li class="talk-row{% if include.compact %} compact{% endif %}{% if t.canceled %} canceled{% endif %}">
   {%- if include.compact -%}
-  <div class="rowdate">{{ t.date | date: "%-d %b" }}</div>
+  <div class="rowdate">{{ t.date | date: "%-d %b" }}<span class="rowterm">{{ term_label }}</span></div>
   {%- else -%}
   <div class="datechip"><span class="mon">{{ t.date | date: "%b" }}</span><span class="day">{{ t.date | date: "%-d" }}</span></div>
   {%- endif -%}
@@ -12,6 +13,7 @@
     <div class="rowmeta">
       {%- if t.canceled %}<span class="flag">Canceled</span>{% endif -%}
       {%- unless include.compact -%}
+        <span>{{ term_label }}</span>
         {%- unless t.time_unknown -%}
         <span>{{ t.date | date: "%-l:%M" }}&ndash;{{ t.end | date: "%-l:%M %p" }}</span>
         {%- endunless -%}

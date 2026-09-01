@@ -99,6 +99,21 @@ Jekyll otherwise drops future-dated documents from collections as well as
 from `_posts`, which silently removes every upcoming talk from the seminar
 index, the archive, and both feeds — the opposite of what this site is for.
 
+**Terms, not bare years.** Listings print "Spring 2025" rather than "2025",
+computed by `_includes/term.html`: January–May is Spring, June–July Summer,
+August–December Fall. A bare year does not say which academic year a talk
+belongs to — January and September of the same calendar year sit in different
+ones — and the listing rows are otherwise identical whether a talk is from
+this month or from 2021.
+
+**The academic year runs 1 August to 31 July.** `/seminars/` splits on it:
+this year's meetings under "This academic year", everything older under
+"Archived (past) talks". Nothing normally happens in June or July, so the
+boundary falls in a gap. The split is computed from `site.time`, so it rolls
+over on its own — the nightly rebuild in `build.yml` is what makes that
+happen without a push. Dates are compared as `YYYYMMDD` integers because
+Liquid will not order a Time against a constructed value.
+
 **`summary:`** is plain text with no LaTeX. It goes into calendar entries,
 which cannot render math.
 

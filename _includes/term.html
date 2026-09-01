@@ -1,0 +1,20 @@
+{%- comment -%}
+  Assigns `term_label` for include.date:
+
+      January–May    Spring YYYY
+      June–July      Summer YYYY
+      August–December Fall YYYY
+
+  The academic year runs 1 August to 31 July, so Fall opens one and Spring
+  closes it. A bare year is ambiguous about which academic year a talk sits
+  in; the term name is not, which is why listings print this instead.
+{%- endcomment -%}
+{%- assign _m = include.date | date: "%m" | plus: 0 -%}
+{%- assign _y = include.date | date: "%Y" -%}
+{%- if _m > 7 -%}
+  {%- assign term_label = "Fall " | append: _y -%}
+{%- elsif _m > 5 -%}
+  {%- assign term_label = "Summer " | append: _y -%}
+{%- else -%}
+  {%- assign term_label = "Spring " | append: _y -%}
+{%- endif -%}

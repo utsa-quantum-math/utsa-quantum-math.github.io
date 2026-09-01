@@ -99,7 +99,8 @@ h2.section {
 .datechip { flex: 0 0 3.3rem; text-align: center; background: var(--midnight); color: #fff; border-radius: 6px; padding: .4rem 0; align-self: flex-start; }
 .datechip .mon { display: block; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: #a8bcd4; }
 .datechip .day { display: block; font-size: 1.2rem; line-height: 1.1; }
-.rowdate { flex: 0 0 3.3rem; text-align: right; font-size: .8rem; color: var(--ink-faint); padding-top: .15rem; }
+.rowdate { flex: 0 0 5.4rem; text-align: right; font-size: .8rem; color: var(--ink-muted); padding-top: .15rem; }
+.rowterm { display: block; font-size: .72rem; color: var(--ink-faint); }
 .rowbody { flex: 1; min-width: 0; }
 .rowtitle { font-family: var(--serif); font-size: 1.02rem; color: var(--midnight); text-decoration: none; display: block; }
 .rowtitle:hover { color: var(--terracotta-dark); text-decoration: underline; }

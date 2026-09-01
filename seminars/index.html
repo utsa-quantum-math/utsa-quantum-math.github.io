@@ -3,10 +3,26 @@ layout: default
 title: Seminars
 permalink: /seminars/
 ---
-{%- assign now = site.time -%}
+{%- comment -%}
+  The academic year runs 1 August to 31 July — no meetings normally fall in
+  June or July, so that boundary splits cleanly. Talks from the current
+  academic year stay near the top; everything older drops into the archive at
+  the foot of the page. Dates are compared as YYYYMMDD integers because Liquid
+  will not order Time objects against a constructed value.
+{%- endcomment -%}
+{%- assign now_m = site.time | date: "%m" | plus: 0 -%}
+{%- assign now_y = site.time | date: "%Y" | plus: 0 -%}
+{%- if now_m > 7 -%}
+  {%- assign ay_year = now_y -%}
+{%- else -%}
+  {%- assign ay_year = now_y | minus: 1 -%}
+{%- endif -%}
+{%- assign ay_key = ay_year | times: 10000 | plus: 801 -%}
+{%- assign ay_next = ay_year | plus: 1 -%}
 <div class="wrap">
-  <h1>Seminars</h1>
-  <p class="lede">Each series keeps its own page, calendar and archive.</p>
+  <h1>Seminars (current academic year)</h1>
+  <p class="lede">{{ ay_year }}&ndash;{{ ay_next }}. Each series keeps its own
+  page, calendar and archive.</p>
 
   {%- assign active = site.series | where: "active", true | sort: "start" | reverse -%}
   {%- for s in active %}
@@ -28,15 +44,39 @@ permalink: /seminars/
   <h2 class="section">Concluded series</h2>
   <ul class="talk-list">
     {%- for s in inactive %}
-    <li class="talk-row compact"><div class="rowdate">{{ s.start | date: "%Y" }}</div>
+    {%- include term.html date=s.start -%}
+    <li class="talk-row compact"><div class="rowdate">{{ term_label }}</div>
     <div class="rowbody"><a class="rowtitle" href="{{ s.url | relative_url }}">{{ s.title }}</a></div></li>
     {%- endfor %}
   </ul>
   {%- endif %}
 
-  <h2 class="section">Complete archive</h2>
+  {%- assign current = "" | split: "" -%}
+  {%- assign archived = "" | split: "" -%}
   {%- assign all = site.talks | sort: "date" | reverse -%}
+  {%- for t in all -%}
+    {%- assign t_key = t.date | date: "%Y%m%d" | plus: 0 -%}
+    {%- if t_key >= ay_key -%}
+      {%- assign current = current | push: t -%}
+    {%- else -%}
+      {%- assign archived = archived | push: t -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  <h2 class="section">This academic year</h2>
+  {%- if current.size > 0 %}
   <ul class="talk-list">
-    {%- for t in all %}{% include talk-row.html talk=t compact=true %}{% endfor -%}
+    {%- for t in current %}{% include talk-row.html talk=t compact=true %}{% endfor -%}
   </ul>
+  {%- else %}
+  <p class="empty">Nothing scheduled for {{ ay_year }}&ndash;{{ ay_next }} yet.</p>
+  {%- endif %}
+
+  {%- if archived.size > 0 %}
+  <h2 class="section">Archived (past) talks</h2>
+  <p class="empty">Meetings from earlier academic years.</p>
+  <ul class="talk-list">
+    {%- for t in archived %}{% include talk-row.html talk=t compact=true %}{% endfor -%}
+  </ul>
+  {%- endif %}
 </div>

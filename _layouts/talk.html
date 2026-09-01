@@ -31,7 +31,9 @@ layout: default
   </div>
 
   <div class="factbar">
+    {%- include term.html date=page.date -%}
     <span>{{ page.date | date: "%A %-d %B %Y" }}</span>
+    <span>{{ term_label }}</span>
     {%- comment -%}
       Older imported talks have no published time. `time_unknown: true` keeps
       the page from asserting one; the stored value is the series' usual slot
