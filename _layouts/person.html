@@ -18,7 +18,11 @@ layout: default
 
   {%- if page.profile or page.website or page.email %}
   <div class="actions">
-    {%- if page.profile %}<a class="btn" href="{{ page.profile }}">UTSA profile</a>{% endif -%}
+    {%- comment -%}
+      Not labelled "UTSA profile": a visiting member's official profile lives
+      at their home institution.
+    {%- endcomment -%}
+    {%- if page.profile %}<a class="btn" href="{{ page.profile }}">Profile</a>{% endif -%}
     {%- if page.website %}<a class="btn" href="{{ page.website }}">Website</a>{% endif -%}
     {%- if page.email %}<a class="btn" href="mailto:{{ page.email }}">{{ page.email }}</a>{% endif -%}
   </div>
@@ -27,10 +31,13 @@ layout: default
   {%- if content != "" %}<div class="prose">{{ content }}</div>{% endif %}
 
   {%- comment -%}
-    Talks are matched on the speaker's name, so a talk record joins a person
-    record by `speaker.name` equalling this page's `title`.
+    A talk joins a person by setting `speaker:` to this page's slug. The name
+    match is kept only so that a talk still written in the older inline form
+    does not drop off the person's page; prefer the slug.
   {%- endcomment -%}
-  {%- assign mine = site.talks | where_exp: "t", "t.speaker.name == page.title" | sort: "date" | reverse -%}
+  {%- assign by_slug = site.talks | where: "speaker", page.slug -%}
+  {%- assign by_name = site.talks | where_exp: "t", "t.speaker.name == page.title" -%}
+  {%- assign mine = by_slug | concat: by_name | sort: "date" | reverse -%}
   {%- if mine.size > 0 %}
   <h2 class="section">Talks</h2>
   <ul class="talk-list">

@@ -1,0 +1,56 @@
+{%- comment -%}
+  Resolves include.talk's `speaker:` into a uniform set of variables:
+
+      sp_name         display name
+      sp_affiliation  display affiliation; may be empty
+      sp_href         where the name links; may be empty
+      sp_unresolved   true when a slug matched no record in _people/
+
+  `speaker:` is either a slug into _people/ (use this for anyone with a
+  record — it survives renames, which matching on the name did not) or an
+  inline mapping with name/affiliation/url for a visiting speaker who has no
+  record.
+
+  Liquid assigns leak into the caller, which is how this returns values. Every
+  branch must therefore set every variable, or a talk inherits stale values
+  from the previous iteration of an enclosing loop.
+{%- endcomment -%}
+{%- assign _sp = include.talk.speaker -%}
+{%- if _sp.name -%}
+  {%- assign sp_name = _sp.name -%}
+  {%- assign sp_affiliation = _sp.affiliation | default: "" -%}
+  {%- assign sp_href = _sp.url | default: "" -%}
+  {%- assign sp_unresolved = false -%}
+{%- else -%}
+  {%- assign _p = site.people | where: "slug", _sp | first -%}
+  {%- if _p -%}
+    {%- assign sp_name = _p.title -%}
+    {%- if _p.institution -%}
+      {%- assign sp_affiliation = _p.institution -%}
+    {%- elsif _p.department -%}
+      {%- capture sp_affiliation -%}{{ _p.department }}, {{ site.institution }}{%- endcapture -%}
+    {%- else -%}
+      {%- assign sp_affiliation = site.institution -%}
+    {%- endif -%}
+    {%- assign sp_href = _p.url | relative_url -%}
+    {%- assign sp_unresolved = false -%}
+  {%- else -%}
+    {%- comment -%}
+      A slug that resolves to nothing is a typo. Show it rather than rendering
+      a blank byline, so the mistake is visible on the page.
+    {%- endcomment -%}
+    {%- assign sp_name = _sp | default: "unknown speaker" -%}
+    {%- assign sp_affiliation = "" -%}
+    {%- assign sp_href = "" -%}
+    {%- assign sp_unresolved = true -%}
+  {%- endif -%}
+{%- endif -%}
+{%- comment -%}
+  A person record carries the affiliation someone holds *now*; a talk records
+  where they were *then*, and the two drift. `affiliation:` on the talk wins
+  over whatever the person record says, for the inline form as well as the
+  slug form. Use it whenever a speaker has since moved.
+{%- endcomment -%}
+{%- if include.talk.affiliation -%}
+  {%- assign sp_affiliation = include.talk.affiliation -%}
+{%- endif -%}

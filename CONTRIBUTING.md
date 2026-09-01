@@ -20,13 +20,20 @@ setup beyond a free GitHub account.
 The site rebuilds itself within a couple of minutes.
 
 Only five fields are required: `series`, `date`, `end`, `title`, and
-`speaker.name`. Delete the lines you do not need.
+`speaker`. Delete the lines you do not need.
 
-Two things people get wrong:
+For the speaker, if the person has a file in `_people/`, just give its name
+without the `.md` — `speaker: lastname-firstname`. Their details are filled in
+from that file and the talk appears on their page. For a visitor who has no
+file, write `name:`, `affiliation:` and `url:` under `speaker:` instead.
+
+Three things people get wrong:
 
 - **Keep the timezone offset** on `date` and `end`. It is `-05:00` from March
   to November and `-06:00` otherwise.
 - **Write math as `\\( x \\)` or `\\[ x \\]`**, with the backslash doubled.
+- **Check the speaker slug matches a file in `_people/`.** If it does not, the
+  page will say "unknown speaker" instead of their name.
 
 ## 3. Locally
 

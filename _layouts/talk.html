@@ -16,21 +16,30 @@ layout: default
 
   <h1 class="talk-title">{{ page.title }}</h1>
 
+  {%- include speaker.html talk=page -%}
   <div class="speaker">
-    {%- assign nm = page.speaker.name | split: " " -%}
+    {%- assign nm = sp_name | split: " " -%}
     <div class="avatar" aria-hidden="true">{{ nm.first | slice: 0, 1 | upcase }}{% if nm.size > 1 %}{{ nm.last | slice: 0, 1 | upcase }}{% endif %}</div>
     <div>
       <div class="speaker-name">
-        {%- if page.speaker.url -%}<a href="{{ page.speaker.url }}">{{ page.speaker.name }}</a>
-        {%- else -%}{{ page.speaker.name }}{%- endif -%}
+        {%- if sp_unresolved -%}<span class="flag">unknown speaker: {{ sp_name }}</span>
+        {%- elsif sp_href != "" -%}<a href="{{ sp_href }}">{{ sp_name }}</a>
+        {%- else -%}{{ sp_name }}{%- endif -%}
       </div>
-      {%- if page.speaker.affiliation %}<div class="speaker-affil">{{ page.speaker.affiliation }}</div>{% endif %}
+      {%- if sp_affiliation != "" %}<div class="speaker-affil">{{ sp_affiliation }}</div>{% endif %}
     </div>
   </div>
 
   <div class="factbar">
     <span>{{ page.date | date: "%A %-d %B %Y" }}</span>
+    {%- comment -%}
+      Older imported talks have no published time. `time_unknown: true` keeps
+      the page from asserting one; the stored value is the series' usual slot
+      so that sorting and the .ics still work.
+    {%- endcomment -%}
+    {%- unless page.time_unknown %}
     <span>{{ page.date | date: "%-l:%M" }}&ndash;{{ page.end | date: "%-l:%M %p %Z" }}</span>
+    {%- endunless %}
     {%- if page.location.room -%}
     <span>{% if page.location.map %}<a href="{{ page.location.map }}">{{ page.location.room }}</a>{% else %}{{ page.location.room }}{% endif %}{% if page.location.campus %}, {{ page.location.campus }}{% endif %}</span>
     {%- endif -%}

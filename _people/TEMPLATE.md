@@ -44,6 +44,6 @@ interests:
 Optional prose. A paragraph or two, no more — this is a directory, not a CV.
 Math uses the same delimiters as everywhere else: \\( E_i^\dagger E_j \\).
 
-Talks the person has given are listed automatically on their page; they are
-matched by `speaker.name` on the talk record, so it must equal `title` here
-exactly.
+Talks the person has given are listed automatically on their page. A talk
+joins them by setting `speaker:` to this file's name without the `.md`, so
+renaming the person is safe — renaming the *file* is what breaks the link.

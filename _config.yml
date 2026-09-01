@@ -9,6 +9,10 @@ repository: utsa-quantum-math/utsa-quantum-math.github.io
 
 timezone: America/Chicago
 
+# Printed as the affiliation of any speaker resolved from _people/ who has no
+# `institution:` of their own. See _includes/speaker.html.
+institution: The University of Texas at San Antonio
+
 # A seminar site is mostly about meetings that have not happened yet. Jekyll
 # suppresses future-dated collection documents by default, which would hide
 # every upcoming talk until the day it occurs.

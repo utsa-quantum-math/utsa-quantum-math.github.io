@@ -1,4 +1,5 @@
 {%- assign t = include.talk -%}
+{%- include speaker.html talk=t -%}
 <li class="talk-row{% if include.compact %} compact{% endif %}{% if t.canceled %} canceled{% endif %}">
   {%- if include.compact -%}
   <div class="rowdate">{{ t.date | date: "%-d %b" }}</div>
@@ -7,11 +8,13 @@
   {%- endif -%}
   <div class="rowbody">
     <a class="rowtitle" href="{{ t.url | relative_url }}">{{ t.title }}</a>
-    <div class="rowspeaker">{{ t.speaker.name }}{% if t.speaker.affiliation %}, {{ t.speaker.affiliation }}{% endif %}</div>
+    <div class="rowspeaker">{% if sp_unresolved %}<span class="flag">unknown speaker: {{ sp_name }}</span>{% else %}{{ sp_name }}{% if sp_affiliation != "" %}, {{ sp_affiliation }}{% endif %}{% endif %}</div>
     <div class="rowmeta">
       {%- if t.canceled %}<span class="flag">Canceled</span>{% endif -%}
       {%- unless include.compact -%}
+        {%- unless t.time_unknown -%}
         <span>{{ t.date | date: "%-l:%M" }}&ndash;{{ t.end | date: "%-l:%M %p" }}</span>
+        {%- endunless -%}
         {%- if t.location.room %}<span>{{ t.location.room }}</span>{% endif -%}
       {%- endunless -%}
       {%- if t.flyer %}<a href="{{ t.flyer | relative_url }}">Flyer</a>{% endif -%}

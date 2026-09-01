@@ -18,7 +18,8 @@ permalink: /seminars/feed.xml
       <link>{{ t.url | absolute_url }}</link>
       <guid isPermaLink="true">{{ t.url | absolute_url }}</guid>
       <pubDate>{{ t.date | date_to_rfc822 }}</pubDate>
-      <description>{{ t.speaker.name | xml_escape }}{% if t.speaker.affiliation %} ({{ t.speaker.affiliation | xml_escape }}){% endif %}. {{ t.content | strip_html | strip_newlines | truncate: 600 | xml_escape }}</description>
+      {%- include speaker.html talk=t -%}
+      <description>{{ sp_name | xml_escape }}{% if sp_affiliation != "" %} ({{ sp_affiliation | xml_escape }}){% endif %}. {{ t.content | strip_html | strip_newlines | truncate: 600 | xml_escape }}</description>
     </item>
     {%- endfor %}
   </channel>

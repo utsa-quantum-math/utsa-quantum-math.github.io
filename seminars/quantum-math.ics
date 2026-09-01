@@ -1,7 +1,7 @@
 ---
 layout: null
-permalink: /seminars/qec-2026-fall.ics
-series_slug: qec-2026-fall
+permalink: /seminars/quantum-math.ics
+series_slug: quantum-math
 ---
 {%- assign s = site.series | where: "slug", page.series_slug | first -%}
 {%- assign items = site.talks | where: "series", page.series_slug | sort: "date" -%}

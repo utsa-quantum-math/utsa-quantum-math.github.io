@@ -52,11 +52,24 @@ bundle exec jekyll serve --livereload
 | news        | `_posts/`     | `/news/:year/:month/:day/:title/` |
 
 `_talks/TEMPLATE.md` is the canonical schema and is excluded from the build.
-Required keys: `series`, `date`, `end`, `title`, `speaker.name`. Everything
+Required keys: `series`, `date`, `end`, `title`, `speaker`. Everything
 else is optional and the templates test for presence before rendering, so an
 absent `slides:` key simply means no slides button.
 
 `series` on a talk must match the `slug` of a file in `_series/`.
+
+`speaker` on a talk is either a slug into `_people/` or an inline mapping with
+`name`/`affiliation`/`url` for a visitor who has no record. Both forms are
+resolved in one place, `_includes/speaker.html`, which assigns `sp_name`,
+`sp_affiliation`, `sp_href` and `sp_unresolved` for its caller; every consumer
+— talk page, listing row, RSS, both `.ics` — goes through it, so speaker
+display is changed there and nowhere else. A slug that matches no record
+renders as "unknown speaker: &lt;slug&gt;" rather than a blank byline.
+
+A talk may set a top-level `affiliation:` to override the person record for
+that meeting alone. A record says where someone is now; a talk says where they
+were then, and the two drift — Jingbo Liu spoke in February 2026 from Texas
+A&M and is now a visiting professor here.
 
 `_people/TEMPLATE.md` is the equivalent schema for a person, also excluded.
 Required keys: `title` (the person's name — a person record's title *is* their
@@ -128,9 +141,9 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
    `duenez-eduardo.md`, and the diacritics live in `title:`.
 2. Set `group:` to an id from `_data/people_groups.yml`. New categories go in
    that file; the index reads it for both grouping and order.
-3. A person's page lists the talks they have given, matched on
-   `speaker.name == title`. The two strings must agree exactly, so prefer
-   copying the name rather than retyping it.
+3. A person's page lists the talks they have given. Talks join by setting
+   `speaker: <file name without .md>`, so renaming a person is free but
+   renaming their *file* breaks every talk pointing at it.
 
 ## Known rough edges
 
@@ -142,28 +155,27 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
   Fixed properly by the same generator plugin.
 - **Fonts load from Google Fonts.** Self-hosting Source Serif 4 in
   `assets/fonts/` is a small improvement if the dependency bothers you.
-- **Speaker-to-person linking is by string equality.** A person page finds
-  talks by matching `speaker.name` against the person's `title`. Rename either
-  and the link silently breaks. A `speaker: <slug>` reference into `_people/`
-  would be sturdier; it needs the talk template to resolve the slug first.
+- **Meetings before 2026 have no recorded time, room or abstract.** The
+  department's listing never published them. Those talks carry
+  `time_unknown: true`, which prints the date without a time; `date`/`end`
+  still hold the series' usual 3–4 pm slot because sorting and the `.ics` need
+  real values. The `.ics` therefore asserts a time the page does not. Anyone
+  with better records should fill them in.
 - `_resources/` exists but is unused; `resources.md` is a placeholder page.
 
 ## Phasing
 
 - **Phase 0 (done):** repo, collections, layouts, one series, one talk, CI.
-- **Phase 1:** import the ~12 historical talks from
-  `https://sciences.utsa.edu/mathematics/quantum-mathematics/seminars.html`;
-  write the real landing-page copy; add real Fall talks.
-- **Phase 2:** `_people` done — nine records imported from the department
-  faculty page, grouped by `_data/people_groups.yml`. Remaining, in order:
-  1. **`speaker:` as a slug into `_people/`,** replacing the string match on
-     `speaker.name`. Do this *before* the Phase 1 talk import, not after —
-     every historical talk added under the current scheme is another name
-     typed by hand that has to agree character-for-character with a person
-     record, and the failure is silent. The Morales record already had to be
-     renamed to make one link resolve.
-  2. `_resources` for real.
-  3. An Action that converts a filled `new-talk` issue into a PR.
+- **Phase 1:** archive imported — nine meetings from 2021, 2022, 2025 and
+  early 2026, taken from
+  `https://sciences.utsa.edu/mathematics/quantum-mathematics/seminars.html`
+  into the `quantum-math` series. Remaining: write the real landing-page copy;
+  add the rest of the Fall talks.
+- **Phase 2:** `_people` done — nine records from the department faculty page,
+  grouped by `_data/people_groups.yml`. `speaker:` slug linking done.
+  Remaining, in order:
+  1. `_resources` for real.
+  2. An Action that converts a filled `new-talk` issue into a PR.
 - **Phase 3:** auto-generated flyer PDFs from a print stylesheet; Pagefind
   search; tag index pages; per-talk `.ics`.
 
