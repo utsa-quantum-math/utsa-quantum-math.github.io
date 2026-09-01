@@ -155,8 +155,15 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
   `https://sciences.utsa.edu/mathematics/quantum-mathematics/seminars.html`;
   write the real landing-page copy; add real Fall talks.
 - **Phase 2:** `_people` done — nine records imported from the department
-  faculty page, grouped by `_data/people_groups.yml`. Remaining: `_resources`
-  for real; an Action that converts a filled `new-talk` issue into a PR.
+  faculty page, grouped by `_data/people_groups.yml`. Remaining, in order:
+  1. **`speaker:` as a slug into `_people/`,** replacing the string match on
+     `speaker.name`. Do this *before* the Phase 1 talk import, not after —
+     every historical talk added under the current scheme is another name
+     typed by hand that has to agree character-for-character with a person
+     record, and the failure is silent. The Morales record already had to be
+     renamed to make one link resolve.
+  2. `_resources` for real.
+  3. An Action that converts a filled `new-talk` issue into a PR.
 - **Phase 3:** auto-generated flyer PDFs from a print stylesheet; Pagefind
   search; tag index pages; per-talk `.ics`.
 
