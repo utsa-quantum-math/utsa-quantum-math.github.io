@@ -1,9 +1,9 @@
 ---
 title: Jingbo Liu
-group: collaborators-external
-rank: Assistant Professor
-institution: Texas A&M San Antonio
+group: faculty
+rank: Visiting Professor
 email: jliu@tamusa.edu
+profile: https://apps.tamusa.edu/course-information/my-profile/faculty-Profile.php?ID=366
 interests:
   - number theory
   - post-quantum cryptography
