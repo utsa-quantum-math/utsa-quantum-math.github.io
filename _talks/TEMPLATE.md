@@ -9,8 +9,8 @@
 published: false
 
 series: qec-2026-fall              # must match the slug of a file in _series/
-date: 2026-10-03 15:00:00 -05:00   # KEEP THE OFFSET: -05:00 during CDT, -06:00 during CST
-end:  2026-10-03 16:00:00 -05:00
+date: 2026-09-11 15:00:00 -05:00   # KEEP THE OFFSET: -05:00 during CDT, -06:00 during CST
+end:  2026-09-11 16:00:00 -05:00
 title: "Title of the talk"
 summary: "One plain-text sentence. No LaTeX here — this goes into the calendar entry."
 
@@ -20,7 +20,7 @@ speaker:
   url: https://their.homepage/
 
 location:
-  room: BSB 3.03.02
+  room: FLN 4.01.20 (Math Seminar Room)
   campus: main campus
   map: https://map.utsa.edu/
   online: ""                       # Zoom link, if any
