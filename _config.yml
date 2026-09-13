@@ -56,7 +56,7 @@ defaults:
   - scope: { path: "", type: people }
     values: { layout: person }
   - scope: { path: "", type: resources }
-    values: { layout: page }
+    values: { layout: resource }
   - scope: { path: "" }
     values: { layout: page }
 
@@ -73,3 +73,4 @@ exclude:
   - .ruby-version
   - _talks/TEMPLATE.md
   - _people/TEMPLATE.md
+  - _resources/TEMPLATE.md

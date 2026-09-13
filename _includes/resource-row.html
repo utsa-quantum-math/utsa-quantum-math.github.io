@@ -1,0 +1,8 @@
+{%- assign r = include.resource -%}
+<li class="talk-row compact">
+  <div class="rowbody">
+    <a class="rowtitle" href="{{ r.url | relative_url }}">{{ r.title }}</a>
+    {%- if r.contributor %}<div class="rowspeaker">{{ r.contributor }}</div>{% endif %}
+    {%- if r.summary %}<div class="rowmeta"><span>{{ r.summary }}</span></div>{% endif %}
+  </div>
+</li>
