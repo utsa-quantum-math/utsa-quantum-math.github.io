@@ -37,7 +37,7 @@ summary: ""
 # entry in the same list.
 files:
   - text: "Hidden Variables"
-    url: /assets/notes/hidden-variables.pdf
+    url: /assets/notes/Bell-Kochen-Specker.pdf
     label: PDF
   # - text: "arXiv preprint"
   #   url: https://arxiv.org/abs/0000.00000
@@ -46,5 +46,4 @@ files:
 tags: [topic one, topic two]
 ---
 
-Optional prose. Math uses the same delimiters as everywhere else:
-\\( E_i^\dagger E_j \\).
+(Long description: To be added…)
