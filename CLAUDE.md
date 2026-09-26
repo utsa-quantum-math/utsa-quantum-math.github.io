@@ -78,7 +78,9 @@ value that does not is not silently dropped, it surfaces under an "Ungrouped"
 heading on `/people/` so the typo is visible.
 
 `_resources/TEMPLATE.md` is the equivalent schema for a resource, also
-excluded. Only `title` is required. `category` is free text that groups
+excluded. A resource is standalone — it has no required link to any talk,
+series, or person; it is the group's general downloads shelf. Only `title` is
+required. `category` is free text that groups
 `/resources/` into sections — "Lecture notes", "Reading list", "Software" and
 "Preprints" are the ones in use, but the index groups by whatever values show
 up, so a typo silently starts a second section rather than erroring. A

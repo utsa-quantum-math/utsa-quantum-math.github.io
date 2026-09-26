@@ -5,7 +5,7 @@ Mathematics at The University of Texas at San Antonio.
 
 Live at <https://utsa-quantum-math.github.io>.
 
-- Adding or editing a talk: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Adding or editing a talk, preprint, or other download: [CONTRIBUTING.md](CONTRIBUTING.md)
 - Architecture, schema, and conventions: [CLAUDE.md](CLAUDE.md)
 
 ## Quick start
