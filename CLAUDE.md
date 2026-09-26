@@ -84,10 +84,17 @@ required. `category` is free text that groups
 `/resources/` into sections — "Lecture notes", "Reading list", "Software" and
 "Preprints" are the ones in use, but the index groups by whatever values show
 up, so a typo silently starts a second section rather than erroring. A
-resource holds either a single `url:` (an external link) or one or more
+resource holds either a single `link:` (an external link) or one or more
 `files:` (local downloads, same `{text, url, label}` shape as a talk's
 `references:`); a `files:` entry can point at a local PDF under
-`assets/resources/` or at an external link (arXiv, DOI) in the same list.
+`assets/resources/` or at an external link (arXiv, DOI) in the same list. The
+single-link field is called `link:`, not `url:`, on purpose: Jekyll reserves
+`url` on every page for its own computed permalink, so `page.url` always
+resolves to the resource's own page — a front-matter `url:` is silently
+ignored rather than erroring, which is exactly what happened before this was
+renamed (the "Open" button linked every resource to itself). `files[].url` is
+unaffected — that's a plain hash key inside a list, not a whole-page
+attribute.
 **Preprints authored by the group** are resources with `category: Preprints`:
 the PDF goes under `assets/resources/preprints/`, `contributor:` holds the
 author list in print order, and the abstract goes in the body like a talk's

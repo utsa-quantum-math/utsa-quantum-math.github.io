@@ -28,13 +28,12 @@ summary: ""
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
-# url: https://example.edu/resource
+# link: https://example.edu/resource
 
 # For one or more local files (lecture notes, slides, datasets, a preprint
 # PDF). Same shape as a talk's `references:`. `url` here is a path under
-# assets/resources/ in this repo, and is not filtered through the top-level
-# `url:` above — an arXiv or DOI link can sit alongside a local PDF as another
-# entry in the same list.
+# assets/resources/ in this repo — an arXiv or DOI link can sit alongside a
+# local PDF as another entry in the same list.
 files:
   - text: "Hidden Variables"
     url: /assets/notes/Bell-Kochen-Specker.pdf
