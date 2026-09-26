@@ -77,6 +77,20 @@ name) and `group`. `group` must match an `id` in `_data/people_groups.yml`; a
 value that does not is not silently dropped, it surfaces under an "Ungrouped"
 heading on `/people/` so the typo is visible.
 
+`_resources/TEMPLATE.md` is the equivalent schema for a resource, also
+excluded. Only `title` is required. `category` is free text that groups
+`/resources/` into sections — "Lecture notes", "Reading list", "Software" and
+"Preprints" are the ones in use, but the index groups by whatever values show
+up, so a typo silently starts a second section rather than erroring. A
+resource holds either a single `url:` (an external link) or one or more
+`files:` (local downloads, same `{text, url, label}` shape as a talk's
+`references:`); a `files:` entry can point at a local PDF under
+`assets/resources/` or at an external link (arXiv, DOI) in the same list.
+**Preprints authored by the group** are resources with `category: Preprints`:
+the PDF goes under `assets/resources/preprints/`, `contributor:` holds the
+author list in print order, and the abstract goes in the body like a talk's
+abstract. See "Adding a resource or preprint" below.
+
 ## Conventions that are easy to violate
 
 **Timezones.** Every `date:` and `end:` carries an explicit UTC offset:
@@ -160,6 +174,24 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
    `speaker: <file name without .md>`, so renaming a person is free but
    renaming their *file* breaks every talk pointing at it.
 
+## Adding a resource or preprint
+
+Full contributor-facing steps are in `CONTRIBUTING.md`. Short version:
+
+1. Put the file(s) under `assets/resources/` — a preprint's own PDF goes in
+   `assets/resources/preprints/<slug>.pdf`. Keep individual files well under
+   GitHub's 100&nbsp;MB hard limit (it silently rejects the push); a large
+   dataset or video belongs on an external host with a link in `files:`
+   instead of in this repo.
+2. Copy `_resources/TEMPLATE.md` to `_resources/<slug>.md`. Set `category:` to
+   an existing value — `Preprints` for the group's own papers — spelled
+   exactly as it already appears, since a mismatched spelling starts a second,
+   near-duplicate section on `/resources/` instead of erroring.
+3. List the download(s) under `files:`. An arXiv or DOI link is just another
+   entry in the same list as the local PDF, not a separate field.
+4. For a preprint, put the abstract in the body the same way a talk's
+   abstract goes in its body — same Markdown, same math delimiters.
+
 ## Known rough edges
 
 - **No per-talk `.ics`.** Talk pages offer a Google Calendar template link and
@@ -176,7 +208,10 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
   still hold the series' usual 3–4 pm slot because sorting and the `.ics` need
   real values. The `.ics` therefore asserts a time the page does not. Anyone
   with better records should fill them in.
-- `_resources/` exists but is unused; `resources.md` is a placeholder page.
+- **No file-size check on `assets/resources/` uploads.** GitHub rejects a
+  push over 100&nbsp;MB per file and warns from 50&nbsp;MB; nothing in this
+  repo enforces that before you push. Compress PDFs before adding them, and
+  link out to an external host for anything large instead of committing it.
 
 ## Phasing
 
@@ -188,9 +223,9 @@ Restraint is the point. No hero images, no cards with shadows, no motion.
   add the rest of the Fall talks.
 - **Phase 2:** `_people` done — nine records from the department faculty page,
   grouped by `_data/people_groups.yml`. `speaker:` slug linking done.
-  Remaining, in order:
-  1. `_resources` for real.
-  2. An Action that converts a filled `new-talk` issue into a PR.
+  `_resources` done — category-grouped downloads, used for lecture notes,
+  reading lists, and preprints. Remaining:
+  1. An Action that converts a filled `new-talk` issue into a PR.
 - **Phase 3:** auto-generated flyer PDFs from a print stylesheet; Pagefind
   search; tag index pages; per-talk `.ics`.
 

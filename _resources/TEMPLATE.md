@@ -11,13 +11,16 @@ published: false
 title: "Quantum Theory for Mathematicians"
 
 # Groups the index page. Free text — "Lecture notes", "Reading list",
-# "Software", "Link" are the categories envisioned so far, but nothing is
-# hard-coded; the index groups by whatever values show up. Leave it out and
-# the resource lands under "Other".
+# "Software", "Preprints", "Link" are the categories envisioned so far, but
+# nothing is hard-coded; the index groups by whatever values show up. Leave it
+# out and the resource lands under "Other". Spell an existing category exactly
+# as it already appears elsewhere — a typo silently starts a second group.
 category: Reading list
 
 # Who provided it. Plain text, not resolved against _people/ — a resource can
 # come from someone with no record here, and this is attribution, not a byline.
+# For a preprint this is the author list, in print order, e.g.
+# "Jane Doe, John Smith, and Ada Lovelace".
 contributor: "José A. Morales Escalante"
 
 # One plain-text sentence, shown on the index row.
@@ -27,13 +30,18 @@ summary: "One-line description of what this is and why it is useful."
 # resource is one or more local files instead — use `files:` for those.
 url: https://example.edu/resource
 
-# For one or more local files (lecture notes, slides, datasets). Same shape as
-# a talk's `references:`. `url` here is a path into this repo, typically
-# under _resources/, and is not filtered through the top-level `url:` above.
+# For one or more local files (lecture notes, slides, datasets, a preprint
+# PDF). Same shape as a talk's `references:`. `url` here is a path under
+# assets/resources/ in this repo, and is not filtered through the top-level
+# `url:` above — an arXiv or DOI link can sit alongside a local PDF as another
+# entry in the same list.
 files:
   - text: "Lecture 1"
-    url: /resources/some-folder/lecture-01.pdf
+    url: /assets/resources/some-folder/lecture-01.pdf
     label: PDF
+  # - text: "arXiv preprint"
+  #   url: https://arxiv.org/abs/0000.00000
+  #   label: arXiv
 
 tags: [topic one, topic two]
 ---

@@ -1,0 +1,51 @@
+name: Share a preprint or resource
+description: Fill this in and a maintainer will add it to the site.
+title: "[Resource] "
+labels: ["resource"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+    validations: {required: true}
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Pick the closest fit. "Preprints" is for the group's own papers.
+      options:
+        - Preprints
+        - Lecture notes
+        - Reading list
+        - Software
+        - Link
+        - Other
+    validations: {required: true}
+  - type: input
+    id: contributor
+    attributes:
+      label: Author(s) or contributor
+      placeholder: Jane Doe, John Smith, and Ada Lovelace
+  - type: textarea
+    id: summary
+    attributes:
+      label: One-line summary
+      description: Shown on the /resources/ listing.
+  - type: textarea
+    id: file
+    attributes:
+      label: The file itself
+      description: >-
+        Drag the PDF (or other file) into this box to attach it, or paste a
+        link to where it already lives (arXiv, a Drive link, etc.).
+    validations: {required: true}
+  - type: textarea
+    id: abstract
+    attributes:
+      label: Abstract (for a preprint)
+      description: Markdown is fine. For math use \( ... \) and \[ ... \].
+  - type: markdown
+    attributes:
+      value: |
+        Prefer to do it yourself? Copy `_resources/TEMPLATE.md`, fill it in,
+        and open a pull request. See CONTRIBUTING.md.
