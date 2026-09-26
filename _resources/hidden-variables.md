@@ -46,4 +46,4 @@ files:
 tags: [topic one, topic two]
 ---
 
-(Long description: To be added…)
+We study connections between model theory and quantum foundations
