@@ -9,3 +9,4 @@ files:
     label: PDF
 tags: [topology, Ramsey theory, metric number theory, topological games]
 ---
+We study applications of topological games to Post-Quantum Cryptography and Quantum Error Correction

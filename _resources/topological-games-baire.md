@@ -9,3 +9,4 @@ files:
     label: PDF
 tags: [topology, Baire category, topological games]
 ---
+We study connections Banach-Mazur and Choquet games
