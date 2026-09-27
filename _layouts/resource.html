@@ -16,9 +16,9 @@ layout: default
   {%- assign meta = meta | strip -%}
   {%- if meta != "" %}<p class="lede">{{ meta }}</p>{% endif %}
 
-  {%- if page.url %}
+  {%- if page.link %}
   <div class="actions">
-    <a class="btn primary" href="{{ page.url }}">Open</a>
+    <a class="btn primary" href="{{ page.link }}">Open</a>
   </div>
   {%- endif %}
 

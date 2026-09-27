@@ -28,13 +28,16 @@ summary: "One-line description of what this is and why it is useful."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
-url: https://example.edu/resource
+# Deliberately NOT called `url:` — Jekyll reserves that name on every page for
+# its own generated permalink, so a front-matter `url:` is silently ignored
+# and `page.url` always points at the resource's own page instead.
+link: https://example.edu/resource
 
 # For one or more local files (lecture notes, slides, datasets, a preprint
 # PDF). Same shape as a talk's `references:`. `url` here is a path under
-# assets/resources/ in this repo, and is not filtered through the top-level
-# `url:` above — an arXiv or DOI link can sit alongside a local PDF as another
-# entry in the same list.
+# assets/resources/ in this repo. Each entry is a plain list item, not a
+# whole-page attribute, so `url:` is safe to use here — an arXiv or DOI link
+# can sit alongside a local PDF as another entry in the same list.
 files:
   - text: "Lecture 1"
     url: /assets/resources/some-folder/lecture-01.pdf
