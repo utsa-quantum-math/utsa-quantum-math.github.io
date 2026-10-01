@@ -45,4 +45,4 @@ files:
 tags: [topic one, topic two]
 ---
 
-We study connections between model theory and quantum foundations
+We study connections between model quantum foundations and logic.
