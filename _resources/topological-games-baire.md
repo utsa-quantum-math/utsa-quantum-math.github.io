@@ -1,12 +1,38 @@
 ---
+# REQUIRED. The resource's name. This is the page title and the index row.
+title: "Model theoretic stability theory"
+
 title: "Topological Games and Baire Spaces"
+
+# Groups the index page. Free text — "Lecture notes", "Reading list",
+# "Software", "Preprints", "Link" are the categories envisioned so far, but
+# nothing is hard-coded; the index groups by whatever values show up. Leave it
+# out and the resource lands under "Other". Spell an existing category exactly
+# as it already appears elsewhere — a typo silently starts a second group.
 category: Lecture notes
+
+# Who provided it. Plain text, not resolved against _people/ — a resource can
+# come from someone with no record here, and this is attribution, not a byline.
+# For a preprint this is the author list, in print order, e.g.
+# "Jane Doe, John Smith, and Ada Lovelace".
 contributor: "José Iovino"
-summary: "Baire category and Baire spaces through the Banach–Mazur and Choquet games."
+
+# One plain-text sentence, shown on the index row.
+summary: "Topological games, I: Baire spaces and Čech-completeness through the Banach–Mazur and Choquet games."
+
+# For a single external link (a book, a repo, a website). Omit if this
+# resource is one or more local files instead — use `files:` for those.
+# link: https://example.edu/resource
+
+# For one or more local files (lecture notes, slides, datasets, a preprint
+# PDF). Same shape as a talk's `references:`. `url` here is a path under
+# assets/resources/ in this repo — an arXiv or DOI link can sit alongside a
+# local PDF as another entry in the same list.
 files:
   - text: "Topological Games and Baire Spaces"
     url: /assets/notes/Banach-Mazur-Choquet.pdf
     label: PDF
+    
 tags: [topology, Baire category, topological games]
 ---
-We study connections Banach-Mazur and Choquet games.
+We introduce Banach-Mazur and Choquet games.

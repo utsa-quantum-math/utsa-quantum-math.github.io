@@ -24,7 +24,7 @@ category: Lecture notes
 contributor: "José Iovino"
 
 # One plain-text sentence, shown on the index row.
-summary: "A self-contained introduction to stability and NIP."
+summary: "A self-contained introduction to model-theoretic stability, independence, and NIP."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -42,7 +42,7 @@ files:
   #   url: https://arxiv.org/abs/0000.00000
   #   label: arXiv
 
-tags: [stability, model theory]
+tags: [stability, NIP, VC-dimension, model theory]
 ---
 
-An introduction to model-theoretic stability
+An introduction to model-theoretic stability, the independence property, and its connections with VC-dimension.
