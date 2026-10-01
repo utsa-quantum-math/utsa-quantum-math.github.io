@@ -24,7 +24,7 @@ category: Lecture notes
 contributor: "José Iovino"
 
 # One plain-text sentence, shown on the index row.
-summary: "An introduction to model-theoretic stability."
+summary: "A self-contained introduction to stability and NIP."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
