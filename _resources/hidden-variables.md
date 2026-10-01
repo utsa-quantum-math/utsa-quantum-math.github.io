@@ -42,7 +42,7 @@ files:
   #   url: https://arxiv.org/abs/0000.00000
   #   label: arXiv
 
-tags: [topic one, topic two]
+tags: [quantum foundations, logic]
 ---
 
 We study connections between model quantum foundations and logic.
