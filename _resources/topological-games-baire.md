@@ -1,8 +1,8 @@
 ---
 # REQUIRED. The resource's name. This is the page title and the index row.
-title: "Model theoretic stability theory"
+title: "Topological games, I"
 
-title: "Topological Games, Baire Spaces and Ćech completeness"
+title: "Topological Games, I: Banach-Mazur and Choquet games"
 
 # Groups the index page. Free text — "Lecture notes", "Reading list",
 # "Software", "Preprints", "Link" are the categories envisioned so far, but
@@ -18,7 +18,7 @@ category: Lecture notes
 contributor: "José Iovino"
 
 # One plain-text sentence, shown on the index row.
-summary: "A self-contained introduction to Baire spaces and Čech-completeness through the Banach–Mazur and Choquet games."
+summary: "A self-contained introduction to topological games, Baire spaces and Čech-completeness."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.

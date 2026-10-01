@@ -1,6 +1,6 @@
 ---
 # REQUIRED. The resource's name. This is the page title and the index row.
-title: "Model theoretic stability theory"
+title: "MTopological games, II"
 
 title: "Topological games, II: Applications to Post Quantum Cryptography and Quantum Error Correction"
 

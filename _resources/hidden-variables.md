@@ -35,7 +35,7 @@ summary: ""
 # assets/resources/ in this repo — an arXiv or DOI link can sit alongside a
 # local PDF as another entry in the same list.
 files:
-  - text: "Hidden Variables"
+  - text: "Hidden Variables, connections with topology and logic"
     url: /assets/notes/Bell-Kochen-Specker.pdf
     label: PDF
   # - text: "arXiv preprint"
