@@ -24,7 +24,7 @@ category: Lecture notes
 contributor: "José Iovino"
 
 # One plain-text sentence, shown on the index row.
-summary: ""
+summary: "An introduction to quantum foundations, emphasizing the connections with operator theory, topology, and logic"
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
