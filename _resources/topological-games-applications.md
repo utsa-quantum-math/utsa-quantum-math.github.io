@@ -29,7 +29,7 @@ summary: "Applications of topological games: The Ellentuck and Galvin–Prikry t
 # assets/resources/ in this repo — an arXiv or DOI link can sit alongside a
 # local PDF as another entry in the same list.
 files:
-  - text: "Applications to Post Quantum Cryptography and Quantum Error Correction"
+  - text: "The Ellentuck topology and applications"
     url: /assets/notes/Applications_of_Banach-Mazur.pdf
     label: PDF
 
