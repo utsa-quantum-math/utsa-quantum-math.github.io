@@ -5,13 +5,13 @@ category: Lecture notes
 
 contributor: "José Iovino"
 
-summary: "Eleven stories, written for undergraduates, in which a game cracks a problem: Schmidt's game and badly approximable numbers, bounded orbits of flows, Baire category in complexity classes, Ramsey theory, Banach spaces, topological groups, Menger's conjecture, Borel determinacy, Hex and Brouwer, Erdős–Selfridge, and Ehrenfeucht–Fraïssé games."
+summary: "For undergraduate and graduate students: how the Banach–Mazur game and its relatives, the Choquet and Schmidt games, crack problems about badly approximable numbers, bounded orbits of flows, Baire category in complexity classes, Ramsey sets, Banach spaces, and topological groups."
 
 files:
   - text: "Applications of combinatorial and topological games in classical mathematics"
     url: /assets/notes/Games_in_Classical_Mathematics.pdf
     label: PDF
 
-tags: [topological games, Banach–Mazur game, Schmidt game, metric number theory, homogeneous dynamics, computational complexity, Ramsey theory, Banach spaces, determinacy]
+tags: [topological games, Banach–Mazur game, Choquet game, Schmidt game, metric number theory, homogeneous dynamics, computational complexity, Ramsey theory, Banach spaces, topological groups]
 ---
 Notes for the UT San Antonio Mathematics student research seminar. Part I covers applications of the Banach–Mazur game and its relatives (games of Choquet type), Part II applications of other topological games, and an appendix three applications of non-topological games.
