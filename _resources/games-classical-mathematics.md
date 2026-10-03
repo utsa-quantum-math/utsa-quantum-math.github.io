@@ -5,7 +5,7 @@ category: Lecture notes
 
 contributor: "José Iovino"
 
-summary: "For undergraduate and graduate students: how the Banach–Mazur game and its relatives, the Choquet and Schmidt games, crack problems about badly approximable numbers, bounded orbits of flows, Baire category in complexity classes, Ramsey sets, Banach spaces, and topological groups."
+summary: "FVery informal notes on the history of Banach–Mazur game and its relatives, the Choquet and Schmidt games, and how they have been instrumental to crack longstanding problems in many areas of athematics, including number theory, dynamics, functinal analysis and mathematics of computation."
 
 files:
   - text: "Applications of combinatorial and topological games in classical mathematics"
