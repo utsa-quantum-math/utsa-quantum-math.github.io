@@ -5,7 +5,7 @@ category: Lecture notes
 
 contributor: "José Iovino"
 
-summary: "FVery informal notes on the history of Banach–Mazur game and its relatives, the Choquet and Schmidt games, and how they have been instrumental to crack longstanding problems in many areas of athematics, including number theory, dynamics, functinal analysis and mathematics of computation."
+summary: "Very informal notes on the history of Banach–Mazur game and its relatives, the Choquet and Schmidt games, and how they have been instrumental to crack longstanding problems in many areas of athematics, including number theory, dynamics, functinal analysis and mathematics of computation."
 
 files:
   - text: "Applications of combinatorial and topological games in classical mathematics"
