@@ -14,4 +14,4 @@ files:
 
 tags: [topological games, Banach–Mazur game, Choquet game, Schmidt game, metric number theory, homogeneous dynamics, computational complexity, Ramsey theory, Banach spaces, topological groups]
 ---
-Notes for the UT San Antonio Mathematics student research seminar. Part I covers applications of the Banach–Mazur game and its relatives (games of Choquet type), Part II applications of other topological games, and an appendix three applications of non-topological games.
+
