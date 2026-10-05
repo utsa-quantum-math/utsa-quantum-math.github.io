@@ -8,7 +8,7 @@
 published: true
 
 # REQUIRED. The resource's name. This is the page title and the index row.
-title: "Quantum Foundations"
+title: "The problem of hidden variables in quantum mechanics"
 
 # Groups the index page. Free text — "Lecture notes", "Reading list",
 # "Software", "Preprints", "Link" are the categories envisioned so far, but
@@ -24,7 +24,7 @@ category: Lecture notes
 contributor: "José Iovino"
 
 # One plain-text sentence, shown on the index row.
-summary: "An introduction to quantum foundations, emphasizing the connections with operator theory, topology, and logic"
+summary: "We study the no-go theorems about hidden variables, emphasizing the connections with operator theory, topology, and logic"
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
