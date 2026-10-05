@@ -45,4 +45,4 @@ files:
 tags: [quantum foundations, logic]
 ---
 
-We study connections between model quantum foundations and logic.
+We study the logic and topological aspectd of the problem of hidden variables in quantum mechanics.
