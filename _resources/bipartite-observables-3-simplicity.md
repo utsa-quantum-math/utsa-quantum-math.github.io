@@ -8,7 +8,7 @@
 published: true
 
 # REQUIRED. The resource's name. This is the page title and the index row.
-title: "Classification of bipartite observables III: simplicity and mixtures"
+title: "Classification of bipartite observables III: simplicity, mixtures and quantum error correction"
 
 # Groups the index page. Free text — "Lecture notes", "Reading list",
 # "Software", "Preprints", "Link" are the categories envisioned so far, but
@@ -24,7 +24,7 @@ category: Preprints
 contributor: "Eduardo Dueñez and José Iovino"
 
 # One plain-text sentence, shown on the index row.
-summary: "Part III of a series with Eduardo Dueñez. Simple unstable observables from the Pauli group and the Rado graph, and how mixing preparations destroys simplicity."
+summary: "Part III of a series with Eduardo Dueñez. Simplicity theory read as a theory of quantum error correction: logical errors as forking, Pauli channels as probes, and syndrome sectors that witness the tree property of the second kind."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -42,21 +42,26 @@ files:
   #   url: https://arxiv.org/abs/0000.00000
   #   label: arXiv
 
-tags: [simplicity, forking, Fraïssé limits, Pauli group, quantum error correction, model theory]
+tags: [quantum error correction, stabilizer codes, simplicity, forking, Fraïssé limits, Pauli group, model theory]
 ---
 
-The Pauli group on countably many qubits, taken modulo phases and with
-commutation as its relation, is the Fraïssé limit of the finite spaces with
-an alternating form over the two-element field, and the Rado graph is the
-Fraïssé limit of the finite graphs. Both are simple unstable structures in
-the sense of Shelah, and both define bipartite observables. We show that
-mixing preparations destroys simplicity: for every observable with the
-independence property, the theory of its mixed preparations and probes has the
-tree property of the second kind, so that a simple observable has no
-independence property. The two examples reach this by different routes. For
-the Pauli group, actual mixtures suffice: averaging over cosets of stabilizer
-groups, the index of the first parity check to fire in a block is a dividing
-condition. For the Rado graph, no sequence of actual mixtures ever divides, and
-the tree appears only among idealized preparations. The difference is that
-the responses of the Pauli group are the characters of a compact group, while
-those of the Rado graph see only marginals.
+A stabilizer code detects errors by measuring commutation: the syndrome of a
+Pauli error lists the values of the symplectic form at the error and the
+checks. The Pauli group on countably many qubits, taken modulo phases and with
+this form, is the Fraïssé limit of the finite alternating spaces over the
+two-element field, and its theory is simple and unstable in the sense of
+Shelah. We show that simplicity theory reads as a theory of error correction:
+Clifford encoding circuits implement the homogeneity of the limit, a logical
+error is an undetectable error whose type over the stabilizer group and the
+logical operators forks over the stabilizer group, and the independence
+theorem of Kim and Pillay is the gluing of syndromes. In the commutation
+observable, Alice holds a check and Bob an error; Bob's probes are the Pauli
+channels, and the noise of a memory on infinitely many qubits is carried by
+idealized errors. For every diagonal observable with the independence
+property, mixed preparations produce the tree property of the second kind. For
+the commutation observable, actual mixtures witness it: the indicator of each
+syndrome sector is the difference of the responses of two uniform mixtures,
+and the first check to fire in a block, such as the first domain wall of a bit
+flip in a repetition code, is a dividing condition. For the Rado graph, whose
+responses see only marginals, the tree property is carried by idealized
+preparations alone.
