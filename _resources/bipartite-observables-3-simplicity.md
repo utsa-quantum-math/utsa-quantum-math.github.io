@@ -24,7 +24,7 @@ category: Preprints
 contributor: "Eduardo Dueñez and José Iovino"
 
 # One plain-text sentence, shown on the index row.
-summary: "Part III of a series with Eduardo Dueñez. Simplicity theory read as a theory of quantum error correction: logical errors as forking, Pauli channels as probes, and syndrome sectors that witness the tree property of the second kind."
+summary: "Part III of a series with Eduardo Dueñez. The Rado graph, the paradigm of a simple unstable theory, and its counterpart in quantum error correction, the Pauli group: logical errors as forking, Pauli channels as probes, and the two routes by which mixing produces the tree property of the second kind."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -42,26 +42,24 @@ files:
   #   url: https://arxiv.org/abs/0000.00000
   #   label: arXiv
 
-tags: [quantum error correction, stabilizer codes, simplicity, forking, Fraïssé limits, Pauli group, model theory]
+tags: [quantum error correction, stabilizer codes, Rado graph, simplicity, forking, Fraïssé limits, Pauli group, model theory]
 ---
 
-A stabilizer code detects errors by measuring commutation: the syndrome of a
-Pauli error lists the values of the symplectic form at the error and the
-checks. The Pauli group on countably many qubits, taken modulo phases and with
-this form, is the Fraïssé limit of the finite alternating spaces over the
-two-element field, and its theory is simple and unstable in the sense of
-Shelah. We show that simplicity theory reads as a theory of error correction:
-Clifford encoding circuits implement the homogeneity of the limit, a logical
-error is an undetectable error whose type over the stabilizer group and the
-logical operators forks over the stabilizer group, and the independence
-theorem of Kim and Pillay is the gluing of syndromes. In the commutation
-observable, Alice holds a check and Bob an error; Bob's probes are the Pauli
-channels, and the noise of a memory on infinitely many qubits is carried by
-idealized errors. For every diagonal observable with the independence
-property, mixed preparations produce the tree property of the second kind. For
-the commutation observable, actual mixtures witness it: the indicator of each
-syndrome sector is the difference of the responses of two uniform mixtures,
-and the first check to fire in a block, such as the first domain wall of a bit
-flip in a repetition code, is a dividing condition. For the Rado graph, whose
-responses see only marginals, the tree property is carried by idealized
-preparations alone.
+The paradigm of a simple unstable theory in the sense of Shelah is the theory
+of the random graph, the Fraïssé limit of the finite graphs. Its counterpart
+in quantum error correction is the Pauli group on countably many qubits, taken
+modulo phases and with commutation as its relation: the Fraïssé limit of the
+finite alternating spaces over the two-element field, whose form computes the
+syndromes of stabilizer codes. We show that simplicity theory reads as a theory
+of error correction: Clifford encoding circuits implement the homogeneity of
+the limit, a logical error is an undetectable error whose type over the
+stabilizer group and the logical operators forks over the stabilizer group, and
+the independence theorem of Kim and Pillay is the gluing of syndromes. Both
+structures define bipartite observables, and for both, mixing preparations
+produces the tree property of the second kind. The two paradigms reach it by
+different routes, dictated by their probes. The probes of the Pauli observable
+are the Pauli channels; the indicator of each syndrome sector is the difference
+of the responses of two uniform mixtures, and actual mixtures witness the tree.
+The probes of the Rado observable see only marginals, conditions given by
+actual mixtures are compatible on disjoint blocks, and the tree lives among
+idealized preparations.
