@@ -28,7 +28,7 @@ contributor: "José Iovino"
 rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
 
 # One plain-text sentence, shown on the index row.
-summary: "A self-contained introduction to model-theoretic stability and independence, with chapters on NIP and on simple theories."
+summary: "An introduction to the logic of dependence and independence: stable, NIP and simple theories, from forbidden configurations to calculi of independence."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -39,14 +39,14 @@ summary: "A self-contained introduction to model-theoretic stability and indepen
 # assets/resources/ in this repo — an arXiv or DOI link can sit alongside a
 # local PDF as another entry in the same list.
 files:
-  - text: "Tame and wild theories"
-    url: /assets/notes/stability_notes.pdf
+  - text: "Tame and wild theories: An introduction to the logic of dependence and independence"
+    url: /assets/notes/logic_of_dependence.pdf
     label: PDF
   # - text: "arXiv preprint"
   #   url: https://arxiv.org/abs/0000.00000
   #   label: arXiv
 
-tags: [stability, NIP, simplicity, VC-dimension, forking, random graph, Fraïssé limits, model theory]
+tags: [dependence, independence, stability, NIP, simplicity, Kim-Pillay theorem, VC-dimension, forking, random graph, Fraïssé limits, model theory]
 ---
 
-An introduction to model-theoretic stability and to nonforking independence, built on definability of types and on Grothendieck's double limit criterion. Further chapters treat NIP and its connections with VC-dimension, and simple theories: dividing and the tree property, the Rado graph and Fraïssé limits, and Kim's lemma with the symmetry of forking.
+Mathematics is full of independence, of vectors, of transcendental numbers, of events, and in each case the notion obeys recognizably the same laws. These lecture notes ask when those laws hold in a first-order theory, and find the answer in Shelah's dividing lines. Stable theories, defined by forbidding long orders, carry a unique notion of independent extension, built on definability of types and on Grothendieck's double limit criterion. NIP theories, the negation of the independence property, are characterized by convergent subsequences and VC-dimension. Simple theories, Shelah's treeless theories, lose uniqueness but keep amalgamation: dividing and the tree property, the Rado graph and Fraïssé limits, Kim's lemma, the symmetry of forking, the independence theorem, and the Kim–Pillay theorem.
