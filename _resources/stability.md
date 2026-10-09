@@ -28,7 +28,7 @@ contributor: "José Iovino"
 rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
 
 # One plain-text sentence, shown on the index row.
-summary: "A self-contained introduction to model-theoretic stability, independence, and NIP."
+summary: "A self-contained introduction to model-theoretic stability and independence, with chapters on NIP and on simple theories."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -46,7 +46,7 @@ files:
   #   url: https://arxiv.org/abs/0000.00000
   #   label: arXiv
 
-tags: [stability, NIP, VC-dimension, model theory]
+tags: [stability, NIP, simplicity, VC-dimension, forking, random graph, Fraïssé limits, model theory]
 ---
 
-An introduction to model-theoretic stability, the independence property, and its connections with VC-dimension.
+An introduction to model-theoretic stability and to nonforking independence, built on definability of types and on Grothendieck's double limit criterion. Further chapters treat NIP and its connections with VC-dimension, and simple theories: dividing and the tree property, the Rado graph and Fraïssé limits, and Kim's lemma with the symmetry of forking.
