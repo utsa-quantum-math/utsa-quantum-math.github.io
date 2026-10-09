@@ -38,9 +38,9 @@ files:
   - text: "Classification of bipartite observables I"
     url: /assets/notes/Quantum_stability.pdf
     label: PDF
-  # - text: "arXiv preprint"
-  #   url: https://arxiv.org/abs/0000.00000
-  #   label: arXiv
+  - text: "arXiv:2610.11002"
+    url: https://arxiv.org/abs/2610.11002
+    label: arXiv
 
 tags: [stability, model theory, quantum information, double limits, Grothendieck]
 ---
