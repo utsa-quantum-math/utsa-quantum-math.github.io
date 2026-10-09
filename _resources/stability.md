@@ -8,7 +8,7 @@
 published: true
 
 # REQUIRED. The resource's name. This is the page title and the index row.
-title: "Model theoretic stability theory"
+title: "Tame and wild theories"
 
 subtitle: "Lecture notes"
 
@@ -39,7 +39,7 @@ summary: "A self-contained introduction to model-theoretic stability and indepen
 # assets/resources/ in this repo — an arXiv or DOI link can sit alongside a
 # local PDF as another entry in the same list.
 files:
-  - text: "Lecture notes on stability theory"
+  - text: "Tame and wild theories"
     url: /assets/notes/stability_notes.pdf
     label: PDF
   # - text: "arXiv preprint"
