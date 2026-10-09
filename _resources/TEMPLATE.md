@@ -27,6 +27,10 @@ category: Reading list
 # "Jane Doe, John Smith, and Ada Lovelace".
 contributor: "José A. Morales Escalante"
 
+# Optional. A copyright or license line shown on the resource page, e.g.
+# "© 2026 Jane Doe. All rights reserved."
+# rights: "..."
+
 # One plain-text sentence, shown on the index row.
 summary: "One-line description of what this is and why it is useful."
 

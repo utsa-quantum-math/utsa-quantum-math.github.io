@@ -23,6 +23,7 @@ layout: default
   </div>
   {%- endif %}
 
+  {%- if page.rights %}<p class="rights">{{ page.rights }}</p>{% endif %}
   {%- if content != "" %}<div class="prose">{{ content }}</div>{% endif %}
 
   {%- if page.files and page.files.size > 0 %}

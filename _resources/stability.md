@@ -25,6 +25,8 @@ category: Lecture notes
 # "Jane Doe, John Smith, and Ada Lovelace".
 contributor: "José Iovino"
 
+rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
+
 # One plain-text sentence, shown on the index row.
 summary: "A self-contained introduction to model-theoretic stability, independence, and NIP."
 

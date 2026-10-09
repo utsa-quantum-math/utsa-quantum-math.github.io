@@ -132,3 +132,4 @@ h2.section {
 }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+.rights { font-size: .8rem; color: var(--ink-faint); margin: 0 0 1.2rem; }

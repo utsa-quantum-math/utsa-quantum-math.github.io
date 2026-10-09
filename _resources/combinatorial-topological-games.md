@@ -7,6 +7,8 @@ category: Lecture notes
 
 contributor: "José Iovino"
 
+rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
+
 summary: "Notes for students and researchers on topological games. Part I is a self-contained introduction to the Banach–Mazur and strong Choquet games, Baire spaces and complete metrizability; the later parts tell how these games, and their relatives, solved longstanding problems in number theory, dynamics, functional analysis, Ramsey theory and the theory of computation, and the story of the Scottish Book."
 
 files:
