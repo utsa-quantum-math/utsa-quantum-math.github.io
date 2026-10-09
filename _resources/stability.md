@@ -10,7 +10,7 @@ published: true
 # REQUIRED. The resource's name. This is the page title and the index row.
 title: "Tame and wild theories"
 
-subtitle: "Lecture notes"
+subtitle: "An introduction to the logic of dependence and independence"
 
 # Groups the index page. Free text — "Lecture notes", "Reading list",
 # "Software", "Preprints", "Link" are the categories envisioned so far, but
