@@ -1,6 +1,8 @@
 ---
 title: "Combinatorial and Topological Games: Baire Spaces and Applications in Classical Mathematics"
 
+subtitle: "Lecture notes"
+
 category: Lecture notes
 
 contributor: "José Iovino"

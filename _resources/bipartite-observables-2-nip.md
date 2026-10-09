@@ -45,22 +45,11 @@ files:
 tags: [NIP, Rosenthal compacta, Todorčević trichotomy, model theory, quantum information, Ising model]
 ---
 
-A bipartite observable is stable when its idealized responses are
-continuous. We show that it is NIP exactly when they are of the first Baire
-class. They then form a Rosenthal compactum, and the dividing lines of Shelah
-in model theory, together with the classification of Rosenthal compacta of
-Todorčević, acquire a physical meaning. For observables, mixtures of states make every hereditarily separable
-compactum of idealized responses metrizable, and the Todorčević trichotomy becomes a
-classification into three classes. Each class contains a physical order: the
-comparison of photon numbers, the comparison of positions, and the causal
-order of spacetime, whose idealized responses are not first countable because
-a light cone can shrink to a point; the comparison of two phases on a circle
-joins it there. Each of the seven minimal families of the
-heptachotomy, which Argyros, Dodos and Kanellopoulos extracted from the
-methods of Todorčević, is realized by a tree of preparations of photons, of a particle
-in a box, or of a spin chain read by a probe; the spin chain also shows that
-NIP, unlike its uniform version, is not symmetric between the two parties.
-Finally, for the Ising model in a transverse field we show that, in the
-ordered phase, the responses of the two pure phases form split pairs whose
-midpoints, the responses of the symmetric state, form an uncountable discrete
-set; the proof uses a Lee–Yang theorem for this model.
+
+A bipartite observable is NIP exactly when its idealized responses are of the
+first Baire class, so that they form a Rosenthal compactum and the Todorčević
+trichotomy acquires a physical meaning. Each of its three classes contains a
+physical order (the comparison of photon numbers, the comparison of positions,
+and the causal order of spacetime), and for the Ising model in a transverse
+field the responses of the symmetric state in the ordered phase form an
+uncountable discrete set.

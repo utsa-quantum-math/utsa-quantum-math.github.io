@@ -10,6 +10,10 @@ published: false
 # REQUIRED. The resource's name. This is the page title and the index row.
 title: "Quantum Theory for Mathematicians"
 
+# Optional. A short line shown under the title, on the page and on the index
+# row, e.g. "Lecture notes".
+# subtitle: "Lecture notes"
+
 # Groups the index page. Free text — "Lecture notes", "Reading list",
 # "Software", "Preprints", "Link" are the categories envisioned so far, but
 # nothing is hard-coded; the index groups by whatever values show up. Leave it

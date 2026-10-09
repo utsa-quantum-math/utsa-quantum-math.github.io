@@ -56,6 +56,7 @@ main { padding: 2rem 0 3.5rem; }
 h1 { font-family: var(--serif); font-weight: 400; font-size: 1.85rem; line-height: 1.25; color: var(--midnight); margin: 0 0 .5rem; }
 .talk-title { font-size: 1.65rem; margin-bottom: .9rem; }
 .lede { font-family: var(--serif); font-size: 1.05rem; color: var(--ink-muted); margin: 0 0 1.5rem; max-width: var(--measure); }
+.subtitle { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink-muted); margin: -.6rem 0 .6rem; }
 
 h2.section {
   font-family: var(--serif); font-weight: 400; font-size: 1.1rem; color: var(--midnight);
@@ -105,6 +106,7 @@ h2.section {
 .rowtitle { font-family: var(--serif); font-size: 1.02rem; color: var(--midnight); text-decoration: none; display: block; }
 .rowtitle:hover { color: var(--terracotta-dark); text-decoration: underline; }
 .compact .rowtitle { font-size: .96rem; }
+.rowsubtitle { font-family: var(--serif); font-style: italic; font-size: .9rem; color: var(--ink-muted); margin-top: .1rem; }
 .rowspeaker { font-size: .85rem; color: var(--ink-muted); margin-top: .1rem; }
 .rowmeta { font-size: .78rem; color: var(--ink-faint); margin-top: .25rem; display: flex; gap: .9rem; flex-wrap: wrap; }
 .flag { color: #a32d2d; }

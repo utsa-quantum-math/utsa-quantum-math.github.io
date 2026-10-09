@@ -45,24 +45,12 @@ files:
 tags: [stability, model theory, quantum information, double limits, Grothendieck]
 ---
 
+
 When two quantum systems are prepared independently and each is driven to an
 idealized limit, the expectation of a bipartite observable may depend on which
-system is idealized first. We call an observable stable when it does not. We
-show that an observable is stable if and only if every idealized preparation of
-one system can be simulated to arbitrary accuracy, uniformly over all probes, by finite mixtures of
-actual preparations, provided that the probing system is idealized first; on
-stable observables, two idealized preparations have a unique, symmetric
-independent product. Under a uniform form of stability, the number of
-preparations that \\(n\\) adaptive probes can tell apart at a fixed margin is
-bounded by a polynomial in \\(n\\), and responses can be learned with a bounded
-number of mistakes; otherwise, at some margin, \\(n\\) probes tell apart \\(2^n\\)
-preparations. The swap test, Hong–Ou–Mandel coincidences and discrete
-equality tests are uniformly stable, with bounds independent of the dimension,
-while order comparisons of discrete spectra unbounded above are unstable. The
-proofs rest on the classical fact that a single double limit condition appears,
-under different names, in topology (Grothendieck), functional analysis
-(Krivine–Maurey), algebra (Arens), probability (Simons) and combinatorics
-(Pták), and in model theory as Shelah's stability; the independent product
-corresponds to Harrington's lemma. Model theory supplies a
-common language for these conditions; we use it as a Rosetta stone, pairing
-each physical question with its mathematical formulation.
+system is idealized first; we call the observable stable when it does not. We
+characterize stability by the simulation of idealized preparations by finite
+mixtures, show that under uniform stability the number of preparations that
+\\(n\\) probes can tell apart is bounded by a polynomial in \\(n\\), and trace these
+results to a single double limit criterion that appears in topology, in
+functional analysis and, as Shelah's stability, in model theory.

@@ -45,21 +45,11 @@ files:
 tags: [quantum error correction, stabilizer codes, Rado graph, simplicity, forking, Fraïssé limits, Pauli group, model theory]
 ---
 
-The paradigm of a simple unstable theory in the sense of Shelah is the theory
-of the random graph, the Fraïssé limit of the finite graphs. Its counterpart
-in quantum error correction is the Pauli group on countably many qubits, taken
-modulo phases and with commutation as its relation: the Fraïssé limit of the
-finite alternating spaces over the two-element field, whose form computes the
-syndromes of stabilizer codes. We show that simplicity theory reads as a theory
-of error correction: Clifford encoding circuits implement the homogeneity of
-the limit, a logical error is an undetectable error whose type over the
-stabilizer group and the logical operators forks over the stabilizer group, and
-the independence theorem of Kim and Pillay is the gluing of syndromes. Both
-structures define bipartite observables, and for both, mixing preparations
-produces the tree property of the second kind. The two paradigms reach it by
-different routes, dictated by their probes. The probes of the Pauli observable
-are the Pauli channels; the indicator of each syndrome sector is the difference
-of the responses of two uniform mixtures, and actual mixtures witness the tree.
-The probes of the Rado observable see only marginals, conditions given by
-actual mixtures are compatible on disjoint blocks, and the tree lives among
-idealized preparations.
+
+The random graph, the paradigm of a simple unstable theory, has a counterpart
+in quantum error correction: the Pauli group on countably many qubits, whose
+commutation form computes the syndromes of stabilizer codes. We show that
+simplicity theory reads as a theory of error correction, in which a logical
+error is an undetectable error whose type forks over the stabilizer group, and
+that in both structures mixing preparations produces the tree property of the
+second kind, by routes dictated by their probes.

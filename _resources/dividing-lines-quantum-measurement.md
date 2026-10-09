@@ -45,21 +45,11 @@ files:
 tags: [stability, NIP, simplicity, model theory, operator theory, quantum information, ultrapowers]
 ---
 
-A bipartite observable compares a preparation of one quantum system with a
-probe of another, and its expectation is a formula of real-valued logic. The
-paper is addressed to two communities, model theorists and operator theorists
-working in quantum information, and uses their common tool, the ultrapower, to
-translate between them. We show that three dividing lines of Shelah in model theory (stability, NIP and
-simplicity) classify bipartite observables, that each has a Fraïssé limit
-at its heart, and that each acquires a dictionary into physics. Stability is
-the independence of a measurement from the order of two idealized limits.
-NIP, the absence of the independence property, sorts physical orders, from photon numbers to the causal order of
-spacetime, into the classes of the trichotomy of Todorčević. Simplicity
-is met in quantum error correction, where forking separates harmless
-undetectable errors from logical ones. The three parts are organized
-around one theorem, the double limit criterion of Grothendieck, and each
-determines what mixing quantum states does: it realizes idealized preparations when the observable
-is stable, makes hereditary separability imply metrizability for NIP
-observables, and, for
-observables diagonal in a product basis, destroys simplicity in the presence
-of the independence property.
+
+We show that three of Shelah's dividing lines in model theory (stability, NIP
+and simplicity) classify bipartite observables, and that each acquires a
+dictionary into physics: stability is the independence of a measurement from
+the order of two idealized limits, NIP sorts physical orders into the classes
+of Todorčević's trichotomy, and simplicity is met in quantum error correction.
+The paper is addressed to model theorists and to operator theorists, and is
+organized around one theorem, the double limit criterion of Grothendieck.
