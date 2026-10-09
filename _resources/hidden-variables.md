@@ -10,6 +10,8 @@ published: true
 # REQUIRED. The resource's name. This is the page title and the index row.
 title: "The problem of hidden variables in quantum mechanics"
 
+subtitle: "Lecture notes"
+
 # Groups the index page. Free text — "Lecture notes", "Reading list",
 # "Software", "Preprints", "Link" are the categories envisioned so far, but
 # nothing is hard-coded; the index groups by whatever values show up. Leave it
