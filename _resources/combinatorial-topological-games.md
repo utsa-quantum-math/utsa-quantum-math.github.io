@@ -1,7 +1,7 @@
 ---
-title: "Combinatorial and Topological Games: Baire Spaces and Applications in Classical Mathematics"
+title: "Combinatorial and topological games"
 
-subtitle: "Lecture notes"
+subtitle: "Baire spaces and applications in classical mathematics"
 
 category: Lecture notes
 
