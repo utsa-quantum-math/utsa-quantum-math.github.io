@@ -39,7 +39,7 @@ summary: "A self-contained introduction to model-theoretic stability and indepen
 # assets/resources/ in this repo — an arXiv or DOI link can sit alongside a
 # local PDF as another entry in the same list.
 files:
-  - text: "Notes on stability theory"
+  - text: "Lecture notes on stability theory"
     url: /assets/notes/stability_notes.pdf
     label: PDF
   # - text: "arXiv preprint"
