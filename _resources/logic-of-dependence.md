@@ -49,4 +49,4 @@ files:
 tags: [dependence, independence, stability, NIP, simplicity, VC-dimension, forking, random graph, Fraïssé limits, model theory]
 ---
 
-When does independence in a first-order theory obey the laws it obeys for vectors and transcendental numbers? Fully in the stable theories, and without uniqueness in the treeless ones.
+In a stable theory, independence obeys all the laws it obeys for vectors and transcendental numbers; in a treeless theory, all of them but uniqueness.
