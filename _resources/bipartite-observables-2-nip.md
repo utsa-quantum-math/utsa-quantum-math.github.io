@@ -45,11 +45,4 @@ files:
 tags: [NIP, Rosenthal compacta, Todorčević trichotomy, model theory, quantum information, Ising model]
 ---
 
-
-A bipartite observable is NIP exactly when its idealized responses are of the
-first Baire class, so that they form a Rosenthal compactum and the Todorčević
-trichotomy acquires a physical meaning. Each of its three classes contains a
-physical order (the comparison of photon numbers, the comparison of positions,
-and the causal order of spacetime), and for the Ising model in a transverse
-field the responses of the symmetric state in the ordered phase form an
-uncountable discrete set.
+An observable is NIP exactly when its idealized responses are of the first Baire class; each class of Todorčević's trichotomy then contains a physical order.

@@ -49,4 +49,4 @@ files:
 tags: [quantum foundations, logic]
 ---
 
-We study the logic and topological aspectd of the problem of hidden variables in quantum mechanics.
+The logical and topological aspects of the problem of hidden variables in quantum mechanics.

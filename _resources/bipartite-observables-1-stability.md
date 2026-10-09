@@ -45,12 +45,4 @@ files:
 tags: [stability, model theory, quantum information, double limits, Grothendieck]
 ---
 
-
-When two quantum systems are prepared independently and each is driven to an
-idealized limit, the expectation of a bipartite observable may depend on which
-system is idealized first; we call the observable stable when it does not. We
-characterize stability by the simulation of idealized preparations by finite
-mixtures, show that under uniform stability the number of preparations that
-\\(n\\) probes can tell apart is bounded by a polynomial in \\(n\\), and trace these
-results to a single double limit criterion that appears in topology, in
-functional analysis and, as Shelah's stability, in model theory.
+Stability of a bipartite observable is the indifference of its expectation to the order in which two idealized limits are taken; Grothendieck's double limit criterion decides it.

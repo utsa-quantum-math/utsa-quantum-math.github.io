@@ -45,11 +45,4 @@ files:
 tags: [quantum error correction, stabilizer codes, Rado graph, simplicity, forking, Fraïssé limits, Pauli group, model theory]
 ---
 
-
-The random graph, the paradigm of a simple unstable theory, has a counterpart
-in quantum error correction: the Pauli group on countably many qubits, whose
-commutation form computes the syndromes of stabilizer codes. We show that
-simplicity theory reads as a theory of error correction, in which a logical
-error is an undetectable error whose type forks over the stabilizer group, and
-that in both structures mixing preparations produces the tree property of the
-second kind, by routes dictated by their probes.
+The Pauli group is the quantum counterpart of the random graph, and simplicity theory becomes a theory of error correction in which logical errors fork.

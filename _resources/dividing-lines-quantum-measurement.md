@@ -45,11 +45,4 @@ files:
 tags: [stability, NIP, simplicity, model theory, operator theory, quantum information, ultrapowers]
 ---
 
-
-We show that three of Shelah's dividing lines in model theory (stability, NIP
-and simplicity) classify bipartite observables, and that each acquires a
-dictionary into physics: stability is the independence of a measurement from
-the order of two idealized limits, NIP sorts physical orders into the classes
-of Todorčević's trichotomy, and simplicity is met in quantum error correction.
-The paper is addressed to model theorists and to operator theorists, and is
-organized around one theorem, the double limit criterion of Grothendieck.
+Shelah's dividing lines (stability, NIP and simplicity) classify bipartite observables, around one theorem: Grothendieck's double limit criterion.

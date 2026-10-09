@@ -49,8 +49,4 @@ files:
 tags: [dependence, independence, stability, NIP, simplicity, VC-dimension, forking, random graph, Fraïssé limits, model theory]
 ---
 
-What does it mean for one thing to be independent of another? Mathematics gives the answer many times over, for vectors, for transcendental numbers, for events, and each time for its own domain. Yet the answers agree in their laws. These lecture notes ask whether the agreement is an accident, and they answer the question for first-order theories. The answer depends on the theory, and the dependence can be stated exactly.
-
-A theory is stable if no formula orders arbitrarily long sequences. Its types are then definable, and independence obeys all the classical laws, uniqueness of independent extensions included. A theory is treeless (simple, in the later terminology) if no formula grows a certain tree. Uniqueness is then lost, but independent extensions can still be amalgamated; the random graph and the Fraïssé limits with disjoint 3-amalgamation are the examples, and the independence theorem is the general statement. A theory has the negation of the independence property if no formula shatters arbitrarily large finite sets. The stable theories are exactly the treeless theories that have it.
-
-A formula is a function with values 0 and 1, and nothing prevents the values from being real. Stability then becomes the exchange of two iterated limits, and Grothendieck's double limit criterion, Rosenthal's dichotomy and the reflexive Banach spaces enter. The types of the logician and the limits of the analyst are the same objects under two modes of presentation.
+When does independence in a first-order theory obey the laws it obeys for vectors and transcendental numbers? Fully in the stable theories, and without uniqueness in the treeless ones.
