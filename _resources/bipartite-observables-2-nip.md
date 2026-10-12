@@ -38,9 +38,9 @@ files:
   - text: "Classification of bipartite observables II"
     url: /assets/notes/Quantum_NIP.pdf
     label: PDF
-  # - text: "arXiv preprint"
-  #   url: https://arxiv.org/abs/0000.00000
-  #   label: arXiv
+  - text: "arXiv:2610.12908"
+    url: https://arxiv.org/abs/2610.12908
+    label: arXiv
 
 tags: [NIP, Rosenthal compacta, Todorčević trichotomy, model theory, quantum information, Ising model]
 ---
