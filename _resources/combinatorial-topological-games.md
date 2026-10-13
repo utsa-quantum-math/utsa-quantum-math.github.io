@@ -3,7 +3,7 @@ title: "Combinatorial and topological games"
 
 subtitle: "Baire spaces and applications in classical mathematics"
 
-category: Lecture notes
+category: Student seminar notes
 
 contributor: "José Iovino"
 

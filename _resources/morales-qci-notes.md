@@ -1,6 +1,6 @@
 ---
 title: "Quantum computing & information: lecture notes (Fall 2022)"
-category: Lecture notes
+category: Course notes
 contributor: "José A. Morales Escalante"
 summary: "Selected lessons from a Fall 2022 course on quantum computing and information."
 files:

@@ -1,6 +1,6 @@
 ---
 title: "Introduction to quantum mechanics: lecture notes"
-category: Lecture notes
+category: Course notes
 contributor: "José A. Morales Escalante"
 summary: "Introductory notes on the mathematical formalism of quantum mechanics."
 files:

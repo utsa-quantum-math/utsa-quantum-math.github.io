@@ -14,9 +14,10 @@ title: "Quantum Theory for Mathematicians"
 # row, e.g. "Lecture notes".
 # subtitle: "Lecture notes"
 
-# Groups the index page. Free text — "Lecture notes", "Reading list",
-# "Software", "Preprints", "Link" are the categories envisioned so far, but
-# nothing is hard-coded; the index groups by whatever values show up. Leave it
+# Groups the index page. Free text — "Student seminar notes", "Course notes",
+# "Preprints", "Reading list", "Software", "Link" are the categories envisioned
+# so far. The first three appear first, in that order (set in resources.md);
+# any other value gets its own section after them. Leave it
 # out and the resource lands under "Other". Spell an existing category exactly
 # as it already appears elsewhere — a typo silently starts a second group.
 category: Reading list

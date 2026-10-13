@@ -116,9 +116,10 @@ that folder in VS Code's sidebar to copy it in.
    - `title` — the name of the paper or item. This is the only field you
      must fill in; delete any other line you don't need.
    - `category` — what kind of thing this is. Use `Preprints` for the
-     group's own papers. Otherwise reuse one of the other categories
-     already in the template (`Lecture notes`, `Reading list`, `Software`,
-     `Link`), copying its spelling exactly — a different spelling makes a
+     group's own papers, `Student seminar notes` for notes from the student
+     seminar, and `Course notes` for notes from a course. Otherwise reuse
+     one of the other categories already in the template (`Reading list`,
+     `Software`, `Link`), copying its spelling exactly — a different spelling makes a
      confusing extra section on the page instead of an error.
    - `contributor` — who it's by. For a preprint, list every author.
    - `summary` — one plain sentence describing it, shown in the listing.
