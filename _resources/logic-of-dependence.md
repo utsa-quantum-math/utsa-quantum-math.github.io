@@ -40,7 +40,7 @@ summary: "An introduction to the logic of dependence and independence: stable, N
 # local PDF as another entry in the same list.
 files:
   - text: "Tame and wild theories: An introduction to the logic of dependence and independence"
-    url: /assets/notes/logic_of_dependence.pdf
+    url: /assets/notes/logic_of_dependence_book.pdf
     label: PDF
   # - text: "arXiv preprint"
   #   url: https://arxiv.org/abs/0000.00000
