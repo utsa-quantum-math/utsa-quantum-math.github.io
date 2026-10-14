@@ -68,6 +68,7 @@ exclude:
   - Gemfile.lock
   - vendor
   - README.md
+  - AGENTS.md
   - CLAUDE.md
   - CONTRIBUTING.md
   - .ruby-version

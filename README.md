@@ -6,7 +6,9 @@ Mathematics at The University of Texas at San Antonio.
 Live at <https://utsa-quantum-math.github.io>.
 
 - Adding or editing a talk, preprint, or other download: [CONTRIBUTING.md](CONTRIBUTING.md)
-- Architecture, schema, and conventions: [CLAUDE.md](CLAUDE.md)
+- Architecture, schema, and conventions: [AGENTS.md](AGENTS.md) (also read by
+  Claude Code as `CLAUDE.md`, a symlink to the same file — see its top for
+  why)
 
 ## Quick start
 
