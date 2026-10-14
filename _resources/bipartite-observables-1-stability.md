@@ -36,7 +36,7 @@ summary: "Part I of a series with Eduardo Dueñez. Stability of a bipartite obse
 # local PDF as another entry in the same list.
 files:
   - text: "Classification of bipartite observables I"
-    url: /assets/notes/Quantum_stability.pdf
+    url: /assets/notes/Qbipartite_1_stability.pdf
     label: PDF
   - text: "arXiv:2610.11002"
     url: https://arxiv.org/abs/2610.11002

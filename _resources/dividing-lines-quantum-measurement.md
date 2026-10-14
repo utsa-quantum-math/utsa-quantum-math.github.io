@@ -36,7 +36,7 @@ summary: "A survey of the three-part series: stability, NIP and simplicity as a 
 # local PDF as another entry in the same list.
 files:
   - text: "Shelah's dividing lines in quantum measurement"
-    url: /assets/notes/Bipartite_observables_survey.pdf
+    url: /assets/notes/Qbipartite_0_survey.pdf
     label: PDF
   # - text: "arXiv preprint"
   #   url: https://arxiv.org/abs/0000.00000

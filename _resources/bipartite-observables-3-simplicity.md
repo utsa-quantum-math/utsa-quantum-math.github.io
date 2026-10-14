@@ -36,7 +36,7 @@ summary: "Part III of a series with Eduardo Dueñez. The Rado graph, the paradig
 # local PDF as another entry in the same list.
 files:
   - text: "Classification of bipartite observables III"
-    url: /assets/notes/Quantum_simple_unstable.pdf
+    url: /assets/notes/Qbipartite_3_simple_unstable.pdf
     label: PDF
   # - text: "arXiv preprint"
   #   url: https://arxiv.org/abs/0000.00000

@@ -36,7 +36,7 @@ summary: "Part II of a series with Eduardo Dueñez. NIP observables, Rosenthal c
 # local PDF as another entry in the same list.
 files:
   - text: "Classification of bipartite observables II"
-    url: /assets/notes/Quantum_NIP.pdf
+    url: /assets/notes/Qbipartite_2_NIP.pdf
     label: PDF
   - text: "arXiv:2610.12908"
     url: https://arxiv.org/abs/2610.12908
