@@ -45,4 +45,4 @@ files:
 tags: [stability, NIP, simplicity, model theory, operator theory, quantum information, ultrapowers]
 ---
 
-Shelah's dividing lines (stability, NIP and simplicity) classify bipartite observables, around one theorem: Grothendieck's double limit criterion.
+Shelah's dividing lines (stability, NIP and simplicity) classify bipartite observables, around one theme Grothendieck's double limit criterion.
