@@ -8,7 +8,7 @@
 published: true
 
 # REQUIRED. The resource's name. This is the page title and the index row.
-title: "The problem of hidden variables in quantum mechanics"
+title: "Topological and logical aspects of the problem of hidden variables in quantum mechanics"
 
 subtitle: "Lecture notes"
 
@@ -28,7 +28,7 @@ contributor: "José Iovino"
 rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
 
 # One plain-text sentence, shown on the index row.
-summary: "We study the no-go theorems about hidden variables, emphasizing the connections with operator theory, topology, and logic"
+summary: "Notes for students on the Bell–Kochen–Specker theorem. Bell's proof, through Gleason's Theorem, and Kochen and Specker's finite proof are linked by the compactness theorem of propositional logic; quantum measures, unlike classical ones, have no counterpart of Dirac measures and do not form a lattice; a timeline traces the history of the problem."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -39,7 +39,7 @@ summary: "We study the no-go theorems about hidden variables, emphasizing the co
 # assets/resources/ in this repo — an arXiv or DOI link can sit alongside a
 # local PDF as another entry in the same list.
 files:
-  - text: "Hidden Variables, connections with topology and logic"
+  - text: "Topological and logical aspects of the problem of hidden variables in quantum mechanics"
     url: /assets/notes/Bell-Kochen-Specker.pdf
     label: PDF
   # - text: "arXiv preprint"
@@ -49,4 +49,4 @@ files:
 tags: [quantum foundations, logic]
 ---
 
-The logical and topological aspects of the problem of hidden variables in quantum mechanics.
+The compactness theorem of propositional logic converts Bell's proof of the Bell–Kochen–Specker theorem into a proof that finitely many rays, of the kind that Kochen and Specker found by hand, already exclude non-contextual hidden variables.
