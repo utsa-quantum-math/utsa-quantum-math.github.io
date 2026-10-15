@@ -28,7 +28,8 @@ contributor: "José Iovino"
 rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
 
 # One plain-text sentence, shown on the index row.
-summary: "Notes for students on the Bell–Kochen–Specker theorem. Bell's proof, through Gleason's Theorem, and Kochen and Specker's finite proof are linked by the compactness theorem of propositional logic; quantum measures, unlike classical ones, have no counterpart of Dirac measures and do not form a lattice; a timeline traces the history of the problem."
+summary: "Notes for students and researchers on the the problem of hidden variables in quantum mechanics and the Bell–Kochen–Specker theorem. Bell's proof and the Kochen-pecker's  proof are linked by the compactness theorem of propositional logic.
+The history of the problem and its connection to logi are traced in detail."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -49,4 +50,5 @@ files:
 tags: [quantum foundations, logic]
 ---
 
-The compactness theorem of propositional logic converts Bell's proof of the Bell–Kochen–Specker theorem into a proof that finitely many rays, of the kind that Kochen and Specker found by hand, already exclude non-contextual hidden variables.
+Notes for students on the the problem of hidden variables in quantum mechanics and the Bell–Kochen–Specker theorem. Bell's proof and the Kochen-pecker's  proof are linked by the compactness theorem of propositional logic.
+The history of the problem and its connection to logi are traced in detail.

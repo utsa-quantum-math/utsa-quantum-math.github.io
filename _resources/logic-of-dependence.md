@@ -28,7 +28,10 @@ contributor: "José Iovino"
 rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
 
 # One plain-text sentence, shown on the index row.
-summary: "An introduction to the logic of dependence and independence: stable, NIP and simple theories, from forbidden configurations to calculi of independence."
+summary: "A gentle introduction to classification theory (in the sense of logic) written for students and researchers.
+It includes stable theories, NIP theories, and simple unstable theories. 
+The text is accessible to undergraduate and graduate students. 
+It presupposes familiarity with the basic of first-order logic, including the compactness theorem, ultraporoducts, and saturated extension. The text contains many exercises and illustrations."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -49,4 +52,7 @@ files:
 tags: [dependence, independence, stability, NIP, simplicity, VC-dimension, forking, random graph, Fraïssé limits, model theory]
 ---
 
-In a stable theory, independence obeys all the laws it obeys for vectors and transcendental numbers; in a treeless theory, all of them but uniqueness.
+A gentle introduction to classification theory (in the sense of logic) written for students and researchers.
+It includes stable theories, NIP theories, and simple unstable theories. 
+The text is accessible to undergraduate and graduate students. 
+It presupposes familiarity with the basic of first-order logic, including the compactness theorem, ultraporoducts, and saturated extension. The text contains many exercises and illustrations.
