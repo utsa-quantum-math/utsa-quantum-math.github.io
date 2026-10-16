@@ -70,6 +70,11 @@ resolved in one place, `_includes/speaker.html`, which assigns `sp_name`,
 display is changed there and nowhere else. A slug that matches no record
 renders as "unknown speaker: &lt;slug&gt;" rather than a blank byline.
 
+For a slug, the affiliation comes from the person's `institution:` if set,
+else "`department`, `site.institution`", else `site.institution` alone
+(`institution:` in `_config.yml`, i.e. UTSA), so a local person record needs
+neither field.
+
 A talk may set a top-level `affiliation:` to override the person record for
 that meeting alone. A record says where someone is now; a talk says where they
 were then, and the two drift — Jingbo Liu spoke in February 2026 from Texas
@@ -85,9 +90,12 @@ heading on `/people/` so the typo is visible.
 excluded. A resource is standalone — it has no required link to any talk,
 series, or person; it is the group's general downloads shelf. Only `title` is
 required. `category` is free text that groups
-`/resources/` into sections — "Lecture notes", "Reading list", "Software" and
-"Preprints" are the ones in use, but the index groups by whatever values show
-up, so a typo silently starts a second section rather than erroring. A
+`/resources/` into sections. "Student seminar notes", "Course notes" and
+"Preprints" come first, in that order, because `resources.md` pins them in
+its `order` list; any other value ("Reading list" is in use, and the template
+also suggests "Software" and "Link") gets its own section after them,
+alphabetically. Because the index groups by whatever values show up, a typo
+silently starts a second section rather than erroring. A
 resource holds either a single `link:` (an external link) or one or more
 `files:` (local downloads, same `{text, url, label}` shape as a talk's
 `references:`); a `files:` entry can point at a local PDF under
@@ -100,9 +108,14 @@ renamed (the "Open" button linked every resource to itself). `files[].url` is
 unaffected — that's a plain hash key inside a list, not a whole-page
 attribute.
 **Preprints authored by the group** are resources with `category: Preprints`:
-the PDF goes under `assets/resources/preprints/`, `contributor:` holds the
-author list in print order, and the abstract goes in the body like a talk's
-abstract. See "Adding a resource or preprint" below.
+`contributor:` holds the author list in print order, and the abstract goes in
+the body like a talk's abstract. See "Adding a resource or preprint" below.
+`assets/resources/preprints/` is the documented home for a new preprint's
+PDF, but the group's existing papers and book drafts (the `Qbipartite_*`
+series, the games book, the logic-of-dependence book, the
+Bell–Kochen–Specker notes) live in `assets/notes/` under their LaTeX output
+names. Those PDFs are refreshed often: replace the file at the same path so
+the URL already circulated keeps working, and don't move or rename it.
 
 ## Conventions that are easy to violate
 
@@ -229,11 +242,14 @@ Full contributor-facing steps are in `CONTRIBUTING.md`. Short version:
 ## Phasing
 
 - **Phase 0 (done):** repo, collections, layouts, one series, one talk, CI.
-- **Phase 1:** archive imported — nine meetings from 2021, 2022, 2025 and
-  early 2026, taken from
+- **Phase 1:** archive imported — the 2025 and early-2026 meetings, taken
+  from
   `https://sciences.utsa.edu/mathematics/quantum-mathematics/seminars.html`
-  into the `quantum-math` series. Remaining: write the real landing-page copy;
-  add the rest of the Fall talks.
+  into the `quantum-math` series. The department page also lists 2021–2022
+  meetings; those were imported and then removed as obsolete (commit
+  `3a017f7`), so their absence here is deliberate, not a gap to refill.
+  Remaining: write the real landing-page copy; add the rest of the Fall
+  talks.
 - **Phase 2:** `_people` done — seeded from the department faculty page, with
   speaker records (students, recurring visitors) added as talks are
   scheduled, grouped by `_data/people_groups.yml`. `speaker:` slug linking
