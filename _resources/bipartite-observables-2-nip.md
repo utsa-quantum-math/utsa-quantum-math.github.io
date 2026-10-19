@@ -8,7 +8,7 @@
 published: true
 
 # REQUIRED. The resource's name. This is the page title and the index row.
-title: "Classification of bipartite observables II: NIP observables and the Todorčević trichotomy"
+title: "Classification of bipartite observables II: NIP observables and Todorčević's trichotomy"
 
 # Groups the index page. Free text — "Lecture notes", "Reading list",
 # "Software", "Preprints", "Link" are the categories envisioned so far, but
@@ -24,7 +24,7 @@ category: Preprints
 contributor: "Eduardo Dueñez and José Iovino"
 
 # One plain-text sentence, shown on the index row.
-summary: "Part II of a series with Eduardo Dueñez. NIP observables, Rosenthal compacta, and the Todorčević trichotomy, with physical orders in each class and the transverse-field Ising model."
+summary: "Part II of a series with Eduardo Dueñez. NIP observables, Rosenthal compacta, and Todorčević's trichotomy, with physical orders in each class and the transverse-field Ising model."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -42,7 +42,7 @@ files:
     url: https://arxiv.org/abs/2610.12908
     label: arXiv
 
-tags: [NIP, Rosenthal compacta, Todorčević trichotomy, model theory, quantum information, Ising model]
+tags: [NIP, Rosenthal compacta, Todorčević's trichotomy, model theory, quantum information, Ising model]
 ---
 
 An observable is NIP exactly when its idealized responses are of the first Baire class; each class of Todorčević's trichotomy then contains a physical order.
