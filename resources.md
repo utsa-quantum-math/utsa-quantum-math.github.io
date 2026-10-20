@@ -16,7 +16,7 @@ permalink: /resources/
     Sections listed in `order` come first, in that order; any other
     category follows, alphabetically.
   {%- endcomment -%}
-  {%- assign order = "Student seminar notes|Course notes|Preprints" | split: "|" -%}
+  {%- assign order = "Student seminar notes|Student research notes|Course notes|Preprints" | split: "|" -%}
   {%- assign groups = site.resources | group_by: "category" | sort: "name" -%}
   {%- for cat in order -%}
   {%- assign g = groups | where: "name", cat | first -%}
