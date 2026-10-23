@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The 49-Ray Kochen–Specker Set</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a working instrument. Sphere on the left, colouring console on the right; notes and the ray table below. */
+:root {
+  --bg: #f4f6f8;
+  --panel: #ffffff;
+  --ink: #18202c;
+  --muted: #5a6474;
+  --rule: #d9dee6;
+  --accent: #2d4fc4;      /* rays you set to 1 */
+  --line: #9aa4b4;        /* triples not yet touched */
+  --ok: #2a8a5a;          /* exactly one ray set to 1 */
+  --bad: #c43a2e;         /* two or more set to 1 */
+  --gap: #b9831a;         /* none set to 1, once you have started */
+  --f-display: "Spectral", Georgia, "Times New Roman", serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151c; --panel: #181e27; --ink: #e6eaf0; --muted: #9aa3b2; --rule: #2a3240;
+    --accent: #7d9bff; --line: #5d6778; --ok: #4fc08a; --bad: #ff6f61; --gap: #e0aa45; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151c; --panel: #181e27; --ink: #e6eaf0; --muted: #9aa3b2; --rule: #2a3240;
+  --accent: #7d9bff; --line: #5d6778; --ok: #4fc08a; --bad: #ff6f61; --gap: #e0aa45; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 28px; }
+header h1 { font-family: var(--f-display); font-weight: 600; font-size: clamp(28px, 4.2vw, 42px); line-height: 1.1; margin: 0 0 8px; text-wrap: balance; }
+header p { margin: 0; color: var(--muted); max-width: 68ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.facts b { color: var(--ink); font-weight: 500; }
+.stage { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+@media (max-width: 820px) { .stage { grid-template-columns: 1fr; } }
+.viewer { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 10px; }
+canvas { display: block; width: 100%; aspect-ratio: 1 / 1; max-width: 100%; touch-action: none; cursor: grab; border-radius: 6px; }
+canvas:active { cursor: grabbing; }
+.hint { font-size: 12.5px; color: var(--muted); margin: 8px 4px 2px; }
+.console { display: grid; gap: 18px; min-width: 0; }
+.console h2, .notes h2 { font-family: var(--f-display); font-weight: 600; font-size: 21px; margin: 0; }
+.score { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.cell { border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px; background: var(--panel); }
+.cell .n { font-family: var(--f-mono); font-size: 26px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.cell .l { font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+.cell.ok .n { color: var(--ok); } .cell.gap .n { color: var(--gap); } .cell.bad .n { color: var(--bad); }
+.verdict { font-size: 14px; min-height: 2.6em; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: inherit; font-size: 14px; padding: 7px 12px; border-radius: 7px; border: 1px solid var(--rule); background: var(--panel); color: var(--ink); cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+label.tog { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
+.ray { border-top: 1px solid var(--rule); padding-top: 14px; font-size: 14px; }
+.ray .v { font-family: var(--f-mono); font-size: 18px; }
+.ray ul { margin: 8px 0 0; padding-left: 18px; font-family: var(--f-mono); font-size: 13px; }
+.ray li { margin: 2px 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); }
+.sw { display: inline-block; width: 18px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.notes { display: grid; gap: 10px; max-width: 72ch; }
+.notes p { margin: 0; }
+details { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 16px; }
+summary { cursor: pointer; font-weight: 500; }
+.tablewrap { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { padding: 4px 14px 4px 0; text-align: left; white-space: nowrap; }
+th { font-family: var(--f-body); font-weight: 500; color: var(--muted); font-size: 12px; letter-spacing: .03em; border-bottom: 1px solid var(--rule); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header>
+    <h1>The 49-ray Kochen–Specker set</h1>
+    <p>49 directions in three-dimensional space with integer coordinates. Among them are 36 triples of mutually perpendicular directions. Try to mark some directions as true so that every triple contains exactly one true direction: it cannot be done.</p>
+    <div class="facts">
+      <span><b>49</b> rays</span>
+      <span><b>36</b> orthogonal triples</span>
+      <span>coordinates in <b>{0, ±1, ±2, ±5}</b></span>
+      <span>best possible: <b>35 of 36</b> triples</span>
+    </div>
+  </header>
+
+  <section class="stage">
+    <div class="viewer">
+      <canvas id="sphere" aria-label="The 49 rays as points on the unit sphere, with each orthogonal triple drawn as a triangle of quarter circles"></canvas>
+      <p class="hint">Drag to turn the sphere. Click a point to mark that ray true, click again to clear it. Faint points are on the far side.</p>
+    </div>
+
+    <div class="console">
+      <h2>Try to colour it</h2>
+      <div class="score">
+        <div class="cell ok"><div class="n" id="nOk">0</div><div class="l">triples with exactly one true ray</div></div>
+        <div class="cell gap"><div class="n" id="nGap">36</div><div class="l">triples with none</div></div>
+        <div class="cell bad"><div class="n" id="nBad">0</div><div class="l">triples with two or three</div></div>
+      </div>
+      <div class="verdict" id="verdict">Mark rays as true. A colouring would need all 36 triples green.</div>
+      <div class="btns">
+        <button type="button" id="best" class="primary">Show a best attempt</button>
+        <button type="button" id="clear">Clear</button>
+        <button type="button" id="spin">Pause rotation</button>
+      </div>
+      <label class="tog"><input type="checkbox" id="onlySel"> Show only the triples of the selected ray</label>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--ok)"></i>exactly one true</span>
+        <span><i class="sw" style="background:var(--gap)"></i>none true</span>
+        <span><i class="sw" style="background:var(--bad)"></i>two or more true</span>
+        <span><i class="sw" style="background:var(--line)"></i>not yet started</span>
+      </div>
+      <div class="ray" id="rayInfo"><span style="color:var(--muted)">Select a ray to see its coordinates and the triples it belongs to.</span></div>
+    </div>
+  </section>
+
+  <section class="notes">
+    <h2>What you are looking at</h2>
+    <p>Each point is a ray, a line through the origin, drawn where it meets the upper half of the unit sphere. Three mutually perpendicular rays form a triple, drawn as a triangle of three quarter circles. The bigger a point, the more triples it belongs to: 33 of the rays lie in two or more triples, and the other 16 lie in exactly one, where they complete a triple.</p>
+    <p>A Kochen–Specker colouring in basis form assigns 1 (true) or 0 (false) to every ray so that each triple contains exactly one 1. No such assignment exists for these 49 rays; the best attempt satisfies 35 triples and breaks one. The set is also critical: remove any one of the 49 rays and a colouring becomes possible. Both facts were checked by a SAT solver.</p>
+    <p>The set was found by a computer search over rays with small coordinates. It is the smallest set that search has produced in about 165,647 attempts (last updated 23 October 2026); whether smaller sets of this kind exist is open as far as the search goes.</p>
+  </section>
+
+  <details>
+    <summary>All 49 rays and their triples</summary>
+    <div class="tablewrap"><table id="tbl"><thead><tr><th>#</th><th>ray</th><th>triples</th><th>partners</th></tr></thead><tbody></tbody></table></div>
+  </details>
+</div>
+
+<script>
+const DATA = {"R":["(0, 0, 1)","(0, 1, 0)","(0, 1, 1)","(0, -1, 1)","(0, 1, 2)","(0, -1, 2)","(0, 2, 1)","(0, -2, 1)","(1, 0, 0)","(1, 0, 1)","(-1, 0, 1)","(1, 1, 0)","(1, 1, 1)","(-1, -1, 1)","(1, 1, 2)","(-1, -1, 2)","(-1, 1, 0)","(1, -1, 1)","(-1, 1, 1)","(1, -1, 2)","(-1, 1, 2)","(1, 2, 0)","(1, 2, 1)","(-1, -2, 1)","(-1, 2, 0)","(1, -2, 1)","(-1, 2, 1)","(2, 1, 0)","(2, 1, 1)","(-2, -1, 1)","(-2, 1, 0)","(2, -1, 1)","(-2, 1, 1)","(5, -2, 1)","(-5, -2, 1)","(-5, 2, 1)","(5, 2, 1)","(5, -1, 2)","(-5, -1, 2)","(-5, 1, 2)","(5, 1, 2)","(-2, 1, 5)","(2, -1, 5)","(-1, -2, 5)","(1, 2, 5)","(-2, -1, 5)","(2, 1, 5)","(-1, 2, 5)","(1, -2, 5)"],"U":[[0.0,0.0,1.0],[0.0,1.0,0.0],[0.0,0.707107,0.707107],[0.0,-0.707107,0.707107],[0.0,0.447214,0.894427],[0.0,-0.447214,0.894427],[0.0,0.894427,0.447214],[0.0,-0.894427,0.447214],[1.0,0.0,0.0],[0.707107,0.0,0.707107],[-0.707107,0.0,0.707107],[0.707107,0.707107,0.0],[0.57735,0.57735,0.57735],[-0.57735,-0.57735,0.57735],[0.408248,0.408248,0.816497],[-0.408248,-0.408248,0.816497],[-0.707107,0.707107,0.0],[0.57735,-0.57735,0.57735],[-0.57735,0.57735,0.57735],[0.408248,-0.408248,0.816497],[-0.408248,0.408248,0.816497],[0.447214,0.894427,0.0],[0.408248,0.816497,0.408248],[-0.408248,-0.816497,0.408248],[-0.447214,0.894427,0.0],[0.408248,-0.816497,0.408248],[-0.408248,0.816497,0.408248],[0.894427,0.447214,0.0],[0.816497,0.408248,0.408248],[-0.816497,-0.408248,0.408248],[-0.894427,0.447214,0.0],[0.816497,-0.408248,0.408248],[-0.816497,0.408248,0.408248],[0.912871,-0.365148,0.182574],[-0.912871,-0.365148,0.182574],[-0.912871,0.365148,0.182574],[0.912871,0.365148,0.182574],[0.912871,-0.182574,0.365148],[-0.912871,-0.182574,0.365148],[-0.912871,0.182574,0.365148],[0.912871,0.182574,0.365148],[-0.365148,0.182574,0.912871],[0.365148,-0.182574,0.912871],[-0.182574,-0.365148,0.912871],[0.182574,0.365148,0.912871],[-0.365148,-0.182574,0.912871],[0.365148,0.182574,0.912871],[-0.182574,0.365148,0.912871],[0.182574,-0.365148,0.912871]],"B":[[0,1,8],[0,11,16],[0,21,30],[0,24,27],[1,9,10],[2,3,8],[2,13,31],[2,17,29],[3,12,32],[3,18,28],[4,7,8],[4,23,33],[4,25,34],[5,6,8],[5,22,35],[5,26,36],[6,15,37],[6,19,38],[7,14,39],[7,20,40],[9,13,26],[9,18,23],[10,12,25],[10,17,22],[11,17,20],[11,18,19],[12,15,16],[13,14,16],[21,31,41],[21,32,42],[22,30,43],[23,30,44],[24,28,45],[24,29,46],[25,27,47],[26,27,48]],"best":[0,0,1,1,0,0,0,0,1,0,1,1,0,0,1,1,0,0,0,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,1,1,0,0,1,0,1,0,0,1,0,0,0,1,0],"bestOk":35};
+const R = DATA.R, B = DATA.B, N = R.length, NB = B.length, BESTOK = DATA.bestOk;
+const U = DATA.U;
+const deg = R.map((_, i) => B.filter(b => b.includes(i)).length);
+const triplesOf = R.map((_, i) => B.map((b, k) => b.includes(i) ? k : -1).filter(k => k >= 0));
+const fmt = v => v;
+
+let truth = new Array(N).fill(0);
+let started = false, selected = -1, onlySel = false;
+let yaw = 0.6, pitch = -1.15, spinning = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const cv = document.getElementById("sphere"), ctx = cv.getContext("2d");
+function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+function rot(p) {
+  const [x, y, z] = p, cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+  const x1 = cy * x + sy * y, y1 = -sy * x + cy * y;          // about the z axis
+  const y2 = cp * y1 - sp * z, z2 = sp * y1 + cp * z;          // about the x axis
+  return [x1, z2, y2];                                          // screen x, screen y (up), depth (toward viewer)
+}
+let W = 0, S = 0, C = 0;
+function size() {
+  const r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+  W = r.width; cv.width = Math.round(r.width * d); cv.height = Math.round(r.width * d);
+  ctx.setTransform(d, 0, 0, d, 0, 0); C = W / 2; S = W * 0.42;
+}
+function proj(p) { const q = rot(p); return [C + S * q[0], C - S * q[1], q[2]]; }
+
+function status(k) {
+  const s = B[k].reduce((a, i) => a + truth[i], 0);
+  return s === 1 ? "ok" : s === 0 ? "gap" : "bad";
+}
+function draw() {
+  const col = { ok: css("--ok"), gap: css("--gap"), bad: css("--bad"), line: css("--line"), accent: css("--accent"), ink: css("--ink"), rule: css("--rule"), panel: css("--panel") };
+  ctx.clearRect(0, 0, W, W);
+  ctx.beginPath(); ctx.arc(C, C, S, 0, 2 * Math.PI); ctx.strokeStyle = col.rule; ctx.lineWidth = 1; ctx.stroke();
+  // triples: three quarter-circle arcs each, drawn in short segments shaded by depth
+  const segs = [];
+  B.forEach((b, k) => {
+    if (onlySel && selected >= 0 && !b.includes(selected)) return;
+    const st = started ? status(k) : "line";
+    const hot = selected >= 0 && b.includes(selected);
+    for (const [i, j] of [[b[0], b[1]], [b[1], b[2]], [b[0], b[2]]]) {
+      const u = U[i], w = U[j], M = 18;
+      let prev = null;
+      for (let t = 0; t <= M; t++) {
+        const a = (t / M) * Math.PI / 2, p = [0, 1, 2].map(c => Math.cos(a) * u[c] + Math.sin(a) * w[c]);
+        const q = proj(p);
+        if (prev) segs.push({ a: prev, b: q, z: (prev[2] + q[2]) / 2, st, hot });
+        prev = q;
+      }
+    }
+  });
+  segs.sort((s1, s2) => s1.z - s2.z);
+  for (const s of segs) {
+    ctx.globalAlpha = s.z < 0 ? 0.22 : (s.hot ? 1 : (selected >= 0 ? 0.5 : 0.8));
+    ctx.strokeStyle = col[s.st]; ctx.lineWidth = s.hot ? 2.6 : (s.st === "line" ? 1 : 1.6);
+    ctx.beginPath(); ctx.moveTo(s.a[0], s.a[1]); ctx.lineTo(s.b[0], s.b[1]); ctx.stroke();
+  }
+  // points
+  const pts = U.map((u, i) => ({ i, q: proj(u) })).sort((a, b) => a.q[2] - b.q[2]);
+  for (const { i, q } of pts) {
+    const r = 3 + 1.4 * deg[i] + (i === selected ? 2 : 0);
+    ctx.globalAlpha = q[2] < 0 ? 0.35 : 1;
+    ctx.beginPath(); ctx.arc(q[0], q[1], r, 0, 2 * Math.PI);
+    ctx.fillStyle = truth[i] ? col.accent : col.panel; ctx.fill();
+    ctx.lineWidth = i === selected ? 2.5 : 1.5; ctx.strokeStyle = truth[i] ? col.accent : col.ink; ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+
+function update() {
+  let ok = 0, gap = 0, bad = 0;
+  B.forEach((_, k) => { const s = status(k); if (s === "ok") ok++; else if (s === "gap") gap++; else bad++; });
+  document.getElementById("nOk").textContent = ok;
+  document.getElementById("nGap").textContent = gap;
+  document.getElementById("nBad").textContent = bad;
+  const v = document.getElementById("verdict");
+  if (!started) v.textContent = `Mark rays as true. A colouring would need all ${NB} triples green.`;
+  else if (ok === NB) v.textContent = `All ${NB} triples have exactly one true ray.`;
+  else if (ok === BESTOK) v.textContent = `${ok} of ${NB}: as good as it gets. Every colouring of these rays breaks at least ${NB - BESTOK} triple${NB - BESTOK > 1 ? "s" : ""}.`;
+  else v.textContent = `${ok} of ${NB} triples have exactly one true ray. The best possible is ${BESTOK}.`;
+  showRay();
+  draw();
+}
+function showRay() {
+  const box = document.getElementById("rayInfo");
+  if (selected < 0) { box.innerHTML = '<span style="color:var(--muted)">Select a ray to see its coordinates and the triples it belongs to.</span>'; return; }
+  const items = triplesOf[selected].map(k => {
+    const st = started ? status(k) : "line";
+    const c = { ok: "var(--ok)", gap: "var(--gap)", bad: "var(--bad)", line: "var(--muted)" }[st];
+    return `<li style="color:${c}">${B[k].map(i => fmt(R[i])).join("  ")}</li>`;
+  }).join("");
+  box.innerHTML = `<div class="v">${fmt(R[selected])}</div><div style="color:var(--muted)">ray ${selected + 1} of ${N} · ${truth[selected] ? "marked true" : "false"} · in ${deg[selected]} triple${deg[selected] > 1 ? "s" : ""}</div><ul>${items}</ul>`;
+}
+
+// pointer: drag rotates, a short tap toggles the nearest point
+let down = null;
+cv.addEventListener("pointerdown", e => { down = { x: e.clientX, y: e.clientY, yaw, pitch, moved: false }; cv.setPointerCapture(e.pointerId); spinning = false; setSpinLabel(); });
+cv.addEventListener("pointermove", e => {
+  if (!down) return;
+  const dx = e.clientX - down.x, dy = e.clientY - down.y;
+  if (Math.hypot(dx, dy) > 4) down.moved = true;
+  if (down.moved) { yaw = down.yaw + dx * 0.01; pitch = Math.max(-1.5, Math.min(1.5, down.pitch + dy * 0.01)); draw(); }
+});
+cv.addEventListener("pointerup", e => {
+  if (down && !down.moved) {
+    const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    let best = -1, bd = 1e9;
+    U.forEach((u, i) => { const q = proj(u), d = Math.hypot(q[0] - x, q[1] - y) - (q[2] > 0 ? 4 : 0); if (d < bd) { bd = d; best = i; } });
+    if (bd < 16) {
+      if (selected === best) { truth[best] = 1 - truth[best]; started = true; }
+      else { selected = best; if (!truth[best]) { truth[best] = 1; started = true; } else { truth[best] = 0; } }
+      update();
+    }
+  }
+  down = null;
+});
+document.getElementById("best").onclick = () => { truth = DATA.best.slice(); started = true; selected = B.findIndex((b, k) => status(k) !== "ok") >= 0 ? B[B.findIndex((b, k) => status(k) !== "ok")][0] : -1; update(); };
+document.getElementById("clear").onclick = () => { truth = new Array(N).fill(0); started = false; selected = -1; update(); };
+document.getElementById("onlySel").onchange = e => { onlySel = e.target.checked; draw(); };
+function setSpinLabel() { document.getElementById("spin").textContent = spinning ? "Pause rotation" : "Rotate"; }
+document.getElementById("spin").onclick = () => { spinning = !spinning; setSpinLabel(); if (spinning) requestAnimationFrame(tick); };
+setSpinLabel();
+
+// table
+const tb = document.querySelector("#tbl tbody");
+R.forEach((v, i) => {
+  const partners = triplesOf[i].map(k => B[k].filter(j => j !== i).map(j => fmt(R[j])).join(" ")).join(" | ");
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td>${i + 1}</td><td>${fmt(v)}</td><td>${deg[i]}</td><td>${partners}</td>`;
+  tb.appendChild(tr);
+});
+
+let last = 0;
+function tick(t) { if (!spinning) return; if (last) yaw += (t - last) * 0.00018; last = t; draw(); requestAnimationFrame(tick); }
+window.addEventListener("resize", () => { size(); draw(); });
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+size(); update();
+if (spinning) requestAnimationFrame(tick);
+</script>
+
+</body>
+</html>

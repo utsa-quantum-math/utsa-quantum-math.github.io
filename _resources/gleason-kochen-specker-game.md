@@ -8,6 +8,9 @@ files:
   - text: "Gleason, Kochen–Specker, and the model existence game"
     url: /assets/notes/Gleason_Kochen_Specker_game.pdf
     label: PDF
+  - text: "The smallest Kochen–Specker set found by our computer search: an interactive picture"
+    url: /assets/notes/Kochen_Specker_set.html
+    label: Interactive
 tags: [quantum foundations, logic]
 ---
 
