@@ -8,7 +8,7 @@
 published: true
 
 # REQUIRED. The resource's name. This is the page title and the index row.
-title: "Shelah's dividing lines in quantum measurement: 32 variations in three parts"
+title: "Shelah's dividing lines in quantum measurement: 30 variations in three parts"
 
 # Groups the index page. Free text — "Lecture notes", "Reading list",
 # "Software", "Preprints", "Link" are the categories envisioned so far, but
