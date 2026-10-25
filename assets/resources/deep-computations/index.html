@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deep Computations Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+
+/* Layout: a single reading column; each example is a figure plate with its canvas, its controls and a short gloss. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --plate:#eef9fc; --ink:#1b2430; --muted:#566170;
+  --deep:#1f93b3; --plum:#9c1c6e; --orchid:#f25ca8; --rule:#cfe9f1; --grid:#dcf0f6;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+/* The palette is the paper's own: sky blue for iterates, pink for limits, berry for emphasis. */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10181c; --surface:#16222a; --plate:#1b2c35; --ink:#e8f1f4; --muted:#a3b3bb;
+  --deep:#59d1e8; --plum:#f7a3cf; --orchid:#f25ca8; --rule:#2b4250; --grid:#24394a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10181c; --surface:#16222a; --plate:#1b2c35; --ink:#e8f1f4; --muted:#a3b3bb;
+  --deep:#59d1e8; --plum:#f7a3cf; --orchid:#f25ca8; --rule:#2b4250; --grid:#24394a; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;display:grid;gap:36px}
+header h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,4.6vw,42px);line-height:1.1;margin:0 0 10px;text-wrap:balance}
+header p{margin:0;max-width:66ch;color:var(--muted)}
+.levels{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.levels span{font-family:var(--mono);font-size:12px;padding:3px 8px;border:1px solid var(--rule);border-radius:999px;color:var(--muted)}
+nav{display:flex;flex-wrap:wrap;gap:8px}
+nav a{font-size:14px;color:var(--deep);text-decoration:none;border-bottom:1px solid var(--rule)}
+nav a:hover,nav a:focus-visible{border-color:var(--deep)}
+section{display:grid;gap:14px}
+section h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3vw,28px);margin:0;text-wrap:balance}
+.lede{margin:0;max-width:68ch}
+.plate{background:var(--plate);border-radius:10px;padding:14px;display:grid;gap:12px}
+.canvases{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+canvas{width:100%;aspect-ratio:1/1;max-width:100%;background:var(--surface);border-radius:6px;display:block}
+canvas.wide{aspect-ratio:2.2/1}
+.cap{font-size:13px;color:var(--muted);margin:4px 2px 0}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 18px;align-items:end}
+label{display:grid;gap:4px;font-size:14px}
+label .v{font-family:var(--mono);font-size:13px;color:var(--plum)}
+input[type=range]{width:100%;accent-color:var(--orchid)}
+select,button{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:6px 10px}
+button{cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--orchid);outline-offset:2px}
+.badge{justify-self:start;font-family:var(--mono);font-size:13px;padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--rule)}
+.badge b{color:var(--plum);font-weight:500}
+.readout{font-family:var(--mono);font-size:13px;color:var(--muted);overflow-x:auto;white-space:nowrap}
+.pattern{display:flex;flex-wrap:wrap;gap:6px}
+.pattern button{min-width:44px;font-family:var(--mono)}
+.pattern button[aria-pressed="true"]{background:var(--deep);color:var(--surface);border-color:var(--deep)}
+figure{margin:0;display:grid;gap:6px}
+figure img{width:100%;height:auto;background:#ffffff;border-radius:6px}
+figcaption{font-size:13px;color:var(--muted)}
+.why{margin:0;max-width:68ch;font-size:15px}
+.why strong{color:var(--plum);font-weight:700}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:14px}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header>
+  <h1>Deep computations, iteration by iteration</h1>
+  <p>A computation is a map applied over and over. Its <em>deep computations</em> are the limits of its iterates, taken point by point. These four examples come from the paper <em>Complexity of deep computations via topology of function spaces</em> by Dueñez, Iovino, Matos-Wiederhold, Salvetti and Tall. Move the sliders and watch the limits form.</p>
+  <div class="levels" aria-label="The levels of the hierarchy">
+    <span>stable</span><span>NIP₃: metrizable</span><span>NIP₂: hereditarily separable</span><span>NIP₁: first countable</span><span>NIP</span><span>not NIP</span>
+  </div>
+</header>
+
+<nav aria-label="Examples">
+  <a href="#logistic">1. The logistic map</a><a href="#euclid">2. The Euclidean algorithm</a><a href="#bresenham">3. Drawing a line</a><a href="#doubling">4. The doubling map</a><a href="#figures">Figures of the paper</a>
+</nav>
+
+<section id="logistic">
+  <h2>1. The logistic map: one family, several levels</h2>
+  <p class="lede">The map f(x) = r·x·(1 − x) sends [0, 1] into itself. For small r its iterates settle down; at r = 4 they scramble every input. The left panel draws the n-th iterate as a function of the starting point, the right panel follows one orbit.</p>
+  <div class="plate">
+    <div class="canvases">
+      <div><canvas id="logGraph" width="600" height="600" aria-label="Graph of the n-th iterate"></canvas><p class="cap">The n-th iterate fⁿ(x) over [0, 1]. The dashed line is the limit when it exists.</p></div>
+      <div><canvas id="logCob" width="600" height="600" aria-label="Cobweb of one orbit"></canvas><p class="cap">Cobweb: the orbit of the starting point x₀ bounces between the curve and the diagonal.</p></div>
+    </div>
+    <div class="controls">
+      <label for="r">parameter r <span class="v" id="rv"></span><input id="r" type="range" min="0.2" max="4" step="0.01" value="2.8"></label>
+      <label for="n">iterate n <span class="v" id="nv"></span><input id="n" type="range" min="1" max="120" step="1" value="12"></label>
+      <label for="x0">starting point x₀ <span class="v" id="x0v"></span><input id="x0" type="range" min="0.001" max="0.999" step="0.001" value="0.05"></label>
+    </div>
+    <div class="badge" id="logBadge"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> For r ≤ 1 every orbit falls to 0, and the limit is the constant 0, a continuous map: the computation is stable. For 1 &lt; r ≤ 3 the iterates converge to the map that sends 0 and 1 to 0 and every other point to 1 − 1/r. That limit jumps at 0 and at 1, so it is not continuous, yet it is a limit of a <em>sequence</em> of computations: the level is NIP₃ but not stable. At r = 4 the graphs of fⁿ oscillate faster and faster, and no limit appears: the computation is not NIP. The parameters between 3 and 4 are beyond what the paper classifies.</p>
+</section>
+
+<section id="euclid">
+  <h2>2. The Euclidean algorithm: an exact equality test as a limit</h2>
+  <p class="lede">The continued fraction algorithm writes a number η = [a₀; a₁, a₂, …] by repeating two steps, x ↦ x − a and x ↦ 1/x. After k + 1 steps it has applied a Möbius map M<sub>k</sub><sup>−1</sup>, which sends η to its tail η<sub>k+1</sub> = [a<sub>k+1</sub>; a<sub>k+2</sub>, …]. Here we apply the same map to <em>every</em> input. Both axes are the projective line, from ∞ through 0 back to ∞.</p>
+  <div class="plate">
+    <canvas id="euc" class="wide" width="1100" height="500" aria-label="Graph of the map M_k inverse"></canvas>
+    <div class="controls">
+      <label for="eta">the number η
+        <select id="eta">
+          <option value="2">runs of ones separated by 2s</option>
+          <option value="1">all partial quotients 1 (η = 1/φ)</option>
+          <option value="r">runs of ones, random separators</option>
+        </select>
+      </label>
+      <label for="k">step k <span class="v" id="kv"></span><input id="k" type="range" min="1" max="45" step="1" value="4"></label>
+      <button id="mid" type="button">Jump to the middle of the next run</button>
+    </div>
+    <div class="readout" id="eucRead"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> In the middle of a long run of 1s, the map sends every point except η close to −1/φ ≈ −0.618 and sends η close to φ ≈ 1.618. In the limit it is an <strong>exact equality test</strong>: it asks whether the input equals η. There is one such test for each of uncountably many η, and they all crowd around the constant map −1/φ. That is why the space of deep computations of the Euclidean algorithm is <strong>NIP but not first countable</strong>. No single Möbius map can do this: the iterates of one map converge, or cycle, and their limits form a countable set.</p>
+</section>
+
+<section id="bresenham">
+  <h2>3. Drawing a line: two ways to round</h2>
+  <p class="lede">Bresenham's algorithm draws the line y = αx + ρ on a pixel screen. At each step it moves one pixel right and decides whether to move one up. The state is the accumulated error, which moves by α each step: a rotation of the circle.</p>
+  <div class="plate">
+    <canvas id="bre" class="wide" width="1100" height="440" aria-label="Pixels drawn by Bresenham's algorithm"></canvas>
+    <div class="controls">
+      <label for="alpha">slope α <span class="v" id="av"></span><input id="alpha" type="range" min="0.05" max="0.95" step="0.001" value="0.618"></label>
+      <label for="rho">offset ρ <span class="v" id="rhov"></span><input id="rho" type="range" min="0" max="0.999" step="0.001" value="0"></label>
+      <label for="tie">at an exact corner
+        <select id="tie"><option value="up">round up (the limit R⁺)</option><option value="down">round down (the limit R⁻)</option></select>
+      </label>
+    </div>
+    <div class="readout" id="bits"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> Far along the line, the algorithm behaves like one of two limit maps, R⁺ and R⁻. They agree at every pixel except where the line passes exactly through a pixel corner, and there they round in opposite directions. Set ρ = 0 to put a corner on the line and switch the rounding. These pairs of limits make a double arrow circle, which is hereditarily separable but not metrizable: the level is <strong>NIP₂ but not NIP₃</strong>. Drawing a line in space runs two such algorithms at once and drops one level, to <strong>NIP₁ but not NIP₂</strong>.</p>
+</section>
+
+<section id="doubling">
+  <h2>4. The doubling map: any pattern you like</h2>
+  <p class="lede">The doubling map x ↦ 2x (mod 1) shifts binary digits one place left. We watch the value of sin²(πx) every third step, and call it high (H) when it is at least 3/4 and low (L) when it is at most 1/4. Choose a pattern of highs and lows; the page builds a starting point that follows it.</p>
+  <div class="plate">
+    <div class="pattern" id="pat" role="group" aria-label="Pattern of highs and lows"></div>
+    <canvas id="dbl" class="wide" width="1100" height="420" aria-label="Values along the orbit"></canvas>
+    <div class="readout" id="dblRead"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> Every pattern is realized: for H the next three binary digits of the starting point are 011, for L they are 000. A family of functions that follows every finite pattern contains an <strong>independent sequence</strong>, and then no subsequence of the iterates converges pointwise. The doubling map, the logistic map at r = 4 and Newton's method for z² − 1 on the Riemann sphere are all <strong>not NIP</strong> for this reason.</p>
+</section>
+
+<section id="figures">
+  <h2>The figures of the paper</h2>
+  <p class="lede">The same three examples, as they appear in Section 5 of the paper.</p>
+  <figure><img src="logistic_levels.png" alt="Bifurcation diagram of the logistic family coloured by level, and a cobweb for r = 2.8" width="1050" height="420"><figcaption>The logistic family: stable for r ≤ 1, NIP₃ but not stable for 1 &lt; r ≤ 3, not NIP at r = 4.</figcaption></figure>
+  <figure><img src="euclid_equality.png" alt="The maps of the continued fraction algorithm flattening onto −1/φ with a spike at η" width="1050" height="405"><figcaption>The Euclidean algorithm: the maps M<sub>k</sub><sup>−1</sup> converge to exact equality tests.</figcaption></figure>
+  <figure><img src="doubling_independence.png" alt="Values of sin²(πx) every third step of the doubling map, following three patterns" width="1050" height="330"><figcaption>The doubling map: every pattern of highs and lows is realized.</figcaption></figure>
+</section>
+
+<footer>Interactive companion to the paper by E. Dueñez, J. Iovino, T. Matos-Wiederhold, L. Salvetti and F. D. Tall (arXiv:2601.00528). The proofs are in Section 5 of the paper.</footer>
+</div>
+
+<script>
+(function(){
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function colors(){return {bg:css('--surface'),ink:css('--ink'),muted:css('--muted'),deep:css('--deep'),plum:css('--plum'),orchid:css('--orchid'),grid:css('--grid')};}
+function setup(c){const ctx=c.getContext('2d');return ctx;}
+const PHI=(1+Math.sqrt(5))/2;
+
+/* ---------------- logistic ---------------- */
+const r=document.getElementById('r'), n=document.getElementById('n'), x0=document.getElementById('x0');
+const lg=document.getElementById('logGraph'), lc=document.getElementById('logCob');
+function iter(rr,x,k){for(let i=0;i<k;i++)x=rr*x*(1-x);return x;}
+function frame(ctx,W,H,C,pad){ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);ctx.strokeStyle=C.grid;ctx.lineWidth=1;
+  for(let i=0;i<=4;i++){const t=pad+(W-2*pad)*i/4;ctx.beginPath();ctx.moveTo(t,pad);ctx.lineTo(t,H-pad);ctx.stroke();
+    const s=pad+(H-2*pad)*i/4;ctx.beginPath();ctx.moveTo(pad,s);ctx.lineTo(W-pad,s);ctx.stroke();}
+  ctx.fillStyle=C.muted;ctx.font='22px "JetBrains Mono",monospace';ctx.fillText('0',pad-6,H-pad+26);ctx.fillText('1',W-pad-8,H-pad+26);ctx.fillText('1',pad-26,pad+8);}
+function drawLog(){
+  const C=colors(), rr=+r.value, k=+n.value, xs=+x0.value;
+  document.getElementById('rv').textContent=rr.toFixed(2);document.getElementById('nv').textContent=k;document.getElementById('x0v').textContent=xs.toFixed(3);
+  let ctx=lg.getContext('2d'),W=lg.width,H=lg.height,pad=40;frame(ctx,W,H,C,pad);
+  const X=t=>pad+(W-2*pad)*t, Y=t=>H-pad-(H-2*pad)*t;
+  ctx.strokeStyle=C.deep;ctx.lineWidth=2;ctx.beginPath();
+  const N=900;for(let i=0;i<=N;i++){const t=i/N, y=iter(rr,t,k);i?ctx.lineTo(X(t),Y(y)):ctx.moveTo(X(t),Y(y));}ctx.stroke();
+  let lim=null; if(rr<=1)lim=0; else if(rr<=3)lim=1-1/rr;
+  if(lim!==null){ctx.setLineDash([8,6]);ctx.strokeStyle=C.plum;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(X(0.002),Y(lim));ctx.lineTo(X(0.998),Y(lim));ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=C.plum;[[0,0],[1,0]].forEach(([a,b])=>{ctx.beginPath();ctx.arc(X(a),Y(b),6,0,7);ctx.fill();});}
+  // cobweb
+  ctx=lc.getContext('2d');W=lc.width;H=lc.height;frame(ctx,W,H,C,pad);
+  const X2=t=>pad+(W-2*pad)*t, Y2=t=>H-pad-(H-2*pad)*t;
+  ctx.strokeStyle=C.muted;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(X2(0),Y2(0));ctx.lineTo(X2(1),Y2(1));ctx.stroke();
+  ctx.strokeStyle=C.deep;ctx.lineWidth=2;ctx.beginPath();for(let i=0;i<=400;i++){const t=i/400;i?ctx.lineTo(X2(t),Y2(rr*t*(1-t))):ctx.moveTo(X2(t),Y2(0));}ctx.stroke();
+  ctx.strokeStyle=C.orchid;ctx.lineWidth=1.4;ctx.beginPath();let x=xs;ctx.moveTo(X2(x),Y2(0));
+  for(let i=0;i<k;i++){const y=rr*x*(1-x);ctx.lineTo(X2(x),Y2(y));ctx.lineTo(X2(y),Y2(y));x=y;}ctx.stroke();
+  ctx.fillStyle=C.plum;ctx.beginPath();ctx.arc(X2(x),Y2(x),6,0,7);ctx.fill();
+  let lvl;
+  if(rr<=1)lvl='stable: the limit is continuous';
+  else if(rr<=3)lvl='NIP₃, not stable: the limit jumps at 0 and 1';
+  else if(rr>=3.995)lvl='not NIP: independent sequences appear';
+  else lvl='3 < r < 4: not classified in the paper';
+  document.getElementById('logBadge').innerHTML='level: <b>'+lvl+'</b>';
+}
+[r,n,x0].forEach(e=>e.addEventListener('input',drawLog));
+
+/* ---------------- Euclidean algorithm ---------------- */
+const etaSel=document.getElementById('eta'), kS=document.getElementById('k'), eucC=document.getElementById('euc');
+let A=[], P=[], Q=[], ETA=0, MIDS=[];
+function buildEta(){
+  const mode=etaSel.value; A=[0]; MIDS=[]; let seed=7;
+  const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+  if(mode==='1'){for(let i=0;i<60;i++)A.push(1);for(let m=3;m<60;m+=5)MIDS.push(m);}
+  else{for(let b=1;A.length<62;b++){const start=A.length;for(let j=0;j<b;j++)A.push(1);MIDS.push(start+Math.floor(b/2));A.push(mode==='2'?2:(rnd()<0.5?1:2));}}
+  P=[1,A[0]];Q=[0,1];for(let k=1;k<A.length;k++){P.push(A[k]*P[P.length-1]+P[P.length-2]);Q.push(A[k]*Q[Q.length-1]+Q[Q.length-2]);}
+  // value of eta from a deep convergent
+  ETA=P[46]/Q[46];
+}
+function tailVal(k){let y=0;for(let j=Math.min(A.length-1,k+45);j>=k+2;j--)y=1/(A[j]+y);return A[k+1]+y;}
+function Minv(x,k){const pk=P[k+1],pk1=P[k],qk=Q[k+1],qk1=Q[k];if(!isFinite(x))return -qk1/qk;return (qk1*x-pk1)/(pk-qk*x);}
+const ang=x=>isFinite(x)?2*Math.atan(x):Math.PI;
+function drawEuc(){
+  const C=colors(), k=+kS.value, ctx=eucC.getContext('2d'), W=eucC.width, H=eucC.height, pad=46;
+  document.getElementById('kv').textContent=k;
+  ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const X=a=>pad+(W-2*pad)*(a+Math.PI)/(2*Math.PI), Y=a=>H-pad-(H-2*pad)*(a+Math.PI)/(2*Math.PI);
+  ctx.strokeStyle=C.grid;ctx.lineWidth=1;
+  const ticks=[[-Math.PI,'∞'],[-Math.PI/2,'−1'],[0,'0'],[Math.PI/2,'1'],[Math.PI,'∞']];
+  ctx.font='22px "JetBrains Mono",monospace';ctx.fillStyle=C.muted;
+  ticks.forEach(([a,s])=>{ctx.beginPath();ctx.moveTo(X(a),pad);ctx.lineTo(X(a),H-pad);ctx.stroke();ctx.beginPath();ctx.moveTo(pad,Y(a));ctx.lineTo(W-pad,Y(a));ctx.stroke();
+    ctx.fillText(s,X(a)-8,H-pad+28);ctx.fillText(s,pad-36,Y(a)+7);});
+  // limit lines
+  ctx.setLineDash([8,6]);ctx.strokeStyle=C.muted;ctx.beginPath();ctx.moveTo(X(-Math.PI),Y(ang(-1/PHI)));ctx.lineTo(X(Math.PI),Y(ang(-1/PHI)));ctx.stroke();ctx.setLineDash([]);
+  // graph
+  ctx.strokeStyle=C.deep;ctx.lineWidth=2.2;ctx.beginPath();let prev=null;
+  const N=4000;
+  for(let i=1;i<N;i++){const a=-Math.PI+2*Math.PI*i/N, x=Math.tan(a/2), y=ang(Minv(x,k));
+    if(prev!==null&&Math.abs(y-prev)<2.5)ctx.lineTo(X(a),Y(y));else ctx.moveTo(X(a),Y(y));prev=y;}
+  ctx.stroke();
+  // eta point
+  const te=tailVal(k);
+  ctx.fillStyle=C.plum;ctx.beginPath();ctx.arc(X(ang(ETA)),Y(ang(te)),8,0,7);ctx.fill();
+  ctx.fillStyle=C.plum;ctx.fillText('η ↦ '+te.toFixed(4),X(ang(ETA))+14,Y(ang(te))-10);
+  document.getElementById('eucRead').textContent='η ≈ '+ETA.toFixed(10)+'   q_{k−1}/q_k = '+(Q[k]/Q[k+1]).toFixed(6)+'   (−1/φ ≈ −0.618034, φ ≈ 1.618034)';
+}
+etaSel.addEventListener('change',()=>{buildEta();kS.value=MIDS[3];drawEuc();});
+kS.addEventListener('input',drawEuc);
+document.getElementById('mid').addEventListener('click',()=>{const k=+kS.value;const m=MIDS.find(v=>v>k&&v<=45)||MIDS.find(v=>v<=45);kS.value=m;drawEuc();});
+
+/* ---------------- Bresenham ---------------- */
+const al=document.getElementById('alpha'), rh=document.getElementById('rho'), tie=document.getElementById('tie'), bc=document.getElementById('bre');
+function drawBre(){
+  const C=colors(), a=+al.value, rho=+rh.value, up=tie.value==='up', ctx=bc.getContext('2d'), W=bc.width, H=bc.height;
+  document.getElementById('av').textContent=a.toFixed(3);document.getElementById('rhov').textContent=rho.toFixed(3);
+  ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const cols=40, cell=(W-40)/cols, rows=Math.ceil(a*cols)+3, ox=20, oy=H-20;
+  ctx.strokeStyle=C.grid;ctx.lineWidth=1;
+  for(let i=0;i<=cols;i++){ctx.beginPath();ctx.moveTo(ox+i*cell,oy);ctx.lineTo(ox+i*cell,oy-rows*cell);ctx.stroke();}
+  for(let j=0;j<=rows;j++){ctx.beginPath();ctx.moveTo(ox,oy-j*cell);ctx.lineTo(ox+cols*cell,oy-j*cell);ctx.stroke();}
+  let bits='';
+  for(let i=0;i<cols;i++){const t=i*a+rho; let y=Math.floor(t+1e-12); const exact=Math.abs(t-Math.round(t))<1e-9;
+    if(exact&&!up&&i>0)y=Math.round(t)-1;
+    ctx.fillStyle=exact&&i>0?C.plum:C.deep;ctx.globalAlpha=exact&&i>0?1:0.85;ctx.fillRect(ox+i*cell+1,oy-(y+1)*cell+1,cell-2,cell-2);ctx.globalAlpha=1;
+    const t2=(i+1)*a+rho; bits+= (Math.floor(t2+1e-12)-Math.floor(t+1e-12));}
+  ctx.strokeStyle=C.orchid;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ox,oy-rho*cell);ctx.lineTo(ox+cols*cell,oy-(rho+a*cols)*cell);ctx.stroke();
+  document.getElementById('bits').textContent='decision bits b₀b₁b₂… = '+bits+'   (a Sturmian word)';
+}
+[al,rh,tie].forEach(e=>e.addEventListener('input',drawBre));
+
+/* ---------------- doubling map ---------------- */
+const pat=document.getElementById('pat'), dc=document.getElementById('dbl');
+let PAT=[1,0,1,1,0,1];
+function buildPat(){pat.innerHTML='';PAT.forEach((v,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(v?'H':'L');b.setAttribute('aria-pressed',v?'true':'false');b.id='p'+i;
+  b.addEventListener('click',()=>{PAT[i]=1-PAT[i];buildPat();drawDbl();});pat.appendChild(b);});}
+function drawDbl(){
+  const C=colors(), ctx=dc.getContext('2d'), W=dc.width, H=dc.height, pad=46;
+  // build x from blocks; use exact binary with doubles (18 digits fine)
+  let digits=[];PAT.forEach(v=>digits.push(...(v?[0,1,1]:[0,0,0])));digits.push(0,1,0,1);
+  ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const X=i=>pad+(W-2*pad)*i/(PAT.length-1), Y=v=>H-pad-(H-2*pad)*v;
+  ctx.fillStyle=C.grid;ctx.fillRect(pad,Y(1),W-2*pad,Y(0.75)-Y(1));ctx.fillRect(pad,Y(0.25),W-2*pad,Y(0)-Y(0.25));
+  ctx.fillStyle=C.muted;ctx.font='22px "JetBrains Mono",monospace';ctx.fillText('high',W-pad-56,Y(0.82));ctx.fillText('low',W-pad-44,Y(0.08));
+  const vals=PAT.map((_,k)=>{let x=0;for(let j=digits.length-1;j>=3*k;j--)x=(x+digits[j])/2;return Math.sin(Math.PI*x)**2;});
+  ctx.strokeStyle=C.deep;ctx.lineWidth=2.4;ctx.beginPath();vals.forEach((v,i)=>i?ctx.lineTo(X(i),Y(v)):ctx.moveTo(X(i),Y(v)));ctx.stroke();
+  vals.forEach((v,i)=>{ctx.fillStyle=PAT[i]?C.deep:C.plum;ctx.beginPath();ctx.arc(X(i),Y(v),8,0,7);ctx.fill();ctx.fillStyle=C.muted;ctx.fillText('f^'+(3*i),X(i)-20,H-pad+30);});
+  document.getElementById('dblRead').textContent='x₀ = 0.'+digits.join('')+'… (binary)';
+}
+
+function drawAll(){drawLog();drawEuc();drawBre();drawDbl();}
+buildEta();kS.value=MIDS[3];buildPat();drawAll();
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',drawAll);}catch(e){}
+new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawAll);
+})();
+</script>
+
+</body>
+</html>
