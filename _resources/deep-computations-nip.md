@@ -3,7 +3,7 @@ published: true
 title: "Complexity of deep computations via topology of function spaces"
 category: Preprints
 contributor: "Eduardo Dueñez, José Iovino, Tonatiuh Matos-Wiederhold, Luciano Salvetti, and Franklin D. Tall"
-summary: "Deep computations as pointwise limits of iterated computations; NIP, Rosenthal compacta, and Todorčević's trichotomy, with classical algorithms at each level of the hierarchy."
+summary: "Deep computations as pointwise limits of computations along ultrafilters; NIP, Rosenthal compacta, and Todorčević's trichotomy, with classical algorithms at each level of the hierarchy."
 files:
   - text: "Complexity of deep computations via topology of function spaces"
     url: /assets/notes/ComplexityViaTopology.pdf
@@ -17,4 +17,4 @@ files:
 tags: [deep computations, NIP, Rosenthal compacta, Todorčević's trichotomy, tame dynamical systems]
 ---
 
-A deep computation is a pointwise limit of iterates of a computation. A set of computations is NIP exactly when, on every bounded region that the computations preserve, its deep computations, extended to the limit states, are of the first Baire class; each level of the resulting hierarchy is realized by a classical algorithm.
+A deep computation is a pointwise limit of computations along an ultrafilter, and it need not be the limit of any sequence of computations. When the features are countably many, a set of computations is NIP exactly when, on every bounded region that the computations preserve, its deep computations, extended to the limit states, are of the first Baire class. In that case every deep computation is, on each such region, the limit of a sequence of computations, and each level of the resulting hierarchy is realized by a classical algorithm.

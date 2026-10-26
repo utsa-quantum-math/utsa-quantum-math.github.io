@@ -14,5 +14,5 @@ files:
 tags: [deep computations, NIP, Rosenthal compacta, tame dynamical systems]
 ---
 
-A computation is a map applied over and over, and its deep computations are the pointwise limits of its iterates.
+A computation is a map applied over and over, and its deep computations are the pointwise limits of its iterates along ultrafilters.
 The interactive figures let the reader move a parameter and watch these limits form: the logistic family across the levels of the hierarchy, the exact equality tests produced by the Euclidean algorithm, the two rounding conventions of Bresenham's algorithm, and the independent patterns of the doubling map.
