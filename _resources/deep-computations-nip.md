@@ -17,4 +17,4 @@ files:
 tags: [deep computations, NIP, Rosenthal compacta, Todorčević's trichotomy, tame dynamical systems]
 ---
 
-A deep computation is a pointwise limit of iterates of a computation; the computations are NIP exactly when their deep computations are of the first Baire class, and each level of the resulting hierarchy is realized by a classical algorithm.
+A deep computation is a pointwise limit of iterates of a computation. A set of computations is NIP exactly when, on every bounded region that the computations preserve, its deep computations, extended to the limit states, are of the first Baire class; each level of the resulting hierarchy is realized by a classical algorithm.
