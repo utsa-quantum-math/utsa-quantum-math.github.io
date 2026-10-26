@@ -3,7 +3,7 @@ title: "Omitting types for infinitary real-valued logic: a topological perspecti
 category: Student research notes
 contributor: "Olivia Aubone, Eduardo Dueñez and José Iovino"
 rights: "© 2026 Olivia Aubone, Eduardo Dueñez and José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
-summary: "We prove an omitting types theorem for countable fragments of infinitary logic for real-valued structures in the sense of Keisler, structures on which no metric is given. The proof is topological: for a countable vocabulary and a countable fragment, the Henkin types form a Čech-complete space, and the required models are obtained from the Baire category theorem."
+summary: "We extend the omitting types theorem to countable fragments of infinitary logic for Keisler’s general real-valued structures over countable vocabularies, with a separate bound for each formula. Čech-completeness of the space of Henkin types makes Morley’s Baire category method applicable, yielding countable models that omit countable families of types under a topological empty-interior hypothesis."
 files:
   - text: "Omitting types for infinitary real-valued logic: a topological perspective"
     url: /assets/notes/Omitting_Types_Real_Valued_Logic.pdf
@@ -11,4 +11,4 @@ files:
 tags: [logic, topology]
 ---
 
-We prove an omitting types theorem for countable fragments of infinitary logic for real-valued structures in the sense of Keisler, structures on which no metric is given. The proof is topological: for a countable vocabulary and a countable fragment, the Henkin types form a Čech-complete space, and the required models are obtained from the Baire category theorem.
+We extend the omitting types theorem to countable fragments of infinitary logic for Keisler’s general real-valued structures over countable vocabularies, with a separate bound for each formula. Čech-completeness of the space of Henkin types makes Morley’s Baire category method applicable, yielding countable models that omit countable families of types under a topological empty-interior hypothesis.

@@ -3,7 +3,7 @@ title: "Infinitary real-valued logic and a refinement of the Kochen–Specker th
 category: Student research notes
 contributor: "Olivia Aubone and José Iovino"
 rights: "© 2026 Olivia Aubone and José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
-summary: "We use infinitary real-valued logic and model-theoretic forcing to prove a refinement of the Bell–Kochen–Specker theorem on contextuality."
+summary: "We use infinitary real-valued logic and model-theoretic forcing to refine the Bell–Kochen–Specker theorem through finite obstructions that display the geometric identifications and quantitative probability commitments behind contextuality. A model existence game organizes these obstructions in a well-founded tree, even though every finite set of axioms of the dispersion-free theory has a model."
 files:
   - text: "Infinitary real-valued logic and a refinement of the Kochen–Specker theorem"
     url: /assets/notes/Gleason_Kochen_Specker_game.pdf
@@ -14,4 +14,4 @@ files:
 tags: [quantum foundations, logic]
 ---
 
-We use infinitary real-valued logic and model-theoretic forcing to prove a refinement of the Bell–Kochen–Specker theorem on contextuality.
+We use infinitary real-valued logic and model-theoretic forcing to refine the Bell–Kochen–Specker theorem through finite obstructions that display the geometric identifications and quantitative probability commitments behind contextuality. A model existence game organizes these obstructions in a well-founded tree, even though every finite set of axioms of the dispersion-free theory has a model.
