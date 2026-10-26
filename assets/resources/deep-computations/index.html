@@ -36,6 +36,7 @@ nav{display:flex;flex-wrap:wrap;gap:8px}
 nav a{font-size:14px;color:var(--deep);text-decoration:none;border-bottom:1px solid var(--rule)}
 nav a:hover,nav a:focus-visible{border-color:var(--deep)}
 section{display:grid;gap:14px}
+.wrap>*,section>*,.plate>*{min-width:0}
 section h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3vw,28px);margin:0;text-wrap:balance}
 .lede{margin:0;max-width:68ch}
 .plate{background:var(--plate);border-radius:10px;padding:14px;display:grid;gap:12px}
@@ -47,6 +48,8 @@ canvas.wide{aspect-ratio:2.2/1}
 label{display:grid;gap:4px;font-size:14px}
 label .v{font-family:var(--mono);font-size:13px;color:var(--plum)}
 input[type=range]{width:100%;accent-color:var(--orchid)}
+select{max-width:100%;width:100%;min-width:0}
+label{min-width:0}
 select,button{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:6px 10px}
 button{cursor:pointer}
 button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--orchid);outline-offset:2px}
@@ -71,14 +74,14 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
 <div class="wrap">
 <header>
   <h1>Deep computations, iteration by iteration</h1>
-  <p>A computation is a map applied over and over. Its <em>deep computations</em> are the limits of its iterates, taken point by point. These four examples come from the paper <em>Complexity of deep computations via topology of function spaces</em> by Dueñez, Iovino, Matos-Wiederhold, Salvetti and Tall. Move the sliders and watch the limits form.</p>
+  <p>A computation is a map applied over and over. Its <em>deep computations</em> are the limits of its iterates, taken point by point. These examples come from the paper <em>Complexity of deep computations via topology of function spaces</em> by Dueñez, Iovino, Matos-Wiederhold, Salvetti and Tall. Move the sliders and watch the limits form.</p>
   <div class="levels" aria-label="The levels of the hierarchy">
     <span>stable</span><span>NIP₃: metrizable</span><span>NIP₂: hereditarily separable</span><span>NIP₁: first countable</span><span>NIP</span><span>not NIP</span>
   </div>
 </header>
 
 <nav aria-label="Examples">
-  <a href="#logistic">1. The logistic map</a><a href="#euclid">2. The Euclidean algorithm</a><a href="#bresenham">3. Drawing a line</a><a href="#doubling">4. The doubling map</a><a href="#figures">Figures of the paper</a>
+  <a href="#logistic">1. The logistic map</a><a href="#euclid">2. The Euclidean algorithm</a><a href="#bresenham">3. Drawing a line</a><a href="#doubling">4. The doubling map</a><a href="#space">5. A line in space</a><a href="#family">6. A family of Euclidean steps</a><a href="#newton">7. Newton's method for cubics</a><a href="#thue">8. Thue–Morse</a><a href="#figures">Figures of the paper</a>
 </nav>
 
 <section id="logistic">
@@ -95,8 +98,10 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
       <label for="x0">starting point x₀ <span class="v" id="x0v"></span><input id="x0" type="range" min="0.001" max="0.999" step="0.001" value="0.05"></label>
     </div>
     <div class="badge" id="logBadge"></div>
+    <canvas id="logBif" class="wide" width="1100" height="440" aria-label="Bifurcation diagram coloured by level"></canvas>
+    <p class="cap">The long-run values of every orbit, for each r from 2.5 to 4, coloured by level: sky blue up to r<sub>∞</sub> ≈ 3.5699, pink beyond. The vertical line marks the current r.</p>
   </div>
-  <p class="why"><strong>What to see.</strong> For r ≤ 1 every orbit falls to 0, and the limit is the constant 0, a continuous map: the computation is stable. For 1 &lt; r ≤ 3 the iterates converge to the map that sends 0 and 1 to 0 and every other point to 1 − 1/r. That limit jumps at 0 and at 1, so it is not continuous, yet it is a limit of a <em>sequence</em> of computations: the level is NIP₃ but not stable. At r = 4 the graphs of fⁿ oscillate faster and faster, and no limit appears: the computation is not NIP. The parameters between 3 and 4 are beyond what the paper classifies.</p>
+  <p class="why"><strong>What to see.</strong> For r ≤ 1 every orbit falls to 0, and the limit is the constant 0, a continuous map: the computation is stable. For 1 &lt; r ≤ 3 the iterates converge to the map that sends 0 and 1 to 0 and every other point to 1 − 1/r. That limit jumps at 0 and at 1, so it is not continuous, yet it is a limit of a <em>sequence</em> of computations: the level is NIP₃ but not stable. Past r = 3 the attracting cycles double, to periods 2, 4, 8, …, up to the Feigenbaum parameter r<sub>∞</sub> ≈ 3.5699. Every period is still a power of 2, every orbit settles onto a cycle, and the deep computations still form a metrizable space: NIP₃, not stable (at r<sub>∞</sub> itself the paper gives a sketch). Beyond r<sub>∞</sub>, even inside the windows where a single cycle attracts almost every orbit, some iterate folds two intervals over both of them, a horseshoe, and independent sequences appear: the computation is <strong>not NIP</strong>.</p>
 </section>
 
 <section id="euclid">
@@ -148,6 +153,72 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <p class="why"><strong>What to see.</strong> Every pattern is realized: for H the next three binary digits of the starting point are 011, for L they are 000. A family of functions that follows every finite pattern contains an <strong>independent sequence</strong>, and then no subsequence of the iterates converges pointwise. The doubling map, the logistic map at r = 4 and Newton's method for z² − 1 on the Riemann sphere are all <strong>not NIP</strong> for this reason.</p>
 </section>
 
+<section id="space">
+  <h2>5. Drawing a line in space: four ways to round</h2>
+  <p class="lede">To draw a line in space with direction (1, α, β), Bresenham's algorithm runs the planar algorithm in two coordinates at once. Its state is a pair of errors, a point of the square [0, 1)², and each step adds (α, β). When 1, α, β are independent over the rationals, the orbit (nα, nβ) fills the square densely.</p>
+  <div class="plate">
+    <div class="canvases">
+      <div><canvas id="sp" width="600" height="600" aria-label="Orbit of the pair of errors"></canvas><p class="cap">The states (nα, nβ) mod 1 for n ≤ N. Click to move the target; the box shows the iterates that come close to it, coloured by the side from which they come in each coordinate.</p></div>
+      <div><canvas id="spq" width="600" height="600" aria-label="Approach sides"></canvas><p class="cap">The same iterates, magnified around the target. Each quadrant gives a different limit: (R⁺, R⁺), (R⁺, R⁻), (R⁻, R⁺) or (R⁻, R⁻).</p></div>
+    </div>
+    <div class="controls">
+      <label for="spN">number of steps N <span class="v" id="spNv"></span><input id="spN" type="range" min="200" max="20000" step="100" value="6000"></label>
+      <label for="spD">box half-width δ <span class="v" id="spDv"></span><input id="spD" type="range" min="0.005" max="0.08" step="0.001" value="0.03"></label>
+    </div>
+    <div class="readout" id="spRead"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> Iterates approach every target from all four sides, and each side yields its own limit, a pair of one-sided rotations. These limits form a product of two double arrow circles. A compact metrizable set of such limits must be countable, because every metrizable subset of the double arrow circle is countable. So the limits contain no Cantor set, which rules out the Alexandroff duplicate D(2<sup>ℕ</sup>). By Todorčević's trichotomy they contain instead a copy of D̂(S(2<sup>ℕ</sup>)), built on the split Cantor set: the level is <strong>NIP₁ but not NIP₂</strong>.</p>
+</section>
+
+<section id="family">
+  <h2>6. A family of Euclidean steps: the other way to reach NIP₁</h2>
+  <p class="lede">Section 2 applied one continued fraction to every input. Here we choose a branch c = (c₁, c₂, …) of 1s and 2s and, for each finite part t of it, a word of partial quotients built from blocks c<sub>j</sub>, …, c₁ followed by j ones. Each word gives a Möbius map g<sub>t</sub>. Moving along the branch, the maps flatten onto a constant a and keep one spike: the number r(c) is sent near the golden ratio φ.</p>
+  <div class="plate">
+    <div class="pattern" id="famPat" role="group" aria-label="Digits of the branch"></div>
+    <canvas id="fam" class="wide" width="1100" height="500" aria-label="Graph of g_t"></canvas>
+    <div class="controls">
+      <label for="famN">length of t <span class="v" id="famNv"></span><input id="famN" type="range" min="2" max="10" step="1" value="5"></label>
+      <label for="famMode">how t approaches the branch
+        <select id="famMode"><option value="init">along the branch (initial segments)</option><option value="side">from the side (a digit changed near the end)</option></select>
+      </label>
+    </div>
+    <div class="readout" id="famRead"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> Along the branch, the maps converge to the map that sends r(c) to φ and every other point to a. Approaching the same branch from the side, they converge to the constant a: the spike disappears. This is the pattern of convergence of the Alexandroff duplicate D̂(2<sup>ℕ</sup>), and indeed the closure of this countable family is a copy of it. The family is therefore <strong>NIP₁ but not NIP₂</strong>, and it contains the duplicate D(2<sup>ℕ</sup>) that the line in space cannot. Whether a single iterated map can do the same is an open question of the paper.</p>
+</section>
+
+<section id="newton">
+  <h2>7. Newton's method for two cubics</h2>
+  <p class="lede">Newton's method for a polynomial p replaces z by z − p(z)/p′(z). We colour each starting point of the plane by the root its n-th Newton step is closest to: for q(z) = z³ − 2z + 2 a grey region also appears, the points drawn into the cycle 0 → 1 → 0; for u(z) = z³ − 1 the three roots are the cube roots of unity.</p>
+  <div class="plate">
+    <div class="canvases">
+      <div><canvas id="nw" width="560" height="560" aria-label="Newton basins"></canvas><p class="cap">Colour of the n-th Newton step; darker where the step is still far from every root.</p></div>
+    </div>
+    <div class="controls">
+      <label for="nwP">polynomial
+        <select id="nwP"><option value="q">q(z) = z³ − 2z + 2</option><option value="u">u(z) = z³ − 1</option></select>
+      </label>
+      <label for="nwN">Newton step n <span class="v" id="nwNv"></span><input id="nwN" type="range" min="0" max="40" step="1" value="6"></label>
+      <label for="nwZ">zoom <span class="v" id="nwZv"></span><input id="nwZ" type="range" min="0" max="6" step="1" value="0"></label>
+    </div>
+  </div>
+  <p class="why"><strong>What to see.</strong> Inside each basin the colour settles quickly. Along the boundaries, the Newton fractal, every small disk contains points of every colour, at every zoom: some iterate maps two small disks over both of them. That gives independent sequences, so both Newton computations are <strong>not NIP</strong>. The paper proves this for every rational map of degree at least 2.</p>
+</section>
+
+<section id="thue">
+  <h2>8. The Thue–Morse sequence: orderly, yet not tame</h2>
+  <p class="lede">The Thue–Morse sequence t<sub>n</sub> is the parity of the number of ones in the binary expansion of n: 0110 1001 1001 0110 … The two-sided sequences all of whose blocks occur in it form a minimal system under the shift.</p>
+  <div class="plate">
+    <canvas id="tmS" class="wide" style="aspect-ratio:1100/140" width="1100" height="140" aria-label="The Thue–Morse sequence"></canvas>
+    <canvas id="tmC" class="wide" width="1100" height="420" aria-label="Correlations"></canvas>
+    <div class="controls">
+      <label for="tmN">number of correlations N <span class="v" id="tmNv"></span><input id="tmN" type="range" min="8" max="512" step="8" value="128"></label>
+    </div>
+    <div class="readout" id="tmRead"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> The bars are the correlations c(n) of the sign (−1)<sup>t</sup> with its shift by n; they obey c(2n) = c(n) and c(2n+1) = −½(c(n) + c(n+1)). The curve is the average of c(n)² over n &lt; N, and it tends to 0. So the sign is orthogonal to every eigenfunction of the shift. A minimal tame system would be measure-theoretically isomorphic to its maximal equicontinuous factor, whose eigenfunctions span everything (Glasner; Huang; Kerr and Li). Hence Thue–Morse is <strong>not tame</strong>, and its computation structure is <strong>not NIP</strong>, although it is minimal, has a single invariant measure and is built by the simplest of substitution rules. The proof is in Appendix A of the paper.</p>
+</section>
+
 <section id="figures">
   <h2>The figures of the paper</h2>
   <p class="lede">The same three examples, as they appear in Section 5 of the paper.</p>
@@ -156,7 +227,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <figure><img src="doubling_independence.png" alt="Values of sin²(πx) every third step of the doubling map, following three patterns" width="1050" height="330"><figcaption>The doubling map: every pattern of highs and lows is realized.</figcaption></figure>
 </section>
 
-<footer>Interactive companion to the paper by E. Dueñez, J. Iovino, T. Matos-Wiederhold, L. Salvetti and F. D. Tall (arXiv:2601.00528). The proofs are in Section 5 of <a href="https://utsa-quantum-math.github.io/assets/notes/ComplexityViaTopology.pdf">the paper</a>.</footer>
+<footer>Interactive companion to the paper by E. Dueñez, J. Iovino, T. Matos-Wiederhold, L. Salvetti and F. D. Tall (arXiv:2601.00528). The proofs are in Section 5 and Appendix A of <a href="https://utsa-quantum-math.github.io/assets/notes/ComplexityViaTopology.pdf">the paper</a>.</footer>
 </div>
 
 <script>
@@ -195,9 +266,23 @@ function drawLog(){
   let lvl;
   if(rr<=1)lvl='stable: the limit is continuous';
   else if(rr<=3)lvl='NIP₃, not stable: the limit jumps at 0 and 1';
-  else if(rr>=3.995)lvl='not NIP: independent sequences appear';
-  else lvl='3 < r < 4: not classified in the paper';
+  else if(rr<RINF)lvl='NIP₃, not stable: orbits settle onto cycles of period 2^k';
+  else lvl='not NIP: a horseshoe gives independent sequences';
   document.getElementById('logBadge').innerHTML='level: <b>'+lvl+'</b>';
+  drawBif(rr);
+}
+const RINF=3.5699456;
+let BIF=null;
+function buildBif(W,H){const pts=[];for(let i=0;i<W;i++){const rr=2.5+1.5*i/(W-1);let x=0.31;for(let k=0;k<500;k++)x=rr*x*(1-x);const col=[];for(let k=0;k<260;k++){x=rr*x*(1-x);col.push(x);}pts.push(col);}return pts;}
+function drawBif(rr){
+  const c=document.getElementById('logBif'),C=colors(),ctx=c.getContext('2d'),W=c.width,H=c.height,pad=36;
+  if(!BIF)BIF=buildBif(W-2*pad,H-2*pad);
+  ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const X=i=>pad+i, Y=v=>H-pad-(H-2*pad)*v;
+  BIF.forEach((col,i)=>{const r0=2.5+1.5*i/(BIF.length-1);ctx.fillStyle=r0<RINF?C.deep:C.orchid;col.forEach(v=>ctx.fillRect(X(i),Y(v),1.3,1.3));});
+  ctx.fillStyle=C.muted;ctx.font='20px "JetBrains Mono",monospace';
+  [[2.5,'2.5'],[3,'3'],[RINF,'r∞'],[4,'4']].forEach(([v,s])=>{const xx=pad+(W-2*pad)*(v-2.5)/1.5;ctx.fillText(s,xx-10,H-8);});
+  if(rr>=2.5){const xx=pad+(W-2*pad)*(rr-2.5)/1.5;ctx.strokeStyle=C.plum;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(xx,pad);ctx.lineTo(xx,H-pad);ctx.stroke();}
 }
 [r,n,x0].forEach(e=>e.addEventListener('input',drawLog));
 
@@ -283,8 +368,123 @@ function drawDbl(){
   document.getElementById('dblRead').textContent='x₀ = 0.'+digits.join('')+'… (binary)';
 }
 
-function drawAll(){drawLog();drawEuc();drawBre();drawDbl();}
-buildEta();kS.value=MIDS[3];buildPat();drawAll();
+/* ---------------- line in space ---------------- */
+const spC=document.getElementById('sp'), spQ=document.getElementById('spq'), spN=document.getElementById('spN'), spD=document.getElementById('spD');
+const SA=Math.SQRT2-1, SB=(Math.sqrt(5)-1)/2*0.7+0.1; // 1, √2−1 and 0.7/φ+0.1 are independent over ℚ (generic choice)
+let TGT=[0.5,0.5];
+function frac(x){return x-Math.floor(x);}
+function quadColor(C,dx,dy){return dx>=0?(dy>=0?C.deep:C.orchid):(dy>=0?C.plum:C.muted);}
+function drawSpace(){
+  const C=colors(),N=+spN.value,d=+spD.value;document.getElementById('spNv').textContent=N;document.getElementById('spDv').textContent=d.toFixed(3);
+  let ctx=spC.getContext('2d'),W=spC.width,H=spC.height,pad=20;ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const X=v=>pad+(W-2*pad)*v,Y=v=>H-pad-(H-2*pad)*v;
+  ctx.strokeStyle=C.grid;ctx.strokeRect(X(0),Y(1),W-2*pad,H-2*pad);
+  const near=[];
+  for(let n=1;n<=N;n++){const a=frac(n*SA),b=frac(n*SB);let dx=a-TGT[0],dy=b-TGT[1];
+    if(Math.abs(dx)<d&&Math.abs(dy)<d){near.push([n,dx,dy]);}
+    else{ctx.globalAlpha=0.35;ctx.fillStyle=C.muted;ctx.fillRect(X(a)-1,Y(b)-1,2,2);ctx.globalAlpha=1;}}
+  near.forEach(([n,dx,dy])=>{ctx.fillStyle=quadColor(C,dx,dy);ctx.fillRect(X(TGT[0]+dx)-2,Y(TGT[1]+dy)-2,4,4);});
+  ctx.strokeStyle=C.plum;ctx.lineWidth=2;ctx.strokeRect(X(TGT[0]-d),Y(TGT[1]+d),X(TGT[0]+d)-X(TGT[0]-d),Y(TGT[1]-d)-Y(TGT[1]+d));
+  // magnified
+  ctx=spQ.getContext('2d');W=spQ.width;H=spQ.height;ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const M=v=>W/2+(W/2-30)*v/d, MY=v=>H/2-(H/2-30)*v/d;
+  ctx.strokeStyle=C.grid;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(W/2,20);ctx.lineTo(W/2,H-20);ctx.moveTo(20,H/2);ctx.lineTo(W-20,H/2);ctx.stroke();
+  const cnt=[0,0,0,0];
+  near.forEach(([n,dx,dy])=>{ctx.fillStyle=quadColor(C,dx,dy);ctx.beginPath();ctx.arc(M(dx),MY(dy),5,0,7);ctx.fill();cnt[(dx>=0?0:2)+(dy>=0?0:1)]++;});
+  ctx.fillStyle=C.muted;ctx.font='20px "JetBrains Mono",monospace';
+  ctx.fillText('(R⁺,R⁺)',W-120,40);ctx.fillText('(R⁻,R⁺)',30,40);ctx.fillText('(R⁺,R⁻)',W-120,H-30);ctx.fillText('(R⁻,R⁻)',30,H-30);
+  document.getElementById('spRead').textContent='α = √2 − 1, β ≈ '+SB.toFixed(6)+'   target ('+TGT[0].toFixed(3)+', '+TGT[1].toFixed(3)+')   iterates in the box from each side: ++ '+cnt[0]+'  +− '+cnt[1]+'  −+ '+cnt[2]+'  −− '+cnt[3];
+}
+spC.addEventListener('click',e=>{const r=spC.getBoundingClientRect(),pad=20*r.width/spC.width;TGT=[Math.min(0.999,Math.max(0.001,(e.clientX-r.left-pad)/(r.width-2*pad))),Math.min(0.999,Math.max(0.001,1-(e.clientY-r.top-pad)/(r.height-2*pad)))];drawSpace();});
+[spN,spD].forEach(e=>e.addEventListener('input',drawSpace));
+
+/* ---------------- family of Euclidean steps ---------------- */
+const famPat=document.getElementById('famPat'), famC=document.getElementById('fam'), famN=document.getElementById('famN'), famMode=document.getElementById('famMode');
+let FC=[2,1,2,2,1,1,2,1,2,2];
+function convB(A){const P=[1n,BigInt(A[0])],Q=[0n,1n];for(let k=1;k<A.length;k++){const a=BigInt(A[k]);P.push(a*P[P.length-1]+P[P.length-2]);Q.push(a*Q[Q.length-1]+Q[Q.length-2]);}return [P,Q];}
+function bratio(n,d){if(d===0n)return Infinity;const s=(n<0n)!==(d<0n)?-1:1;n=n<0n?-n:n;d=d<0n?-d:d;const m=BigInt(Math.max(0,Math.max(n.toString(2).length,d.toString(2).length)-60));return s*Number(n>>m)/Number(d>>m);}
+const Bk=(t,j)=>[...t.slice(0,j).reverse(),...Array(j).fill(1)];
+function famWord(t){const w=[];for(let j=1;j<t.length;j++)w.push(...Bk(t,j));w.push(...t.slice().reverse());return w;}
+function buildFamPat(){famPat.innerHTML='';FC.forEach((v,i)=>{const b=document.createElement('button');b.type='button';b.textContent='c'+(i+1)+'='+v;b.setAttribute('aria-pressed',v===2?'true':'false');b.addEventListener('click',()=>{FC[i]=3-FC[i];buildFamPat();drawFam();});famPat.appendChild(b);});}
+function drawFam(){
+  const C=colors(),n=+famN.value,side=famMode.value==='side',ctx=famC.getContext('2d'),W=famC.width,H=famC.height,pad=46;
+  document.getElementById('famNv').textContent=n;
+  const t=FC.slice(0,n); if(side&&n>=2)t[n-2]=3-t[n-2];
+  const A=[0,...famWord(t)];const [P,Q]=convB(A);const k=A.length-1;const pk=P[k+1],pk1=P[k],qk=Q[k+1],qk1=Q[k];
+  const g=(xn,xd)=>bratio(qk1*xn-pk1*xd,pk*xd-qk*xn);
+  // r(c) and a from the full branch
+  const full=[...FC,...FC];let rw=[0];for(let j=1;j<=FC.length;j++)rw.push(...Bk(full,j));const [RP,RQ]=convB(rw);const rn=RP[RP.length-1],rd=RQ[RQ.length-1];const rc=bratio(rn,rd);
+  const [AP,AQ]=convB([0,...full,...full]);const aval=-bratio(AP[AP.length-1],AQ[AQ.length-1]);
+  ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const X=a=>pad+(W-2*pad)*(a+Math.PI)/(2*Math.PI), Y=a=>H-pad-(H-2*pad)*(a+Math.PI)/(2*Math.PI);
+  ctx.strokeStyle=C.grid;ctx.lineWidth=1;ctx.font='22px "JetBrains Mono",monospace';ctx.fillStyle=C.muted;
+  [[-Math.PI,'∞'],[-Math.PI/2,'−1'],[0,'0'],[Math.PI/2,'1'],[Math.PI,'∞']].forEach(([a,s])=>{ctx.beginPath();ctx.moveTo(X(a),pad);ctx.lineTo(X(a),H-pad);ctx.stroke();ctx.beginPath();ctx.moveTo(pad,Y(a));ctx.lineTo(W-pad,Y(a));ctx.stroke();ctx.fillText(s,X(a)-8,H-pad+28);ctx.fillText(s,pad-36,Y(a)+7);});
+  ctx.setLineDash([8,6]);ctx.strokeStyle=C.muted;ctx.beginPath();ctx.moveTo(X(-Math.PI),Y(ang(aval)));ctx.lineTo(X(Math.PI),Y(ang(aval)));ctx.stroke();
+  ctx.beginPath();ctx.moveTo(X(-Math.PI),Y(ang(PHI)));ctx.lineTo(X(Math.PI),Y(ang(PHI)));ctx.stroke();ctx.setLineDash([]);
+  ctx.strokeStyle=C.deep;ctx.lineWidth=2.2;ctx.beginPath();let prev=null;const N=3000,S=1000000n;
+  for(let i=1;i<N;i++){const a=-Math.PI+2*Math.PI*i/N,x=Math.tan(a/2);const y=ang(g(BigInt(Math.round(x*1e6)),S));
+    if(prev!==null&&Math.abs(y-prev)<2.5)ctx.lineTo(X(a),Y(y));else ctx.moveTo(X(a),Y(y));prev=y;}
+  ctx.stroke();
+  const vr=g(rn,rd);
+  ctx.fillStyle=C.plum;ctx.beginPath();ctx.arc(X(ang(rc)),Y(ang(vr)),8,0,7);ctx.fill();ctx.fillText('r(c) ↦ '+vr.toFixed(4),X(ang(rc))+14,Y(ang(vr))-10);
+  document.getElementById('famRead').textContent='t = ('+t.join(',')+')   r(c) ≈ '+rc.toFixed(8)+'   a ≈ '+aval.toFixed(6)+'   φ ≈ 1.618034   g_t(r(c)) = '+vr.toFixed(6);
+}
+[famN,famMode].forEach(e=>e.addEventListener('input',drawFam));
+
+/* ---------------- Newton for cubics ---------------- */
+const nwC=document.getElementById('nw'), nwP=document.getElementById('nwP'), nwN=document.getElementById('nwN'), nwZ=document.getElementById('nwZ');
+function hexrgb(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const v=parseInt(h,16);return [(v>>16)&255,(v>>8)&255,v&255];}
+function drawNewton(){
+  const C=colors(),n=+nwN.value,z=+nwZ.value,poly=nwP.value,W=nwC.width,H=nwC.height,ctx=nwC.getContext('2d');
+  document.getElementById('nwNv').textContent=n;document.getElementById('nwZv').textContent='×'+(2**z);
+  let roots;
+  if(poly==='u')roots=[[1,0],[-0.5,Math.sqrt(3)/2],[-0.5,-Math.sqrt(3)/2]];
+  else{const r0=-1.7692923542386314;const s=-r0/2;const im=Math.sqrt(2/(-r0)-s*s);roots=[[r0,0],[s,im],[s,-im]];}
+  const cols=[hexrgb(C.deep),hexrgb(C.orchid),hexrgb(C.plum)], grey=hexrgb(C.muted), bg=hexrgb(C.bg);
+  const R=2.4/(2**z);
+  // zoom towards a point of the Newton fractal: the pole 0 for u, a computed boundary point for q
+  const target=poly==='u'?[0,0]:[-1.000926,0.442196];
+  const centre=[target[0]*(1-1/(2**z)),target[1]*(1-1/(2**z))];
+  const img=ctx.createImageData(W,H);
+  for(let py=0;py<H;py++)for(let px=0;px<W;px++){
+    let x=centre[0]-R+2*R*px/W, y=centre[1]+R-2*R*py/H;
+    for(let k=0;k<n;k++){let ax,ay,bx,by;
+      if(poly==='u'){const x2=x*x-y*y,y2=2*x*y;ax=x2*x-y2*y-1;ay=x2*y+y2*x;bx=3*x2;by=3*y2;}
+      else{const x2=x*x-y*y,y2=2*x*y;ax=x2*x-y2*y-2*x+2;ay=x2*y+y2*x-2*y;bx=3*x2-2;by=3*y2;}
+      const dd=bx*bx+by*by;if(dd<1e-14)break;x-=(ax*bx+ay*by)/dd;y-=(ay*bx-ax*by)/dd;}
+    let best=0,bd=1e9;roots.forEach((r,i)=>{const d=Math.hypot(x-r[0],y-r[1]);if(d<bd){bd=d;best=i;}});
+    let col=cols[best];
+    if(poly==='q'&&n>0){const d0=Math.min(Math.hypot(x,y),Math.hypot(x-1,y));if(d0<bd)col=grey;}
+    const shade=Math.max(0.25,1-Math.min(1,Math.min(bd,poly==='q'?Math.min(Math.hypot(x,y),Math.hypot(x-1,y)):9)/1.2));
+    const o=4*(py*W+px);for(let c=0;c<3;c++)img.data[o+c]=Math.round(bg[c]*(1-shade)+col[c]*shade);img.data[o+3]=255;}
+  ctx.putImageData(img,0,0);
+}
+[nwP,nwN,nwZ].forEach(e=>e.addEventListener('input',drawNewton));
+
+/* ---------------- Thue–Morse ---------------- */
+const tmS=document.getElementById('tmS'), tmC=document.getElementById('tmC'), tmN=document.getElementById('tmN');
+const TL=1<<17; const TM=new Int8Array(TL);for(let i=0;i<TL;i++){let v=i,p=0;while(v){p^=v&1;v>>=1;}TM[i]=p;}
+const CORR=[];(function(){const L=1<<16;for(let n=0;n<=600;n++){let s=0;for(let k=0;k<L;k++)s+=(TM[k]?-1:1)*(TM[k+n]?-1:1);CORR.push(s/L);}})();
+function drawThue(){
+  const C=colors(),N=+tmN.value;document.getElementById('tmNv').textContent=N;
+  let ctx=tmS.getContext('2d'),W=tmS.width,H=tmS.height;ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const cells=128,cw=(W-20)/cells;for(let i=0;i<cells;i++){ctx.fillStyle=TM[i]?C.plum:C.deep;ctx.fillRect(10+i*cw,20,cw-1,H-60);}
+  ctx.fillStyle=C.muted;ctx.font='18px "JetBrains Mono",monospace';ctx.fillText('t₀ t₁ t₂ … t₁₂₇ (sky blue = 0, berry = 1)',10,H-12);
+  ctx=tmC.getContext('2d');W=tmC.width;H=tmC.height;const pad=46;ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+  const X=i=>pad+(W-2*pad)*i/N, Y=v=>H/2-(H/2-pad)*v;
+  ctx.strokeStyle=C.grid;ctx.beginPath();ctx.moveTo(pad,Y(0));ctx.lineTo(W-pad,Y(0));ctx.stroke();
+  const bw=Math.max(1,(W-2*pad)/N-1);
+  for(let n=1;n<=N;n++){ctx.fillStyle=C.deep;const v=CORR[n];ctx.fillRect(X(n)-bw/2,Math.min(Y(0),Y(v)),bw,Math.abs(Y(v)-Y(0)));}
+  ctx.strokeStyle=C.orchid;ctx.lineWidth=2.5;ctx.beginPath();let s=0;
+  for(let n=0;n<N;n++){s+=CORR[n]**2;const avg=s/(n+1);n?ctx.lineTo(X(n+1),Y(avg)):ctx.moveTo(X(1),Y(avg));}ctx.stroke();
+  ctx.fillStyle=C.muted;ctx.font='20px "JetBrains Mono",monospace';ctx.fillText('1',pad-26,Y(1)+7);ctx.fillText('0',pad-26,Y(0)+7);ctx.fillText('−1',pad-38,Y(-1)+7);
+  let s2=0;for(let n=0;n<N;n++)s2+=CORR[n]**2;
+  document.getElementById('tmRead').textContent='c(1) ≈ '+CORR[1].toFixed(4)+' (exactly −1/3)   average of c(n)² over n < '+N+': '+(s2/N).toFixed(4);
+}
+tmN.addEventListener('input',drawThue);
+
+function drawAll(){drawLog();drawEuc();drawBre();drawDbl();drawSpace();drawFam();drawNewton();drawThue();}
+buildEta();kS.value=MIDS[3];buildPat();buildFamPat();drawAll();
 try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',drawAll);}catch(e){}
 new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawAll);
