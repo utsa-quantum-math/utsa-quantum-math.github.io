@@ -15,8 +15,11 @@ interaction behavior when changing its appearance.
 - `ks49-explorer.css`: layout, spacing, responsive behavior; all colors use the
   palette's CSS custom properties. Keep colors out of this file.
 - `Kochen_Specker_refinement.html`: separate certificate/provenance explanation,
-  with its own embedded SVG/interactive styles and an occurrence-detachment
-  example. It is not the rotating-sphere page. Updating one does not update the
+  with SVG interactions and an occurrence-detachment example.
+  Its layout is `ks-refinement-exhibit.css`, behavior is
+  `ks-refinement-exhibit.js`, and verified configurations/witnesses are
+  `ks-refinement-data.js`. It reads shared semantic colors from
+  `ks-visual-palette.css`. It is not the rotating-sphere page. Updating one does not update the
   other. Keep the purple/pink identity coherent across both.
 
 ## Palette roles, not graph-specific colors
@@ -56,3 +59,25 @@ Occurrence detachment on the refinement page is a different operation.
 4. Commit HTML and both stylesheets together. Publish through the repository's
    normal GitHub Pages workflow, then verify BOTH the sphere URL and refinement
    URL. Do not replace one with the other.
+
+## Refinement exhibit invariants
+
+Keep the branching animation, and make all terminal positions keyboard-selectable.
+The drawn tree is schematic: infinite branching does NOT establish unbounded
+play length. The paper leaves the existence of a bounded-length winning strategy
+open. Do not restore a “no uniform bound” claim. Only plays reaching all required
+parity commitments reach the parity module; earlier terminal positions exist.
+The guided play is an explanatory schematic, not a complete implementation of
+the model existence game. Keep its tolerance choices explicit.
+
+Keep the full 49-ray detachment example, as well as the link to the distinct
+rotating-sphere page. The 18-ray parity data and the 49-ray witness data must
+remain separate. Test all 18 and 92 cases after changing the data or drawing.
+Use an open composition with mathematical typography. Do not reintroduce
+chat bubbles, pill controls, glow effects, or decorative diagram cards.
+
+For mobile, the tree is recomposed vertically; dependency prerequisites have
+a text view; the full parity matrix remains available in a disclosure. Avoid
+shrinking a desktop diagram until its mathematical labels become unreadable.
+Publish all three refinement assets with the HTML, and bump their query versions
+when they change.

@@ -1,457 +1,72 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aubone–Iovino · From infinitary inconsistency to finite obstruction</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap">
-<style>
-:root {
-  --bg: #ffffff; --ink: #30203d; --muted: #706078; --rule: #e2d3ed; --wash: #f8f2fc;
-  --josh: #7844b1; --josh2: #9a7bc0; --josh3: #ddcdeb;
-  --olivia: #c45193; --olivia2: #f8e6f0;
-  --from: #8e66ba;
-  --f-d: "Space Grotesk", system-ui, -apple-system, sans-serif;
-  --f-t: "Source Serif 4", Georgia, serif;
-  color-scheme: light;
-}
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.6 var(--f-t); }
-main { max-width: 1160px; margin: 0 auto; padding-block: 40px 80px;
-  padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
-a { color: var(--josh); text-underline-offset: 4px; }
-a:hover { color: var(--olivia); }
-.eyebrow, .author-line, nav, h1, h2, .no, .who, .bar, .btn, select, label, .status, .counts, footer, .tip, .chat { font-family: var(--f-d); }
-.eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: #77548c; }
-.eyebrow .sep { color: var(--olivia); margin: 0 8px; }
-.author-line { margin-top: 32px; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: #472c5f; }
-.author-line span { color: var(--olivia); margin: 0 7px; }
-h1 { font-size: clamp(44px, 6.6vw, 86px); font-weight: 500; line-height: .99; letter-spacing: -.06em; margin: 26px 0 26px; text-wrap: balance; }
-.title-from { color: var(--from); }
-.title-to { color: #39204e; }
-.dot { color: var(--olivia); }
-.lede { max-width: 66ch; font-size: 20px; line-height: 1.55; color: #5d4a68; margin: 0; }
-.lede em { color: var(--ink); }
-.who { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 22px; font-size: 14px; color: var(--muted); }
-.who span { display: inline-flex; align-items: center; gap: 9px; }
-.who b { color: var(--ink); font-weight: 500; }
-.chipO { width: 11px; height: 11px; transform: rotate(45deg); background: var(--olivia); display: inline-block; }
-.chipJ { width: 12px; height: 12px; border-radius: 50%; background: var(--josh); display: inline-block; }
-nav { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 40px 0 0; padding: 16px 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); font-size: 13px; font-weight: 500; }
-nav a { text-decoration: none; }
-section { margin: 84px 0 0; scroll-margin-top: 16px; }
-.no { font-size: 12px; font-weight: 500; color: var(--josh2); border-top: 2px solid var(--olivia); width: 24px; padding-top: 8px; }
-h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 500; letter-spacing: -.045em; line-height: 1.08; margin: 12px 0 14px; text-wrap: balance; }
-.intro { max-width: 68ch; margin: 0 0 14px; }
-sup { font-size: .62em; }
-.stage { margin: 22px 0 0; border-radius: 18px; background: var(--wash); padding: 14px; position: relative; overflow: hidden; }
-.scroll { overflow-x: auto; }
-svg { display: block; width: 100%; height: auto; }
-svg.wide { min-width: 760px; } svg.wide2 { min-width: 880px; } svg.wide3 { min-width: 690px; }
-.bar { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-top: 14px; font-size: 14px; color: var(--muted); }
-.bar.ctl { margin: 18px 0 0; }
-.bar label { color: var(--ink); font-weight: 500; }
-.btn, select { font: 500 14px var(--f-d); border: 1.5px solid var(--ink); background: var(--bg); color: var(--ink); border-radius: 999px; padding: 7px 16px; cursor: pointer; }
-select { border-radius: 10px; padding: 7px 10px; max-width: 100%; }
-.btn:hover { background: var(--ink); color: var(--bg); }
-.btn.alt { border-color: var(--olivia); color: var(--olivia); }
-.btn.alt:hover { background: var(--olivia); color: #fff; }
-.btn[aria-pressed="true"] { background: var(--olivia); border-color: var(--olivia); color: #fff; }
-button:focus-visible, select:focus-visible, svg [tabindex]:focus-visible { outline: 2px solid var(--olivia); outline-offset: 3px; }
-.tip { position: absolute; pointer-events: none; background: var(--ink); color: #fff; font-size: 13px; line-height: 1.45; padding: 10px 12px; border-radius: 10px; max-width: 290px; opacity: 0; transition: opacity .15s; }
-.tip b { color: var(--olivia2); font-weight: 500; }
-/* chat */
-.chat { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; min-height: 440px; }
-.msg { max-width: 84%; padding: 11px 15px; border-radius: 20px; font-size: 15.5px; line-height: 1.45; animation: pop .28s ease-out both; }
-.msg.o { align-self: flex-end; background: var(--bg); border: 1.5px solid var(--olivia); border-bottom-right-radius: 6px; }
-.msg.j { align-self: flex-start; background: var(--josh); color: #fff; border-bottom-left-radius: 6px; }
-.msg.sys { align-self: center; max-width: 100%; background: var(--ink); color: #fff; border-radius: 14px; text-align: center; }
-.msg.sys b { color: var(--olivia2); font-weight: 500; }
-.m { font-family: var(--f-t); font-style: italic; }
-.who2 { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; opacity: .7; display: block; margin-bottom: 2px; }
-.picker { align-self: flex-start; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); animation: pop .28s ease-out both; }
-.picker button { font: 500 14px var(--f-d); border: 1.5px solid var(--josh); color: var(--josh); background: var(--bg); border-radius: 10px; padding: 5px 11px; cursor: pointer; }
-.picker button:hover { background: var(--josh); color: #fff; }
-.picker .inf { border-style: dashed; color: var(--josh2); border-color: var(--josh2); cursor: default; }
-@keyframes pop { from { opacity: 0; transform: translateY(6px) scale(.98); } to { opacity: 1; transform: none; } }
-/* parity module */
-#selected-ray { font-size: 13px; }
-.status-row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; align-items: start; margin: 16px 0 22px; }
-.status { margin: 0; font-size: 15px; line-height: 1.55; }
-.status strong { font-weight: 600; }
-.counts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.counts div { display: flex; flex-direction: column; gap: 2px; padding-top: 8px; border-top: 2px solid var(--josh2); }
-.counts div.pk { border-top-color: var(--olivia); }
-.counts span { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.counts b { font-size: 26px; font-weight: 500; letter-spacing: -.03em; color: var(--josh); }
-.counts div.pk b { color: var(--olivia); }
-svg .small-label { font: 12px var(--f-d); letter-spacing: 1px; fill: #8a719a; }
-svg .annotation { font: 14px var(--f-d); fill: #8a719a; }
-svg .basis-label { font: 500 15px var(--f-d); fill: #39204e; }
-svg .identity { stroke: #d6bee7; stroke-width: 1.2; fill: none; }
-svg .identity.active { stroke: var(--josh); stroke-width: 2.2; }
-svg .identity-cut { stroke: var(--olivia); stroke-width: 1.5; stroke-dasharray: 3 3; }
-svg .cut-symbol { fill: var(--olivia); font: 24px var(--f-d); }
-svg .row-guide { stroke: #eee1f4; stroke-width: .7; }
-svg .column-highlight { fill: #ecdff5; stroke: none; }
-svg .ray-label { font: 15px var(--f-d); fill: #8a719a; cursor: pointer; }
-svg .ray-label.active { fill: var(--josh); font-weight: 700; }
-svg .occurrence { fill: #fff; stroke: #b28dc8; stroke-width: 1.25; }
-svg .occurrence.selected { stroke: var(--josh); stroke-width: 2; }
-svg .occurrence.high { fill: var(--josh); stroke: var(--josh); }
-svg .sum { font: 14px var(--f-d); fill: #a17bb4; }
-footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 12.5px; line-height: 1.7; color: var(--muted); }
-footer p { max-width: 900px; }
-@media (max-width: 760px) { .status-row { grid-template-columns: 1fr; } .lede { font-size: 18px; } section { margin-top: 60px; } }
-@media (prefers-reduced-motion: reduce) { .msg, .picker { animation: none; } }
-</style>
+<link rel="stylesheet" href="ks-visual-palette.css?v=4">
+<link rel="stylesheet" href="ks-refinement-exhibit.css?v=4">
 </head>
 <body>
 <main>
 <header>
   <div class="eyebrow">Infinitary real-valued logic <span class="sep">/</span> model-theoretic forcing</div>
   <div class="author-line">Olivia Aubone <span>+</span> José Iovino</div>
-  <h1><span class="title-from">From infinitary inconsistency</span> <span class="title-to">to finite obstruction<span class="dot">.</span></span></h1>
-  <p class="lede">The Kochen–Specker theorem says that a certain finite configuration cannot be coloured. Our refinement concerns the <em>logical form</em> of the obstruction. An infinitary theory with no model is refuted through a well-founded game, and every terminal position keeps a finite set of commitments together with the dependencies that forced them. The familiar parity argument is one component of one particular strategy.</p>
+  <h1><span class="title-from">Infinitely branching.</span><br><span class="title-to">Every branch ends.</span></h1>
+  <p class="lede">In the Aubone–Iovino model existence game, infinitary inconsistency produces finite commitments that no structure satisfies.</p>
   <div class="who"><span><i class="chipO"></i><b>Olivia</b> claims there is no model and challenges</span><span><i class="chipJ"></i><b>Josh</b> tries to build one and commits to intervals</span></div>
 </header>
-<nav aria-label="On this page"><a href="#tree">01 The forcing tree</a><a href="#play">02 Play it</a><a href="#leaf">03 Anatomy of a leaf</a><a href="#parity">04 The parity module</a><a href="Kochen_Specker_set.html">The 49-ray set</a></nav>
+
 
 <section id="tree">
   <div class="no">01</div>
   <h2>Infinitely branching. Every branch ends.</h2>
-  <p class="intro">The theory <i>T</i><sup>01</sup> (a probability measure on the projection lattice of a Hilbert space that takes only the values 0 and 1) has no model, yet every finite set of its axioms has one. Olivia's winning strategy is fixed, so the tree of plays branches only at Josh's answers. At the countable challenge he may name any <i>N</i>, and the tree fans out infinitely there; the plays get longer as <i>N</i> grows. No branch is infinite. Every play stops at a leaf, a finite position that no structure satisfies.</p>
-  <figure class="stage">
-    <div class="scroll"><svg id="g-tree" viewBox="0 0 1060 520" class="wide" role="img" aria-label="A well-founded tree of plays, branching infinitely at Josh's countable answer, with finite leaves"></svg></div>
+  <figure class="stage tree-stage">
+    <div class="scroll"><svg id="g-tree" viewBox="0 0 1060 520"  role="img" aria-label="A well-founded tree of plays, branching infinitely at Josh's countable answer, with finite leaves"></svg></div>
     <div class="tip" id="tipA"></div>
-  </figure>
-  <div class="bar"><button class="btn" id="growA" type="button">Grow again</button><span>Purple edges: Josh's answers. Pink diamonds: Olivia's challenges. Pink dots: leaves, where Josh has lost. Hover or tap a leaf.</span></div>
+  </figure><p class="intro">The theory <i>T</i><sup>01</sup> axiomatizes the Hilbert-space and lattice structure together with a {0,1}-valued probability measure. It has no model, although every finite subset of its axioms has one. Olivia’s winning strategy yields a well-founded tree: Josh’s countable answers produce infinite branching, but every play ends at a finite position satisfied in no structure.</p>
+  <div class="bar"><button class="btn" id="growA" type="button">Replay branching</button><span>Purple paths: Josh’s answers. Pink diamonds: Olivia’s challenges. Pink squares: terminal positions. Select a terminal position.</span></div>
+<div class="tree-reading" id="tree-reading" aria-live="polite"><strong>Select a leaf</strong><p>Follow one of Josh’s answers to its terminal position. The drawing is schematic; the displayed lengths do not claim that a uniform bound is impossible.</p></div><p class="tree-note">Only finitely many answers are drawn; the omitted choices continue over the natural numbers. A terminal position is an unsatisfiable finite set of commitments, not an inconsistent finite subset of the axioms. The existence of a winning strategy with a uniform finite bound on play length remains open.</p>
 </section>
-
+<nav aria-label="On this page"><a href="#tree">01 The forcing tree</a><a href="#play">02 Follow a play</a><a href="#leaf">03 Anatomy of a leaf</a><a href="#parity">04 The parity module</a><a href="#search49">05 The 49-ray configuration</a></nav>
 <section id="play">
   <div class="no">02</div>
-  <h2>Play it.</h2>
-  <p class="intro">Answer for Josh. Every answer is legal, and every answer loses: a different <i>N</i> gives a different leaf, sometimes in a different four-dimensional block. What the play leaves behind is the finite obstruction.</p>
+  <h2>Follow a play.</h2>
+  <p class="intro">Answer for Josh. This guided schematic follows the strategy used in the paper. Choose a finite cutoff and a high-probability basis ray; the later commitments locate the contradiction in a four-dimensional block.</p>
   <figure class="stage"><div class="chat" id="chat" aria-live="polite"></div></figure>
-  <div class="bar"><button class="btn alt" id="restartC" type="button">Play again</button><span id="pathC"></span></div>
+  <div class="bar"><button class="btn alt" id="restartC" type="button">Begin this play</button><span id="pathC"></span></div>
 </section>
 
 <section id="leaf">
   <div class="no">03</div>
   <h2>A leaf keeps its dependencies.</h2>
-  <p class="intro">One leaf, opened up. Each commitment of the final position is shown with what forced it: the countable answer, the instances of the axioms, the geometric identifications and the interval commitments, down to one basic sentence that has received intervals with no common point. Hover over a node to light up everything it depends on. The parity count is one bracketed module of this derivation.</p>
-  <figure class="stage"><div class="scroll"><svg id="g-leaf" viewBox="0 0 1180 620" class="wide2" role="img" aria-label="Dependency graph of the commitments at one leaf"></svg></div></figure>
+  <p class="intro">One leaf, opened up. Each commitment of the final position is shown with what forced it: the countable answer, the instances of the axioms, the geometric identifications and the interval commitments, down to one basic sentence that has received intervals with no common point. Hover over a node to light up everything it depends on. The parity count is one bracketed module of this derivation.</p><p class="scope">Here μ is the probability predicate, κᵢ extracts a sequence entry, at(x) names the ray of a nonzero vector x, and spa(s) names the span of a sequence. For a basis B = (v₀, …, v₃), the sequence s_B has entries v₀/16, …, v₃/16 followed by zeros. The diagram compresses the required axiom instances, including the measure-additivity step from the high-probability atom to its block.</p>
+  <div class="dependency-mobile"><label for="dependency-choice">Inspect a commitment</label> <select id="dependency-choice"></select><div id="dependency-reading"></div></div><figure class="stage dependency-desktop"><div class="scroll"><svg id="g-leaf" viewBox="0 0 1180 620" class="wide2" role="img" aria-label="Dependency graph of the commitments at one leaf"></svg></div></figure>
 </section>
 
 <section id="parity">
   <div class="no">04</div>
   <h2>The parity module.</h2>
-  <p class="intro">In this strategy, the last commitments of every leaf concern nine bases of four rays inside the selected block, in the configuration of Cabello, Estebaranz and García-Alcaine. The leaf records each ray once in each of its two bases, together with an explicit identification derived from axioms that do not mention the measure. Choose a ray and omit its identification: the remaining constraints become satisfiable, so the contradiction uses every one of the eighteen.</p>
+  <p class="intro">In plays that reach every commitment required by the parity argument, the terminal commitments concern nine bases of four rays inside the selected block, in the configuration of Cabello, Estebaranz and García-Alcaine. The leaf records each ray once in each of its two bases, together with an explicit identification derived from axioms that do not mention the measure. Choose a ray and omit its identification: the remaining constraints become satisfiable, so the contradiction uses every one of the eighteen.</p>
   <div class="bar ctl"><label for="ray-choice">Ray</label><select id="ray-choice"></select><button id="cut-toggle" class="btn" type="button" aria-pressed="false">Omit this identification</button><span id="selected-ray"></span></div>
-  <figure class="stage"><div class="scroll"><svg id="certificate" viewBox="0 0 890 455" class="wide3" role="img" aria-label="Nine basis rows, eighteen ray columns and thirty-six occurrences; vertical links are identifications"></svg></div></figure>
+  <div id="ray-focus" class="ray-focus"></div><details class="matrix" open><summary>All nine bases and eighteen identifications</summary><figure class="stage"><div class="scroll"><svg id="certificate" viewBox="0 0 890 455" class="wide3" role="img" aria-label="Nine basis rows, eighteen ray columns and thirty-six occurrences; vertical links are identifications"></svg></div></figure></details>
   <div class="status-row">
     <p id="certificate-status" class="status" aria-live="polite"></p>
     <div class="counts"><div><span>by bases</span><b id="count-bases"></b></div><div class="pk"><span>by identified rays</span><b id="count-rays"></b></div></div>
   </div>
   <p class="intro">The count tolerates error. If each value lies within δ of 0 or 1 and each basis sum lies within η of 1, it still refutes the commitments whenever 4δ + η &lt; 1, and this holds for the ordinary ray presentation as well. What the leaf adds is where the intervals come from: they are Josh's explicit commitments, each with the challenge that forced it.</p>
-  <p class="intro">The same separation of occurrences and identifications holds for <a href="Kochen_Specker_set.html">the 49-ray set found by our search</a>: all 92 occurrences of its shared rays are indispensable.</p>
+  <p class="intro">The same separation of occurrences and identifications holds for <a href="Kochen_Specker_set.html">the 49-ray set found by our search</a>: detaching any one of the 92 occurrences of a shared ray makes the remaining basis-and-identification constraints satisfiable.</p>
 </section>
 
+<section id="search49"><div class="no">05</div><h2>The 49-ray configuration.</h2><p class="intro">The search configuration has 36 bases and 108 contextual occurrences. Its 33 shared rays account for 92 occurrences. Detach one occurrence to inspect an assignment that satisfies every basis constraint and every remaining same-ray identification.</p><div class="bar ctl"><label for="ray49">Shared ray</label><select id="ray49"></select><label for="basis49">Occurrence</label><select id="basis49"></select><button id="detach49" class="btn" aria-pressed="false">Detach this occurrence</button></div><div class="basis-grid" id="grid49"></div><div class="result49" id="result49" aria-live="polite"></div><p class="scope">Filled entries have value 1; the other entries have value 0. The pink outline selects the occurrence. This check concerns the displayed basis-and-identification constraints; it does not assert minimality under all orthogonal-pair constraints. The nine-basis parity count does not apply to this configuration.</p><p><a href="Kochen_Specker_set.html">Explore the geometry and coordinates of all 49 rays ↗</a></p></section>
 <footer>
   <p>Source: Olivia Aubone and José Iovino, <a href="https://utsa-quantum-math.github.io/assets/notes/Gleason_Kochen_Specker_game.pdf"><i>Infinitary real-valued logic and a refinement of the Kochen–Specker theorem</i></a>, Sections 10 and 12. Configuration of section 04: A. Cabello, J. M. Estebaranz and G. García-Alcaine, <i>Bell–Kochen–Specker theorem: a proof with 18 vectors</i>, Phys. Lett. A 212 (1996). Contextual-occurrence diagrams also appear in Kunjwal and Spekkens (2015).</p>
   <p>Notes on the figures. 01: branch lengths and numbers of leaves are illustrative; countable choices record the infinitary syntax; a leaf is an unsatisfiable finite position, not an inconsistent finite set of axioms. 02 and 03 follow the strategy described in Section 10 (the decisive countable answer, then the block of four basis vectors, then the parity argument); a real leaf contains many more commitments than are drawn. 04 shows the Boolean skeleton of the parity module: omitting an identification relaxes this constraint system; it does not change the geometric identity of the ray or produce a model of the theory. All eighteen omissions were checked against the nine basis constraints.</p>
   <p>© 2026 Olivia Aubone and José Iovino.</p>
 </footer>
 </main>
-<script>
-const DATA18={"bases":{"1":[0,1,15,8],"2":[0,5,13,10],"3":[9,7,15,2],"4":[9,17,10,4],"5":[1,5,12,11],"6":[7,17,11,3],"7":[14,16,8,2],"8":[14,6,13,4],"9":[16,6,12,3]},"vectors":{"1":[[0,0,0,1],[0,0,1,0],[1,1,0,0],[1,-1,0,0]],"2":[[0,0,0,1],[0,1,0,0],[1,0,1,0],[1,0,-1,0]],"3":[[1,-1,1,-1],[1,-1,-1,1],[1,1,0,0],[0,0,1,1]],"4":[[1,-1,1,-1],[1,1,1,1],[1,0,-1,0],[0,1,0,-1]],"5":[[0,0,1,0],[0,1,0,0],[1,0,0,1],[1,0,0,-1]],"6":[[1,-1,-1,1],[1,1,1,1],[1,0,0,-1],[0,1,-1,0]],"7":[[1,1,-1,1],[1,1,1,-1],[1,-1,0,0],[0,0,1,1]],"8":[[1,1,-1,1],[-1,1,1,1],[1,0,1,0],[0,1,0,-1]],"9":[[1,1,1,-1],[-1,1,1,1],[1,0,0,1],[0,1,-1,0]]},"rays":[[0,0,0,1],[0,0,1,0],[0,0,1,1],[0,1,-1,0],[0,1,0,-1],[0,1,0,0],[1,-1,-1,-1],[1,-1,-1,1],[1,-1,0,0],[1,-1,1,-1],[1,0,-1,0],[1,0,0,-1],[1,0,0,1],[1,0,1,0],[1,1,-1,1],[1,1,0,0],[1,1,1,-1],[1,1,1,1]],"removed":{"0":[1,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,1],"1":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,1],"2":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,0,0,1,0,0],"3":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,1,0],"4":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1,1,0,0,0],"5":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,1],"6":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,1,0,0,0,0,1,0,0],"7":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0],"8":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0],"9":[1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,1,0],"10":[1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0],"11":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0],"12":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,1],"13":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,0,1,0,0,0],"14":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,1,0,0,0,1,0,0],"15":[1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,1,0],"16":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0],"17":[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,1,0]}};
-
-(function () {
-  var NS = 'http://www.w3.org/2000/svg';
-  function el(t, a, p) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
-  function txt(p, x, y, s, a) { var t = el('text', Object.assign({ x: x, y: y }, a || {}), p); t.textContent = s; return t; }
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var C = { josh: '#7844b1', josh2: '#9a7bc0', josh3: '#ddcdeb', ol: '#c45193', ol2: '#f8e6f0', ink: '#30203d', mut: '#706078' };
-
-  /* ---------------- A: the forcing tree ---------------- */
-  var svgA = document.getElementById('g-tree'), tipA = document.getElementById('tipA');
-  function seeded(s) { return function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
-  function buildA() {
-    svgA.innerHTML = '';
-    var rnd = seeded(7);
-    var defs = el('defs', {}, svgA);
-    var g = el('radialGradient', { id: 'glow' }, defs);
-    el('stop', { offset: '0', 'stop-color': C.ol, 'stop-opacity': '.55' }, g); el('stop', { offset: '1', 'stop-color': C.ol, 'stop-opacity': '0' }, g);
-    var edges = el('g', { fill: 'none', 'stroke-linecap': 'round' }, svgA), nodes = el('g', {}, svgA), labels = el('g', { 'font-family': 'Space Grotesk, sans-serif' }, svgA);
-    var segs = [];
-    function edge(x1, y1, x2, y2, w, col, d) {
-      var mx = (x1 + x2) / 2;
-      var p = el('path', { d: 'M' + x1 + ' ' + y1 + ' C' + mx + ' ' + y1 + ' ' + mx + ' ' + y2 + ' ' + x2 + ' ' + y2, stroke: col || C.josh, 'stroke-width': w || 1.6 }, edges);
-      segs.push({ p: p, d: d }); return p;
-    }
-    function chal(x, y, d) { var r = el('rect', { x: x - 5, y: y - 5, width: 10, height: 10, transform: 'rotate(45 ' + x + ' ' + y + ')', fill: C.ol }, nodes); segs.push({ n: r, d: d }); }
-    function leaf(x, y, d, info) {
-      var h = el('circle', { cx: x, cy: y, r: 13, fill: 'url(#glow)' }, nodes);
-      var c = el('circle', { cx: x, cy: y, r: 4.2, fill: C.ol, stroke: '#fff', 'stroke-width': 1.5, style: 'cursor:pointer' }, nodes);
-      segs.push({ n: h, d: d + .1 }); segs.push({ n: c, d: d + .1 });
-      c.addEventListener('mouseenter', function (ev) { showTip(ev, info); c.setAttribute('r', 6.5); });
-      c.addEventListener('mouseleave', function () { tipA.style.opacity = 0; c.setAttribute('r', 4.2); });
-      c.addEventListener('click', function (ev) { showTip(ev, info); });
-    }
-    function showTip(ev, info) {
-      var r = svgA.parentNode.parentNode.getBoundingClientRect();
-      tipA.innerHTML = info; tipA.style.opacity = 1;
-      var x = ev.clientX - r.left + 14, y = ev.clientY - r.top + 14;
-      if (x > r.width - 290) x -= 300; tipA.style.left = x + 'px'; tipA.style.top = y + 'px';
-    }
-    // root and phase 1
-    var y0 = 250, x = 40;
-    var root = el('circle', { cx: x, cy: y0, r: 9, fill: C.ink }, nodes); segs.push({ n: root, d: 0 });
-    var tl = txt(labels, x - 14, y0 - 24, 'T', { 'font-size': 18, 'font-weight': 700, fill: C.ink }); var ts = el('tspan', { dy: -7, 'font-size': 11 }, tl); ts.textContent = '01';
-    txt(labels, x - 14, y0 + 34, 'no model;', { 'font-size': 12, fill: C.mut });
-    txt(labels, x - 14, y0 + 49, 'every finite part', { 'font-size': 12, fill: C.mut }); txt(labels, x - 14, y0 + 64, 'has one', { 'font-size': 12, fill: C.mut });
-    var px = x, step = 46, d = 0;
-    for (var i = 0; i < 4; i++) {
-      var nx = px + step; d += 1;
-      edge(px, y0, nx, y0, 2.4, C.josh, d); chal(nx, y0, d + .5);
-      // a finite side branch where Josh blunders early
-      if (i === 1 || i === 3) {
-        var sy = y0 + (i === 1 ? -70 : 74);
-        edge(nx, y0, nx + 40, sy, 1.3, C.josh2, d + .6);
-        leaf(nx + 40, sy, d + 1, '<b>Leaf, early.</b> Josh answered with intervals that already clash with an axiom instance. A short play: finitely many commitments, satisfied in no structure.');
-      }
-      px = nx;
-    }
-    // countable challenge
-    var cx = px + 40; d += 1;
-    edge(px, y0, cx, y0, 2.6, C.josh, d);
-    var ring = el('circle', { cx: cx, cy: y0, r: 11, fill: '#fff', stroke: C.ol, 'stroke-width': 2.5 }, nodes); segs.push({ n: ring, d: d + .4 });
-    txt(labels, cx - 8, y0 + 34, 'countable challenge:', { 'font-size': 12, fill: C.ol, 'font-weight': 500, 'text-anchor': 'end' });
-    txt(labels, cx - 8, y0 + 50, 'Josh names any N', { 'font-size': 12, fill: C.mut, 'text-anchor': 'end' });
-    // fan: N = 1, 2, 3, ... accumulating at the bottom
-    var top = 30, bot = 500, K = 22;
-    for (var k = 1; k <= K; k++) {
-      var t = 1 - Math.pow(0.80, k - 0.4);
-      var yy = top + (bot - top) * t;
-      var len = 120 + 30 * Math.log(1 + k) * 7;           // plays get longer as N grows
-      var xEnd = Math.min(cx + len + k * 10, 1020);
-      var dd = d + 1 + k * 0.08;
-      var w = Math.max(0.5, 2.2 - k * 0.09), col = k < 12 ? C.josh : C.josh2;
-      var bx = cx + 70 + rnd() * 20;
-      edge(cx, y0, bx, yy, w, col, dd);
-      if (k <= 7) txt(labels, bx - 6, yy - 6, 'N=' + k, { 'font-size': 11, fill: C.josh2 });
-      // along the branch: alternating challenges, then a finite subtree near the end
-      var segN = 2 + Math.floor(k / 2), sx = bx, sl = (xEnd - bx) / (segN + 1);
-      for (var s = 0; s < segN; s++) {
-        var ex = sx + sl, dd2 = dd + 0.3 + s * 0.25;
-        edge(sx, yy, ex, yy, w, col, dd2);
-        if (k < 9) chal(ex, yy, dd2 + .2);
-        sx = ex;
-      }
-      // finite branching at the end: Josh's finitely many choices of n0 and of intervals
-      var fan = k < 6 ? 3 : (k < 12 ? 2 : 1), spread = Math.max(3, 26 - k * 1.6);
-      for (var f = 0; f < fan; f++) {
-        var fy = yy + (fan === 1 ? 0 : (f - (fan - 1) / 2) * spread);
-        var fx = Math.min(sx + sl * (0.7 + rnd() * 0.5), 1040);
-        edge(sx, yy, fx, fy, Math.max(0.5, w * 0.8), col, dd + 0.3 + segN * 0.25);
-        var n0 = Math.min(k - 1, Math.floor(rnd() * k)), j = Math.floor(n0 / 4);
-        leaf(fx, fy, dd + 0.5 + segN * 0.25,
-          '<b>Leaf.</b> Josh named N = ' + k + ' and then n₀ = ' + n0 + '. The commitments live in the block e<sub>' + 4 * j + '</sub>, …, e<sub>' + (4 * j + 3) + '</sub>. ' +
-          'A finite position: interval commitments on finitely many sentences, with the identifications that forced them, satisfied in no structure.');
-      }
-    }
-    txt(labels, cx + 70, bot + 14, '⋮  N → ∞: the tree branches infinitely here, and its plays have no bound on length, but every play is finite', { 'font-size': 12, fill: C.mut });
-    // rank annotation
-    txt(labels, 720, 24, 'well-founded: no infinite branch', { 'font-size': 14, 'font-weight': 700, fill: C.ink });
-    txt(labels, 720, 42, 'its rank is a countable ordinal', { 'font-size': 12, fill: C.mut });
-    // animate growth
-    segs.forEach(function (s) {
-      var delay = (reduce ? 0 : s.d * 160) + 'ms';
-      if (s.p) {
-        var L = s.p.getTotalLength(); s.p.style.strokeDasharray = L; s.p.style.strokeDashoffset = reduce ? 0 : L;
-        s.p.style.transition = 'stroke-dashoffset .5s ease-out ' + delay;
-        requestAnimationFrame(function () { requestAnimationFrame(function () { s.p.style.strokeDashoffset = 0; }); });
-      } else {
-        s.n.style.opacity = reduce ? 1 : 0; s.n.style.transition = 'opacity .35s ease-out ' + delay;
-        requestAnimationFrame(function () { requestAnimationFrame(function () { s.n.style.opacity = 1; }); });
-      }
-    });
-  }
-  buildA();
-  document.getElementById('growA').addEventListener('click', buildA);
-
-  /* ---------------- B: anatomy of a leaf ---------------- */
-  var svgB = document.getElementById('g-leaf');
-  // columns: 0 game moves, 1 axiom instances, 2 identifications, 3 interval commitments, 4 the clash
-  var N = [
-    { id: 'tot', c: 0, r: 0, t: 'Σₙ μ(at(κₙε)) ∈ [1−η, 1]', s: 'Olivia challenges (M3) at ε', k: 'move' },
-    { id: 'N',   c: 0, r: 1, t: 'Josh names N', s: 'countable challenge (⋁≥)', k: 'count' },
-    { id: 'n0',  c: 0, r: 2, t: 'n₀ < N with μ ≈ 1', s: 'tolerance finer than 1/(2N)', k: 'move' },
-    { id: 'blk', c: 0, r: 3, t: 'block e₄ⱼ … e₄ⱼ₊₃', s: '4j ≤ n₀ < 4j+4', k: 'move' },
-    { id: 'K4',  c: 1, r: 0, t: '(K4)', s: 'κₙε = 2⁻ⁿ⁻¹eₙ' },
-    { id: 'At',  c: 1, r: 1, t: '(At1), (At5)', s: 'atoms of vectors' },
-    { id: 'K2',  c: 1, r: 2, t: '(K2)', s: 'entries of s_B' },
-    { id: 'P4',  c: 1, r: 3, t: '(P4)', s: 'spans' },
-    { id: 'OL2', c: 1, r: 4, t: '(OL2)', s: 'μ respects equality' },
-    { id: 'M1',  c: 1, r: 5, t: '(M1), (M2), 0/1 axiom', s: 'values near 0 or 1' },
-    { id: 'idn', c: 2, r: 0, t: 'at(κₙ₀ε) ≡ at(eₙ₀)', s: 'the selected atom' },
-    { id: 'idr', c: 2, r: 1, t: 'at(κᵢs_B) ≡ at(vᵢ)', s: '36 occurrences → 18 rays' },
-    { id: 'ids', c: 2, r: 2, t: 'span(s_B) ≡ span(block)', s: 'for the nine bases' },
-    { id: 'v18', c: 3, r: 0, t: '18 values ∈ [0,δ] ∪ [1−δ,1]', s: 'Josh’s interval commitments' },
-    { id: 's9',  c: 3, r: 1, t: '9 basis sums ∈ [1−η, 1+η]', s: 'Josh’s interval commitments' },
-    { id: 'par', c: 3, r: 2, t: 'count: 9 vs even', s: 'parity, when 4δ + η < 1' },
-    { id: 'X',   c: 4, r: 0, t: 'one basic sentence,', s: 'two intervals, no common point', k: 'clash' }
-  ];
-  var E = [['tot','N'],['N','n0'],['K4','idn'],['At','idn'],['n0','idn'],['n0','blk'],['M1','n0'],
-           ['blk','idr'],['K2','idr'],['At','idr'],['blk','ids'],['P4','ids'],
-           ['idr','v18'],['OL2','v18'],['M1','v18'],['ids','s9'],['OL2','s9'],['idn','s9'],
-           ['v18','par'],['s9','par'],['par','X']];
-  var colX = [20, 252, 470, 712, 968], colW = [208, 182, 210, 228, 196], rowH = 78, y0B = 70;
-  var ix = {}; N.forEach(function (n) { ix[n.id] = n; });
-  function box(n) { var rows = { 0: 4, 1: 6, 2: 3, 3: 3, 4: 1 }[n.c]; var off = (6 - rows) * rowH / 2; return { x: colX[n.c], y: y0B + off + n.r * rowH + (n.c === 4 ? 2 * rowH : 0), w: colW[n.c], h: 54 }; }
-  function drawB() {
-    svgB.innerHTML = '';
-    var heads = ['the play', 'axiom instances', 'identifications', 'commitments', 'the leaf'];
-    heads.forEach(function (h, i) { txt(svgB, colX[i], 34, h.toUpperCase(), { 'font-family': 'Space Grotesk, sans-serif', 'font-size': 11, 'letter-spacing': 2, fill: C.mut }); });
-    // parity module bracket
-    var bp = box(ix.v18), bq = box(ix.par);
-    el('rect', { x: bp.x - 10, y: bp.y - 12, width: bp.w + 20, height: bq.y + bq.h - bp.y + 24, rx: 16, fill: 'none', stroke: C.josh2, 'stroke-dasharray': '5 5' }, svgB);
-    txt(svgB, bp.x - 6, bq.y + bq.h + 30, 'parity module: one part of this strategy', { 'font-family': 'Space Grotesk, sans-serif', 'font-size': 12, fill: C.josh2 });
-    var eg = el('g', { fill: 'none' }, svgB), ng = el('g', {}, svgB);
-    var paths = [];
-    E.forEach(function (e) {
-      var a = box(ix[e[0]]), b = box(ix[e[1]]);
-      var x1 = a.x + a.w, y1 = a.y + a.h / 2, x2 = b.x, y2 = b.y + b.h / 2;
-      if (ix[e[0]].c === ix[e[1]].c) { x1 = a.x + a.w / 2; y1 = a.y + a.h; x2 = b.x + b.w / 2; y2 = b.y; }
-      var d = ix[e[0]].c === ix[e[1]].c ? 'M' + x1 + ' ' + y1 + ' L' + x2 + ' ' + y2 : 'M' + x1 + ' ' + y1 + ' C' + (x1 + 50) + ' ' + y1 + ' ' + (x2 - 50) + ' ' + y2 + ' ' + x2 + ' ' + y2;
-      paths.push({ e: e, p: el('path', { d: d, stroke: C.josh3, 'stroke-width': 1.6 }, eg) });
-    });
-    var boxes = {};
-    N.forEach(function (n) {
-      var b = box(n), g = el('g', { style: 'cursor:default' }, ng);
-      var fill = n.k === 'clash' ? C.ol : (n.k === 'count' ? C.josh : '#fff');
-      var stroke = n.k === 'clash' ? C.ol : (n.c === 1 ? C.josh3 : C.josh);
-      var r = el('rect', { x: b.x, y: b.y, width: b.w, height: b.h, rx: 12, fill: fill, stroke: stroke, 'stroke-width': 1.5 }, g);
-      var dark = n.k === 'clash' || n.k === 'count';
-      txt(g, b.x + 12, b.y + 22, n.t, { 'font-family': n.c === 1 ? 'Space Grotesk, sans-serif' : 'Space Grotesk, sans-serif', 'font-size': n.c === 1 ? 14 : 12, 'font-weight': n.c === 1 ? 700 : 500, fill: dark ? '#fff' : C.ink });
-      txt(g, b.x + 12, b.y + 41, n.s, { 'font-family': 'Space Grotesk, sans-serif', 'font-size': 11.5, fill: dark ? '#fbe9f3' : C.mut });
-      boxes[n.id] = { g: g, r: r };
-      g.addEventListener('mouseenter', function () { light(n.id); });
-      g.addEventListener('mouseleave', function () { light(null); });
-    });
-    // the clash, drawn: two interval bars that do not meet
-    var bx = box(ix.X), gy = bx.y + bx.h + 30;
-    el('line', { x1: bx.x, y1: gy + 14, x2: bx.x + 140, y2: gy + 14, stroke: C.mut, 'stroke-width': 1 }, svgB);
-    el('rect', { x: bx.x + 6, y: gy + 2, width: 52, height: 9, rx: 4.5, fill: C.josh }, svgB);
-    el('rect', { x: bx.x + 82, y: gy + 17, width: 52, height: 9, rx: 4.5, fill: C.ol }, svgB);
-    txt(svgB, bx.x, gy + 46, 'no structure satisfies', { 'font-family': 'Space Grotesk, sans-serif', 'font-size': 12, fill: C.ol, 'font-weight': 500 });
-    txt(svgB, bx.x, gy + 62, 'this finite position', { 'font-family': 'Space Grotesk, sans-serif', 'font-size': 12, fill: C.ol, 'font-weight': 500 });
-    function light(id) {
-      var anc = {};
-      if (id) { (function up(x) { anc[x] = 1; E.forEach(function (e) { if (e[1] === x && !anc[e[0]]) up(e[0]); }); })(id); }
-      paths.forEach(function (p) { var on = id && anc[p.e[0]] && anc[p.e[1]]; p.p.setAttribute('stroke', on ? C.ol : C.josh3); p.p.setAttribute('stroke-width', on ? 2.6 : 1.6); });
-      N.forEach(function (n) { boxes[n.id].g.style.opacity = !id || anc[n.id] ? 1 : 0.28; });
-    }
-  }
-  drawB();
-
-  /* ---------------- C: play it ---------------- */
-  var chat = document.getElementById('chat'), pathC = document.getElementById('pathC'), timers = [];
-  function say(cls, who, html, wait) {
-    return new Promise(function (res) {
-      timers.push(setTimeout(function () {
-        var m = document.createElement('div'); m.className = 'msg ' + cls;
-        m.innerHTML = (who ? '<span class="who2">' + who + '</span>' : '') + html; chat.appendChild(m);
-        m.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' }); res();
-      }, reduce ? 0 : wait));
-    });
-  }
-  function pick(label, opts, extra) {
-    return new Promise(function (res) {
-      var p = document.createElement('div'); p.className = 'picker';
-      p.innerHTML = '<span>' + label + '</span>';
-      opts.forEach(function (o) { var b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = function () { p.remove(); res(o); }; p.appendChild(b); });
-      if (extra) { var s = document.createElement('button'); s.className = 'inf'; s.textContent = extra; s.disabled = true; p.appendChild(s); }
-      chat.appendChild(p); p.scrollIntoView({ block: 'nearest' });
-    });
-  }
-  function play() {
-    timers.forEach(clearTimeout); timers = []; chat.innerHTML = ''; pathC.textContent = '';
-    var Nv, n0;
-    say('o', 'Olivia', 'Your measure μ. Take axiom (M3) at <span class="m">ε = (2<sup>−n−1</sup>e<sub>n</sub>)</span>, the sequence built from the orthonormal basis. Commit.', 200)
-    .then(function () { return say('j', 'Josh', '<span class="m">Σₙ μ(at(κₙε)) ∈ [1 − η, 1]</span>. Fine.', 900); })
-    .then(function () { return say('o', 'Olivia', 'That is a countable sum. Name an <span class="m">N</span> whose partial sum is already close to 1.', 1000); })
-    .then(function () { return pick('You are Josh. Name N:', ['1', '2', '3', '5', '8', '13'], '… any N is legal'); })
-    .then(function (v) { Nv = +v; return say('j', 'Josh', '<span class="m">N = ' + Nv + '</span>.', 100); })
-    .then(function () { return say('sys', '', 'Every number was a legal answer here, so <b>the tree of plays branches infinitely</b> at this move.', 800); })
-    .then(function () { return say('o', 'Olivia', 'Now each <span class="m">μ(at(κₙε))</span> for <span class="m">n &lt; ' + Nv + '</span>, near 0 or near 1, to within <span class="m">1/' + (4 * Nv) + '</span>.', 1100); })
-    .then(function () { var o = []; for (var i = 0; i < Nv; i++) o.push('n₀ = ' + i); return pick('Which one is near 1?', o.slice(0, 13)); })
-    .then(function (v) {
-      n0 = +v.split('= ')[1]; var j = Math.floor(n0 / 4);
-      pathC.textContent = 'This play: N = ' + Nv + ', n₀ = ' + n0 + ', block e' + 4 * j + '…e' + (4 * j + 3) + '.';
-      return say('j', 'Josh', '<span class="m">μ(at(κ<sub>' + n0 + '</sub>ε)) ∈ [1 − δ, 1]</span>, and the others are near 0.', 100)
-        .then(function () { return say('o', 'Olivia', 'By (K4), that atom is <span class="m">at(e<sub>' + n0 + '</sub>)</span>. So we work in the block <span class="m">e<sub>' + 4 * j + '</sub>, …, e<sub>' + (4 * j + 3) + '</sub></span>. Nine bases, eighteen rays, all inside it. Commit to each value.', 1100); });
-    })
-    .then(function () { return say('j', 'Josh', 'Eighteen values, each in <span class="m">[0, δ]</span> or <span class="m">[1 − δ, 1]</span>; nine basis sums in <span class="m">[1 − η, 1 + η]</span>.', 1100); })
-    .then(function () { return say('o', 'Olivia', '(K2), (At5) and (P4) identify every occurrence of a ray with the ray, and every basis span with the block; (OL2) carries μ along. Count the high values: nine by bases, an even number by rays.', 1300); })
-    .then(function () { return say('sys', '', '<b>Josh loses.</b> The play stops at a leaf: a finite set of interval commitments and function records, each with the challenge that forced it, satisfied in no structure. Different answers lead to different leaves. None leads to a model.', 1300); });
-  }
-  play();
-  document.getElementById('restartC').addEventListener('click', play);
-})();
-
-(function () {
-  const D = DATA18, NS = 'http://www.w3.org/2000/svg';
-  const occ = Array.from({ length: 18 }, () => []);
-  Object.entries(D.bases).forEach(([b, rs]) => rs.forEach((r, i) => occ[r].push([+b, i])));
-  let selected = 0, cut = false;
-  function node(tag, attrs = {}, parent) { const n = document.createElementNS(NS, tag); Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v)); if (parent) parent.append(n); return n; }
-  function text(svg, x, y, s, attrs = {}) { const n = node('text', { x, y, ...attrs }, svg); n.textContent = s; return n; }
-  function line(svg, x1, y1, x2, y2, attrs = {}) { return node('line', { x1, y1, x2, y2, ...attrs }, svg); }
-  function title(n, s) { node('title', {}, n).textContent = s; }
-  const ray = r => 'r' + (r + 1);
-  const vector = r => '(' + D.rays[r].join(', ').replaceAll('-', '−') + ')';
-  const val = (b, i) => D.removed[selected][(b - 1) * 4 + i];
-  function keys(n, fn) { n.setAttribute('tabindex', '0'); n.setAttribute('role', 'button'); n.addEventListener('click', fn); n.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } }); }
-  function draw() {
-    const svg = document.getElementById('certificate'); svg.replaceChildren();
-    const X = 110, DX = 39, Y = 86, DY = 35;
-    node('rect', { x: X + selected * DX - 16, y: 33, width: 32, height: 375, rx: 8, class: 'column-highlight' }, svg);
-    for (let r = 0; r < 18; r++) {
-      const x = X + r * DX, g = node('g', { 'aria-label': 'Select ray ' + (r + 1) }, svg);
-      keys(g, () => { selected = r; draw(); });
-      text(g, x, 26, ray(r), { 'text-anchor': 'middle', class: r === selected ? 'ray-label active' : 'ray-label' }); title(g, vector(r));
-      const ys = occ[r].map(([b]) => Y + (b - 1) * DY);
-      if (cut && r === selected) { const mid = (ys[0] + ys[1]) / 2; line(svg, x, ys[0], x, mid - 9, { class: 'identity-cut' }); line(svg, x, mid + 9, x, ys[1], { class: 'identity-cut' }); text(svg, x, mid + 6, '×', { 'text-anchor': 'middle', class: 'cut-symbol' }); }
-      else line(svg, x, ys[0], x, ys[1], { class: r === selected ? 'identity active' : 'identity' });
-    }
-    for (let b = 1; b <= 9; b++) {
-      const y = Y + (b - 1) * DY;
-      line(svg, 86, y, 805, y, { class: 'row-guide' }); text(svg, 19, y + 5, 'B' + b, { class: 'basis-label' });
-      D.bases[b].forEach((r, i) => { const x = X + r * DX, high = cut && val(b, i);
-        const c = node('circle', { cx: x, cy: y, r: high ? 7 : 5.5, class: high ? 'occurrence high' : (r === selected ? 'occurrence selected' : 'occurrence') }, svg);
-        title(c, 'B' + b + ', ' + ray(r) + ' = ' + vector(r) + (cut ? '; value ' + val(b, i) : '')); });
-      text(svg, 839, y + 5, '= 1', { 'text-anchor': 'middle', class: 'sum' });
-    }
-    text(svg, 839, 56, 'SUM', { 'text-anchor': 'middle', class: 'small-label' });
-    text(svg, 110, 434, 'Rows: bases. Columns: rays. A vertical link is an identification of the two occurrences.', { class: 'annotation' });
-    document.getElementById('ray-choice').value = selected;
-    const t = document.getElementById('cut-toggle'); t.textContent = cut ? 'Restore the identification' : 'Omit this identification'; t.setAttribute('aria-pressed', String(cut));
-    document.getElementById('selected-ray').textContent = ray(selected) + ' = ' + vector(selected) + ', in bases ' + occ[selected].map(x => x[0]).join(' and ');
-    document.getElementById('certificate-status').innerHTML = cut
-      ? '<strong>Satisfiable.</strong> With this one identification omitted, the filled occurrences give value 1 to exactly one occurrence in each basis, and the other seventeen identifications are respected.'
-      : '<strong>No assignment exists.</strong> Each basis needs exactly one occurrence of value 1, and each identified ray contributes zero or two.';
-    document.getElementById('count-bases').textContent = '9 × 1 = 9';
-    document.getElementById('count-rays').textContent = cut ? '4 × 2 + 1 = 9' : 'even';
-  }
-  const choice = document.getElementById('ray-choice');
-  for (let r = 0; r < 18; r++) { const o = document.createElement('option'); o.value = r; o.textContent = ray(r) + ' · ' + vector(r); choice.append(o); }
-  choice.addEventListener('change', () => { selected = +choice.value; draw(); });
-  document.getElementById('cut-toggle').addEventListener('click', () => { cut = !cut; draw(); });
-  draw();
-})();
-
-</script>
-</body>
-</html>
+<script src="ks-refinement-data.js?v=4"></script>
+<script src="ks-refinement-exhibit.js?v=4"></script>
+</body></html>
