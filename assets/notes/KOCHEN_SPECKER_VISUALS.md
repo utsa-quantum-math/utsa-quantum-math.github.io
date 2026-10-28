@@ -23,7 +23,8 @@ interaction behavior when changing its appearance.
 
 `--accent` marks a ray assigned true and primary actions. `--focus` is the pink
 selection ring, independent of truth value. `--ok`, `--gap`, and `--bad` indicate
-one, zero, and multiple true rays in a basis. `--line` is untouched geometry.
+one, zero, and multiple true rays in a basis. `--line` is untouched geometry. `--detail` is a decorative accent, independent
+of selection.
 Status arcs also use solid, dotted and dashed patterns; labels and numerical
 counts remain available. Avoid unlabelled red/green distinctions. Colors are
 read through `css()` on each drawing, so palette edits require no algorithm edits.
