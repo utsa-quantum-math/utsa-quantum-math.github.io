@@ -20,16 +20,16 @@
     function diamond(x,y){el('rect',{x:x-5,y:y-5,width:10,height:10,transform:'rotate(45 '+x+' '+y+')',fill:C.ol},nodes);}
     var rx=narrow?260:35,ry=narrow?30:205,cx=narrow?260:270,cy=narrow?115:205;
     el('circle',{cx:rx,cy:ry,r:7,fill:C.ink},nodes);
-    txt(labels,narrow?rx+20:rx,ry-18,'T⁰¹',{'font-size':narrow?21:20,fill:C.ink,'text-anchor':narrow?'start':'middle'});
+    txt(labels,narrow?rx+20:rx,narrow?ry+6:ry-18,'T⁰¹',{'font-size':narrow?21:20,fill:C.ink,'text-anchor':narrow?'start':'middle'});
     path('M'+rx+' '+ry+' L'+cx+' '+cy,C.josh,2,0);diamond(cx,cy);
-    txt(labels,narrow?cx:cx-8,narrow?cy+35:cy+35,'countable challenge',{'font-size':narrow?19:15,fill:C.ol,'text-anchor':narrow?'middle':'end'});
+    txt(labels,narrow?cx+20:cx-8,narrow?cy-20:cy+35,'countable challenge',{'font-size':narrow?18:15,fill:C.ol,'text-anchor':narrow?'start':'end'});
     var samples=narrow?[1,3,8]:[1,2,3,5,8,13];
     samples.forEach(function(n,i){
       var bx=narrow?85+i*175:440,by=narrow?220:38+i*63,ex=narrow?bx:690+i*55,ey=narrow?320+i*50:by;
       var curve=narrow?'M'+cx+' '+cy+' C'+cx+' 170 '+bx+' 170 '+bx+' '+by:'M'+cx+' '+cy+' C350 '+cy+' 350 '+by+' '+bx+' '+by;
       var p=path(curve,C.josh,1.65,1+i*.15);
       var q=path('M'+bx+' '+by+' L'+ex+' '+ey,C.josh,1.65,2+i*.18);
-      txt(labels,bx+(narrow?0:8),by-14,'N = '+n,{'font-size':narrow?20:16,fill:C.ink,'text-anchor':narrow?'middle':'start'});
+      txt(labels,narrow?(i===2?bx-20:bx+20):bx+8,narrow?by+7:by-14,'N = '+n,{'font-size':narrow?20:16,fill:C.ink,'text-anchor':narrow&&i===2?'end':'start'});
       diamond(narrow?ex:ex-35,narrow?ey-35:ey);
       var end=el('rect',{x:ex-5,y:ey-5,width:10,height:10,fill:C.ol,tabindex:0,role:'button','aria-label':'Inspect schematic leaf after N = '+n,style:'cursor:pointer'},nodes);
       var entry={p:p,q:q,end:end};groups.push(entry);
