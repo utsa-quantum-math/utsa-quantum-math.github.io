@@ -279,6 +279,14 @@ proofread: cross-check each specific claim (file paths, required fields,
 category names, issue template titles, counts) against the actual files in
 the repo, the way you would for a code review.
 
+## Kochen–Specker interactive graphics
+
+Before changing the rotating-sphere or refinement pages under `assets/notes/`,
+read `assets/notes/KOCHEN_SPECKER_VISUALS.md`. The sphere explorer's palette is
+centralized in `ks-visual-palette.css`; layout belongs in `ks49-explorer.css`.
+The sphere page and refinement page are distinct public resources; updating
+one does not update the other.
+
 ## Non-goals
 
 Anything that reintroduces a gatekeeper. If a proposed feature means a change

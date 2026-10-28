@@ -184,3 +184,10 @@ To cancel a meeting, set `canceled: true`. Do not delete the file — links to
 it may already be circulating. The same goes for anything under
 `_resources/`: if a preprint is withdrawn or replaced by a newer version,
 say so in the text rather than deleting the page.
+
+## Interactive Kochen–Specker graphics
+
+For the sphere explorer and certificate page in `assets/notes/`, read
+[`KOCHEN_SPECKER_VISUALS.md`](assets/notes/KOCHEN_SPECKER_VISUALS.md) before editing.
+Change sphere colors in `ks-visual-palette.css`, layout in `ks49-explorer.css`,
+and publish those assets with the HTML. Keep data changes separate from design.

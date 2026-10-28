@@ -1,0 +1,28 @@
+/* Scientific visual palette. Change colors HERE, not in DATA or draw().
+   Roles describe meaning, not a particular graph or ray count.
+   --accent = assigned/true ray; --focus = selected ray; --ok = satisfied basis;
+   --bad = basis with multiple true rays; --gap = basis with none;
+   --line = untouched geometry. Dash patterns + labels also distinguish statuses.
+   Keep dark-theme overrides paired with their light-theme roles. */
+:root {
+  --bg:#fffcff; --panel:#f8f2fc; --ink:#30203d; --muted:#706078;
+  --rule:#e2d3ed; --accent:#7844b1; --focus:#c45193;
+  --line:#bba0ce; --ok:#476b60; --bad:#b34680; --gap:#9a671d;
+  --accent-wash:#eee4f7; --focus-wash:#f8e6f0;
+  --f-display:"Space Grotesk",system-ui,sans-serif;
+  --f-body:"Source Serif 4",Georgia,serif;
+  --f-ui:"Space Grotesk",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1b1423; --panel:#251c30; --ink:#f2eaf8; --muted:#c1afce;
+  --rule:#4b365c; --accent:#bf94ef; --focus:#f291c4; --line:#80658e;
+  --ok:#9ac9b2; --bad:#f291c4; --gap:#e1b266;
+  --accent-wash:#31223f; --focus-wash:#3b2034; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#1b1423; --panel:#251c30; --ink:#f2eaf8; --muted:#c1afce;
+  --rule:#4b365c; --accent:#bf94ef; --focus:#f291c4; --line:#80658e;
+  --ok:#9ac9b2; --bad:#f291c4; --gap:#e1b266;
+  --accent-wash:#31223f; --focus-wash:#3b2034; color-scheme:dark;
+}
