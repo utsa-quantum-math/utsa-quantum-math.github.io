@@ -25,7 +25,7 @@
         <svg class="hub-spokes" viewBox="0 0 1000 660" preserveAspectRatio="none" aria-hidden="true">
           {% for t in course.translations %}<line data-spoke="{{ t.id }}" x1="500" y1="330" x2="{{ t.x | times: 10 }}" y2="{{ t.y | times: 6.6 }}" style="stroke:{{ t.color }}"/>{% endfor %}
         </svg>
-        <div class="hub-center"><p class="hub-word">Limits and<br>independence</p><p>Several mathematical readings</p></div>
+        <div class="hub-center"><p class="hub-label">Independence property</p><p class="hub-formula" aria-label="There exists y such that phi of a i, y holds for i in I and fails for i not in I"><span>∃<i>y</i> ⋀<sub><i>i</i>∈<i>I</i></sub> φ(<i>a<sub>i</sub></i>, <i>y</i>) ∧ ⋀<sub><i>i</i>∉<i>I</i></sub> ¬φ(<i>a<sub>i</sub></i>, <i>y</i>)</span></p><p>every prescription has a witness</p></div>
         <div class="hub-subjects" role="group" aria-label="Mathematical translations">
         {% for t in course.translations %}
           <button type="button" class="hub-subject" data-translation="{{ t.id }}" style="--node-x:{{ t.x }}%;--node-y:{{ t.y }}%;--node-ink:{{ t.color }}" aria-controls="translation-{{ t.id }}" aria-pressed="{% if t.id == 'quantum' %}true{% else %}false{% endif %}">{{ t.area | escape }}</button>

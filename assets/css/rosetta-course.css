@@ -125,3 +125,11 @@
 .course-book-credit{color:#695b70}
 .translation-stage .hub-center .hub-word{font-size:clamp(.95rem,1.6vw,1.35rem)}
 .translation-stage .hub-center>p:not(.hub-word){font-size:clamp(.55rem,.8vw,.66rem);margin-top:.5rem}
+
+/* Hub center: the independence property of a formula. */
+.translation-hub .hub-center{width:37%;padding:0 4%;box-sizing:border-box;text-align:center}
+.hub-center .hub-label{font-family:var(--sans);white-space:nowrap;font-size:clamp(.48rem,.7vw,.62rem);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#e8c9f5;margin:0}
+.hub-center .hub-formula{font-family:var(--serif);font-size:clamp(.6rem,.95vw,.82rem);line-height:1.35;color:#fff;letter-spacing:0;margin:.45rem 0 0}
+.hub-center .hub-formula span{white-space:nowrap}
+.hub-center .hub-formula sub{font-size:.7em}
+.hub-center>p:last-child{font-size:clamp(.5rem,.75vw,.64rem);margin-top:.45rem}

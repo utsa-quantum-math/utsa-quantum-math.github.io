@@ -306,9 +306,10 @@ current term is Spring 2027. José Iovino is the sole instructor; Olivia Aubone
 is the research assistant. Book authorship remains separate from teaching roles.
 Do not invent meeting times or enrollment details. The manuscript is not uploaded.
 
-The clickable hub uses a typographic center: **Limits and independence**. The
-author rejected the dot-matrix motif, so do not restore it. The legacy pattern
-SVG remains at its original URL but is not displayed. Colors, labels and spoke
+The clickable hub has the independence property of a formula at its center,
+∃y ⋀_{i∈I} φ(a_i,y) ∧ ⋀_{i∉I} ¬φ(a_i,y), as in the book. The author rejected the
+dot-matrix motif, so do not restore it. The legacy pattern SVG remains at its
+original URL but is not displayed. Colors, labels and spoke
 coordinates come from the translation data. Spokes connect readings, not theorem
 implications. Quantum measurement is selected initially. The subject buttons are
 the only control: on wide screens the selected reading sits beside the hub, on
