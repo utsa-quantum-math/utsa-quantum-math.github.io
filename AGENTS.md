@@ -307,3 +307,13 @@ uses purple structure and pink accents, and leaves the shared palette alone.
 The static x-to-the-nth-power illustration motivates Baire class one; it is
 not presented as a picture of the full BFT dichotomy. Keep its accessible SVG
 and HTML descriptions. No framework or animation is required.
+
+The Rosetta course announcement is also listed in `_resources/rosetta-stone-course.md`
+under the existing canonical category `Course notes`. The Resources index displays
+this category as **Course lecture notes**; keep the stored category unchanged so
+other course resources remain in the same group. Its downloads link to the course
+page and `assets/flyers/rosetta-stone-course.pdf`. The original attached design was
+adapted without its unconfirmed course/room placeholders. The manuscript itself
+has not been uploaded. `assets/rosetta-course-pattern.svg` illustrates all eight
+patterns on three tests; finite and infinite independence remain distinct in the
+caption and surrounding prose.

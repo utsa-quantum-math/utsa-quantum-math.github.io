@@ -206,3 +206,13 @@ The page template is `courses/rosetta-stone.html`; its scoped styles are in
 SVG at `assets/rosetta-course-limit.svg`. It illustrates the pointwise limit of
 x to the nth power, not the entire BFT dichotomy. Preserve the group masthead,
 footer disclaimer and shared navigation.
+
+The Rosetta course announcement is also listed in `_resources/rosetta-stone-course.md`
+under the existing canonical category `Course notes`. The Resources index displays
+this category as **Course lecture notes**; keep the stored category unchanged so
+other course resources remain in the same group. Its downloads link to the course
+page and `assets/flyers/rosetta-stone-course.pdf`. The original attached design was
+adapted without its unconfirmed course/room placeholders. The manuscript itself
+has not been uploaded. `assets/rosetta-course-pattern.svg` illustrates all eight
+patterns on three tests; finite and infinite independence remain distinct in the
+caption and surrounding prose.

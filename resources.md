@@ -21,7 +21,7 @@ permalink: /resources/
   {%- for cat in order -%}
   {%- assign g = groups | where: "name", cat | first -%}
   {%- if g %}
-  <h2 class="section">{{ g.name }}</h2>
+  <h2 class="section"{% if g.name == "Course notes" %} id="course-lecture-notes"{% endif %}>{% if g.name == "Course notes" %}Course lecture notes{% else %}{{ g.name }}{% endif %}</h2>
   <ul class="talk-list">
     {%- assign items = g.items | sort: "title" -%}
     {%- for r in items %}{% include resource-row.html resource=r %}{% endfor -%}

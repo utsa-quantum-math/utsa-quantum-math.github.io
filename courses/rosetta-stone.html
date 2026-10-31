@@ -14,7 +14,23 @@ math: false
     <p class="course-authors">Based on the book by {{ course.authors | escape }}</p>
     <p class="course-invitation">{{ course.invitation | escape }}</p>
     <a class="course-contact" href="mailto:{{ course.contact_email }}?subject=Rosetta%20Stone%20course">Ask about the course <span aria-hidden="true">↗</span></a>
+    <a class="course-flyer" href="{{ '/assets/flyers/rosetta-stone-course.pdf' | relative_url }}">Printable announcement (PDF)</a>
   </header>
+
+  <section class="course-pattern" aria-labelledby="pattern-heading">
+    <p class="course-kicker">The configuration behind the connections</p>
+    <h2 id="pattern-heading">Three tests. Eight prescriptions.</h2>
+    <p>Each column below represents a witness realizing one prescription of high and low values on three tests. All eight prescriptions occur. For an infinite independent sequence of tests, every prescription on any finite selection must have a witness.</p>
+    <figure>
+      <img src="{{ '/assets/rosetta-course-pattern.svg' | relative_url }}" width="640" height="280" alt="All eight high–low patterns on three tests, displayed in eight columns of filled and open circles. Each column is one witness.">
+      <figcaption>The finite configuration has several mathematical readings. The same witness must meet all three tests in its column.</figcaption>
+    </figure>
+    <dl class="course-readings">
+      <div><dt>Combinatorics</dt><dd>The tests ask for membership in three sets. The witnesses realize every membership pattern.</dd></div>
+      <div><dt>Analysis</dt><dd>The tests are real functions. At each witness, their values lie below a fixed low threshold or above a fixed high threshold.</dd></div>
+      <div><dt>Dynamics</dt><dd>The witness is an initial state. One observation of its orbit meets the prescribed low or high test at each selected time.</dd></div>
+    </dl>
+  </section>
 
   <section class="course-first-example" aria-labelledby="limit-heading">
     <div>

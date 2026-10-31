@@ -31,3 +31,15 @@
 .course-enquiries p{max-width:36rem}.course-enquiries .course-contact{white-space:nowrap}
 @media(max-width:48rem){.course-unit{grid-template-columns:2rem 1fr;gap:1rem}.course-unit-description{grid-column:2}.course-first-example{grid-template-columns:1fr;gap:1rem}.course-first-example figure{max-width:34rem}.course-enquiries{display:block}.course-opening{padding-top:1rem}}
 @media print{.masthead,.colophon,.skip{display:none}.course-page{max-width:none;padding:0}.course-opening{padding-top:0}.course-page h1{font-size:28pt}.course-unit{break-inside:avoid}.course-contact{color:#5e2a6e}main{padding:0}.course-enquiries{padding-bottom:0}a[href^="mailto:"]{text-decoration:none}}
+
+.course-pattern{padding:2.6rem 0 1.5rem;border-bottom:1px solid #d4c4dd}
+.course-pattern>p:not(.course-kicker){font-family:var(--serif);font-size:1.08rem;line-height:1.7;max-width:43rem}
+.course-pattern figure{margin:1.4rem 0;max-width:46rem}.course-pattern img{width:100%;height:auto;display:block}
+.course-pattern figcaption{font-size:.76rem;line-height:1.55;color:#685d6d;max-width:38rem}
+.course-readings{display:grid;grid-template-columns:repeat(3,1fr);gap:1.7rem;margin:2rem 0 0}
+.course-readings dt{font-size:.8rem;color:#5e2a6e;border-top:2px solid #bb246c;padding-top:.65rem;margin-bottom:.55rem}
+.course-readings dd{font-family:var(--serif);font-size:1rem;line-height:1.65;margin:0}
+@media(max-width:40rem){.course-readings{grid-template-columns:1fr;gap:1.2rem}}
+
+.course-flyer{display:inline-block;font-size:.84rem;margin-left:1.5rem;color:var(--course-purple)}
+@media(max-width:32rem){.course-flyer{display:block;margin:1.2rem 0 0}}
