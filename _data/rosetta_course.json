@@ -7,7 +7,7 @@
   "contact_email": "jose.iovino@utsa.edu",
   "authors": "Olivia Aubone and José Iovino",
   "summary": "A limit can lose continuity and still retain structure. Follow the restriction on independent patterns that connects pointwise limits with probability, Banach geometry, dynamics, quantum measurement, and numerical computation.",
-  "invitation": "A limit of continuous functions need not be continuous. Starting from this familiar fact, we follow a restriction on independent patterns through probability, Banach geometry, dynamics, quantum measurement, and numerical computation. Major theorems make the connections precise, while concrete examples reveal what changes from one setting to another.",
+  "invitation": "A limit of continuous functions need not be continuous. We follow restrictions on independent patterns that connect this familiar fact to probability, symmetry, dynamics, quantum measurement, and computation.",
   "route": [
     {
       "number": "01",

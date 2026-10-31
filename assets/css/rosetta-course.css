@@ -76,3 +76,16 @@
 @media(max-width:40rem){.hub-center .hub-word{font-size:.88rem}.hub-center>p:not(.hub-word){font-size:.55rem}}
 
 #response-diagram svg{display:block;width:100%;height:auto}.course-first-example .response-formula{color:#5e2a6e;font-size:1.25rem;text-align:center;margin:1.3rem 0}
+
+/* Put the hub alongside the course title on large screens, not below an essay. */
+@media(min-width:70rem){
+ .course-page{display:grid;grid-template-columns:.95fr 1.05fr;column-gap:2.2rem;align-items:start}
+ .course-page>header{grid-column:1;grid-row:1;border-bottom:0}
+ .course-page>.course-translations{grid-column:2;grid-row:1;padding-top:2rem}
+ .course-page>.course-first-example,.course-page>.course-route,.course-page>.course-reading,.course-page>.course-enquiries{grid-column:1 / -1}
+ .course-page>*{min-width:0}.course-opening h1{font-size:2.65rem}.course-invitation{font-size:1.1rem}
+ .course-translations>p:not(.course-kicker){font-size:1rem}
+ .course-translations .hub-subject{font-size:.69rem;width:24%;min-width:86px;padding:.55rem .25rem}
+ .course-translations .hub-center .hub-word{font-size:1.2rem}
+ .course-translations .hub-center>p:not(.hub-word){font-size:.6rem}
+}
