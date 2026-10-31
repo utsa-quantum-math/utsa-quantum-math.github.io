@@ -191,3 +191,18 @@ For the sphere explorer and certificate page in `assets/notes/`, read
 [`KOCHEN_SPECKER_VISUALS.md`](assets/notes/KOCHEN_SPECKER_VISUALS.md) before editing.
 Change sphere colors in `ks-visual-palette.css`, layout in `ks49-explorer.css`,
 and publish those assets with the HTML. Keep data changes separate from design.
+
+## Rosetta Stone course announcement
+
+The course page is `/courses/rosetta-stone/`. Edit the title, subtitle, term,
+contact address and mathematical route in `_data/rosetta_course.json`.
+The homepage announcement and dedicated page both read this record. Do not
+copy the announcement into a news post or maintain a second title by hand.
+Meeting times and enrollment details should be added only when confirmed.
+The draft manuscript is not a public download on this page.
+
+The page template is `courses/rosetta-stone.html`; its scoped styles are in
+`assets/css/rosetta-course.css`. The introductory plot is an accessible static
+SVG at `assets/rosetta-course-limit.svg`. It illustrates the pointwise limit of
+x to the nth power, not the entire BFT dichotomy. Preserve the group masthead,
+footer disclaimer and shared navigation.

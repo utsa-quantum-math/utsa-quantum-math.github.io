@@ -1,0 +1,7 @@
+{% assign course = site.data.rosetta_course %}
+<section class="course-announcement" aria-labelledby="course-announcement-title">
+  <p class="course-announcement-term">{{ course.term | escape }} · Course announcement</p>
+  <h2 id="course-announcement-title"><a href="{{ course.path | relative_url }}">{{ course.title | escape }}<span>{{ course.subtitle | escape }}</span></a></h2>
+  <p>{{ course.summary | escape }}</p>
+  <a class="course-announcement-link" href="{{ course.path | relative_url }}">Explore the course <span aria-hidden="true">↗</span></a>
+</section>

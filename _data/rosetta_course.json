@@ -1,0 +1,48 @@
+{
+  "title": "The Independence Property of Model Theory",
+  "subtitle": "A Mathematical Rosetta Stone",
+  "term": "Next semester",
+  "format": "An advanced course for undergraduate and graduate students",
+  "path": "/courses/rosetta-stone/",
+  "contact_email": "jose.iovino@utsa.edu",
+  "authors": "Olivia Aubone and José Iovino",
+  "summary": "A limit can lose continuity and still retain structure. Follow the restriction on independent patterns that connects pointwise limits with probability, Banach geometry, dynamics, quantum measurement, and numerical computation.",
+  "invitation": "A limit of continuous functions need not be continuous. Starting from this familiar fact, we follow a restriction on independent patterns through probability, Banach geometry, dynamics, quantum measurement, and numerical computation. Major theorems make the connections precise, while concrete examples reveal what changes from one setting to another.",
+  "route": [
+    {
+      "number": "01",
+      "area": "Topology and probability",
+      "title": "Pointwise closures and finite patterns",
+      "text": "The Bourgain–Fremlin–Talagrand theorem describes pointwise closures that remain accessible by sequences. VC dimension and the Sauer–Shelah theorem connect restrictions on finite patterns with polynomial growth and probability estimation.",
+      "ink": "topology"
+    },
+    {
+      "number": "02",
+      "area": "Banach geometry and symmetry",
+      "title": "Sequences, symmetry, and classical subspaces",
+      "text": "Rosenthal’s ℓ₁ theorem separates weakly Cauchy behavior from a classical geometric obstruction. Maurey’s limiting operations reveal how symmetry and algebraic identities detect classical subspaces.",
+      "ink": "geometry"
+    },
+    {
+      "number": "03",
+      "area": "Algebra and dynamics",
+      "title": "Limits become operations",
+      "text": "The Ellis–Numakura lemma supplies an idempotent among the limiting transformations of a compact space. This operation is unchanged by its own repetition, even when ordinary iteration fails to converge.",
+      "ink": "dynamics"
+    },
+    {
+      "number": "04",
+      "area": "Quantum measurement",
+      "title": "Preparation, measurement, and response",
+      "text": "Fix an observable and vary the preparations of two quantum systems. Their expectation values give families of real functions. Convex mixtures then impose restrictions on the compact spaces of limiting responses.",
+      "ink": "quantum"
+    },
+    {
+      "number": "05",
+      "area": "Numerical computation",
+      "title": "One Newton update, two kinds of behavior",
+      "text": "The same Newton formula behaves differently on real and complex inputs. A fixed observation excludes independence on the real domain and realizes every finite high–low prescription on selected imaginary inputs.",
+      "ink": "computation"
+    }
+  ]
+}

@@ -30,3 +30,10 @@ Repository settings → Pages → Source must be set to **GitHub Actions**.
 
 Site code is MIT; content is CC BY 4.0. This site is maintained by members of
 the group and is not an official publication of the University.
+
+## Course announcement
+
+The Rosetta Stone course page is `/courses/rosetta-stone/`, with a linked
+homepage announcement. Both use `_data/rosetta_course.json`; see
+[the contributor instructions](CONTRIBUTING.md#rosetta-stone-course-announcement)
+for updating it.

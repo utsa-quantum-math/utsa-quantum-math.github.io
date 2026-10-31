@@ -291,3 +291,19 @@ one does not update the other.
 
 Anything that reintroduces a gatekeeper. If a proposed feature means a change
 has to wait on a person, it is the wrong feature.
+
+## Rosetta Stone course page
+
+`_data/rosetta_course.json` is the single record for the dedicated course page
+at `/courses/rosetta-stone/` and the homepage announcement. The homepage uses
+`_includes/rosetta-course-announcement.html`; the course page is
+`courses/rosetta-stone.html`. Do not duplicate these listings or course copy.
+Unconfirmed meeting/enrollment details are omitted. The author's draft book
+is not authorized for redistribution merely by publishing this announcement.
+
+`page.stylesheet` optionally adds a page-specific stylesheet through
+`_includes/head.html`. The course stylesheet is scoped to `.course-page`,
+uses purple structure and pink accents, and leaves the shared palette alone.
+The static x-to-the-nth-power illustration motivates Baire class one; it is
+not presented as a picture of the full BFT dichotomy. Keep its accessible SVG
+and HTML descriptions. No framework or animation is required.
