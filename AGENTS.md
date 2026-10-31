@@ -297,9 +297,8 @@ has to wait on a person, it is the wrong feature.
 The main landing page is `/resources/rosetta-stone-course/`. Its resource record
 is `_resources/rosetta-stone-course.md`, under the canonical category `Course notes`
 (displayed as **Course lecture notes**). It renders the complete interactive page
-directly. `/courses/rosetta-stone/` remains a working alias with the same content.
-Both entry points include `_includes/rosetta-course-content.html`; do not maintain
-two copies of the page. The homepage announcement reads the same course data.
+directly from `_includes/rosetta-course-content.html`. `/courses/rosetta-stone/`
+is only a redirect to it, so there is one copy of the page and one address. The homepage announcement reads the same course data.
 
 Edit `_data/rosetta_course.json` for the term, instructor, research assistant,
 book authors, contact address, route, and eight translation-hub readings. The
@@ -311,8 +310,19 @@ The clickable hub uses a typographic center: **Limits and independence**. The
 author rejected the dot-matrix motif, so do not restore it. The legacy pattern
 SVG remains at its original URL but is not displayed. Colors, labels and spoke
 coordinates come from the translation data. Spokes connect readings, not theorem
-implications. Quantum measurement is selected initially. The native `details`
-readings remain accessible without JavaScript.
+implications. Quantum measurement is selected initially. The subject buttons are
+the only control: on wide screens the selected reading sits beside the hub, on
+narrow screens below it (scrolled into view on selection). Without JavaScript
+every reading is shown. Each reading's "Continue" link goes to its own route step
+(`route-<ink>` ids) or, for model theory, to the model theory section.
+
+Each route unit lists its lectures under `chapters` in the course data: one
+lecture per section of the book, numbered as in the book. Regenerate the list
+from the book's `\chapter`/`\section` headings when the book's sections change.
+The route steps carry small step laboratories drawn by `assets/js/rosetta-course.js`
+(intervals and Sauer–Shelah, Rademacher independence, the golden rotation and its
+idempotent return, real versus imaginary Newton orbits); the quantum step points
+to the single-spin response plot.
 
 The quantum response visual is the explicitly labeled single-spin model
 m(h) = tanh[β(h − a)]. β is inverse thermal energy and h,a use compatible energy

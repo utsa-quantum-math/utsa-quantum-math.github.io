@@ -35,6 +35,6 @@ the group and is not an official publication of the University.
 
 The Spring 2027 course announcement is at `/resources/rosetta-stone-course/`,
 with the clickable translation hub and quantum response controls directly on the
-page. `/courses/rosetta-stone/` remains a working alias. Both use a shared include
+page. `/courses/rosetta-stone/` redirects to it. The page uses a shared include
 and `_data/rosetta_course.json`. See the contributor instructions for updates.
 The printable flyer has a QR link to the main Resources landing page.

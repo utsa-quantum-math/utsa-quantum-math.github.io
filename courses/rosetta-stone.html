@@ -1,10 +1,21 @@
 ---
-layout: default
+layout: null
 title: "Rosetta Stone course"
-description: "An advanced course connecting pointwise limits, probability, Banach geometry, symmetry, dynamics, quantum measurement, and numerical computation."
 permalink: /courses/rosetta-stone/
-stylesheet: /assets/css/rosetta-course.css?v=responses-20261031
-script: /assets/js/rosetta-course.js?v=responses-20261031
-math: false
+sitemap: false
 ---
-{% include rosetta-course-content.html %}
+{%- assign target = site.data.rosetta_course.path | relative_url -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ site.data.rosetta_course.title | escape }}</title>
+<link rel="canonical" href="{{ site.data.rosetta_course.path | absolute_url }}">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url={{ target }}">
+<script>location.replace({{ target | jsonify }} + location.hash);</script>
+</head>
+<body>
+<p>The course page has moved to <a href="{{ target }}">{{ site.data.rosetta_course.path | absolute_url }}</a>.</p>
+</body>
+</html>

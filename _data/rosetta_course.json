@@ -14,35 +14,355 @@
       "area": "Topology and probability",
       "title": "Pointwise closures and finite patterns",
       "text": "The Bourgain–Fremlin–Talagrand theorem describes pointwise closures that remain accessible by sequences. VC dimension and the Sauer–Shelah theorem connect restrictions on finite patterns with polynomial growth and probability estimation.",
-      "ink": "topology"
+      "ink": "topology",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Topology and combinatorics: The Bourgain–Fremlin–Talagrand dichotomy",
+          "lectures": [
+            {
+              "number": "1.1",
+              "title": "Independent sequences and pointwise closures"
+            },
+            {
+              "number": "1.2",
+              "title": "Metrizability from uniform discrepancies"
+            },
+            {
+              "number": "1.3",
+              "title": "Canonical compacta: Countability and separability"
+            },
+            {
+              "number": "1.4",
+              "title": "The extended duplicate and the trichotomy"
+            },
+            {
+              "number": "1.5",
+              "title": "Stability and the order of limits"
+            },
+            {
+              "number": "1.6",
+              "title": "Games: recovering the value at a limiting input"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Finite patterns control sampling and subgroup intersections",
+          "lectures": [
+            {
+              "number": "2.1",
+              "title": "Counting patterns and controlling empirical error"
+            },
+            {
+              "number": "2.2",
+              "title": "Finite intersections and independent membership tests"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": "02",
       "area": "Banach geometry and symmetry",
       "title": "Sequences, symmetry, and classical subspaces",
       "text": "Rosenthal’s ℓ₁ theorem separates weakly Cauchy behavior from a classical geometric obstruction. Maurey’s limiting operations reveal how symmetry and algebraic identities detect classical subspaces.",
-      "ink": "geometry"
+      "ink": "geometry",
+      "chapters": [
+        {
+          "number": 3,
+          "title": "Analysis and combinatorics: Rosenthal’s ℓ₁ theorem",
+          "lectures": [
+            {
+              "number": "3",
+              "title": "Rosenthal’s ℓ₁ theorem"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Symmetry and classical subspaces: Maurey’s limiting laws",
+          "lectures": [
+            {
+              "number": "4.1",
+              "title": "Translated norms and their limiting operations"
+            },
+            {
+              "number": "4.2",
+              "title": "The calculus of strong types"
+            },
+            {
+              "number": "4.3",
+              "title": "From a law to a basic sequence"
+            },
+            {
+              "number": "4.4",
+              "title": "Block limits and symmetric strong types"
+            },
+            {
+              "number": "4.5",
+              "title": "Extremal strong types and limiting laws"
+            },
+            {
+              "number": "4.6",
+              "title": "The two characterizations"
+            },
+            {
+              "number": "4.7",
+              "title": "The bidual form for separable spaces"
+            },
+            {
+              "number": "4.8",
+              "title": "The hypotheses tested on c₀"
+            },
+            {
+              "number": "4.9",
+              "title": "Power laws on ℓₚ"
+            },
+            {
+              "number": "4.10",
+              "title": "Nonsymmetric idempotents"
+            },
+            {
+              "number": "4.11",
+              "title": "Reflection and symmetry of limiting translations"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "title": "Spreading limits: Increasing selections and permutation symmetry",
+          "lectures": [
+            {
+              "number": "5.1",
+              "title": "Coefficient laws and spreading limits"
+            },
+            {
+              "number": "5.2",
+              "title": "Maurey’s laws and classical coefficient norms"
+            },
+            {
+              "number": "5.3",
+              "title": "When coefficient order no longer matters"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": "03",
       "area": "Algebra and dynamics",
       "title": "Limits become operations",
       "text": "The Ellis–Numakura lemma supplies an idempotent among the limiting transformations of a compact space. This operation is unchanged by its own repetition, even when ordinary iteration fails to converge.",
-      "ink": "dynamics"
+      "ink": "dynamics",
+      "chapters": [
+        {
+          "number": 6,
+          "title": "Idempotent ultrafilters generate finite products",
+          "lectures": [
+            {
+              "number": "6.1",
+              "title": "Composition and compact semigroups"
+            },
+            {
+              "number": "6.2",
+              "title": "Idempotent ultrafilters and finite products"
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "title": "Orbit independence distinguishes regularity from entropy",
+          "lectures": [
+            {
+              "number": "7.1",
+              "title": "Five classes of cascades"
+            },
+            {
+              "number": "7.2",
+              "title": "Observations and the regularity of limits"
+            },
+            {
+              "number": "7.3",
+              "title": "Reading all observations together"
+            },
+            {
+              "number": "7.4",
+              "title": "Actions of topological groups"
+            },
+            {
+              "number": "7.5",
+              "title": "One observation at a time"
+            },
+            {
+              "number": "7.6",
+              "title": "Integer-time actions"
+            },
+            {
+              "number": "7.7",
+              "title": "Entropy along prescribed times"
+            },
+            {
+              "number": "7.8",
+              "title": "Orbit independence and entropy"
+            },
+            {
+              "number": "7.9",
+              "title": "Orbit independence as Banach geometry"
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "title": "Asymptotic analysis: Classical Banach spaces through their limiting operations",
+          "lectures": [
+            {
+              "number": "8.1",
+              "title": "Topology: the coheir compactum"
+            },
+            {
+              "number": "8.2",
+              "title": "Dynamics: stability as continuity"
+            },
+            {
+              "number": "8.3",
+              "title": "Algebra: idempotents and asymptotic growth"
+            },
+            {
+              "number": "8.4",
+              "title": "The second scale: a family without an action"
+            },
+            {
+              "number": "8.5",
+              "title": "The criteria on classical spaces and renormings"
+            },
+            {
+              "number": "8.6",
+              "title": "Summary of the comparison"
+            },
+            {
+              "number": "8.7",
+              "title": "Entropy and orbit geometry: an outlook"
+            },
+            {
+              "number": "8.8",
+              "title": "Open entries"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": "04",
       "area": "Quantum measurement",
       "title": "Preparation, measurement, and response",
       "text": "Fix an observable and vary the preparations of two quantum systems. Their expectation values give families of real functions. Convex mixtures then impose restrictions on the compact spaces of limiting responses.",
-      "ink": "quantum"
+      "ink": "quantum",
+      "chapters": [
+        {
+          "number": 9,
+          "title": "Quantum responses: Mixtures constrain the limiting space",
+          "lectures": [
+            {
+              "number": "9.1",
+              "title": "Preparations, probes and a compact space of observations"
+            },
+            {
+              "number": "9.2",
+              "title": "Diagonal tests distinguish the two alternatives"
+            },
+            {
+              "number": "9.3",
+              "title": "Completing the full preparation family"
+            },
+            {
+              "number": "9.4",
+              "title": "Convexity excludes the split alternative"
+            },
+            {
+              "number": "9.5",
+              "title": "Mixtures and the three response classes"
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "title": "Quantum examples: Finite patterns and limiting response classes",
+          "lectures": [
+            {
+              "number": "10.1",
+              "title": "Countable probes distinguish the response topologies"
+            },
+            {
+              "number": "10.2",
+              "title": "Averaging preserves a finite-pattern bound"
+            },
+            {
+              "number": "10.3",
+              "title": "Number and position comparisons"
+            },
+            {
+              "number": "10.4",
+              "title": "Causal order at a fixed detection time"
+            },
+            {
+              "number": "10.5",
+              "title": "A spin register separates local and uniform independence"
+            },
+            {
+              "number": "10.6",
+              "title": "Magnetization as a family of response curves"
+            },
+            {
+              "number": "10.7",
+              "title": "Moving the transition changes the response compactum"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": "05",
       "area": "Numerical computation",
       "title": "One Newton update, two kinds of behavior",
       "text": "The same Newton formula behaves differently on real and complex inputs. A fixed observation excludes independence on the real domain and realizes every finite high–low prescription on selected imaginary inputs.",
-      "ink": "computation"
+      "ink": "computation",
+      "chapters": [
+        {
+          "number": 11,
+          "title": "Divergent iteration still admits limiting operations",
+          "lectures": [
+            {
+              "number": "11.1",
+              "title": "Continuous limits and uniform approximation"
+            },
+            {
+              "number": "11.2",
+              "title": "Composition and idempotence"
+            },
+            {
+              "number": "11.3",
+              "title": "From compact states to invariant shards"
+            },
+            {
+              "number": "11.4",
+              "title": "Convergent iteration and discontinuous limits"
+            },
+            {
+              "number": "11.5",
+              "title": "Rounding and the topology of limiting computations"
+            },
+            {
+              "number": "11.6",
+              "title": "The Euclidean algorithm: tame but not first countable"
+            },
+            {
+              "number": "11.7",
+              "title": "Real and complex Newton iteration"
+            }
+          ]
+        }
+      ]
     }
   ],
   "instructor": "José Iovino",
@@ -70,19 +390,19 @@
       "tests": "The tests are continuous real functions, with fixed separated low and high thresholds.",
       "witness": "A point in their common domain realizes the prescribed inequalities.",
       "consequence": "For a countable pointwise bounded family on a compact metrizable space, excluding an infinite independent sequence gives a Rosenthal compact closure and sequential access to its points through BFT.",
-      "anchor": "limit-heading"
+      "anchor": "route-topology"
     },
     {
       "id": "probability",
       "area": "Probability",
-      "x": 89,
+      "x": 87,
       "y": 50,
       "color": "#ffb36b",
       "title": "Uniform control from finite samples",
       "tests": "The tests ask whether a sample point belongs to a member of a family of measurable sets.",
       "witness": "A sample point records a membership pattern. Shattering reverses the viewpoint: a set is chosen to prescribe membership on the sample.",
       "consequence": "Finite VC dimension bounds the number of traces by a polynomial and, under the usual measurability hypotheses, gives uniform estimation of probabilities from independent samples.",
-      "anchor": "route-heading"
+      "anchor": "route-topology"
     },
     {
       "id": "combinatorics",
@@ -94,7 +414,7 @@
       "tests": "Fix finitely many points. The tests ask whether a chosen set contains each point.",
       "witness": "A set in the family realizes one subset of those points.",
       "consequence": "Shattering means that all subsets occur. The Sauer–Shelah theorem bounds the number of traces on n points by the sum of the first d + 1 binomial coefficients when the VC dimension is at most d.",
-      "anchor": "route-heading"
+      "anchor": "route-topology"
     },
     {
       "id": "geometry",
@@ -106,7 +426,7 @@
       "tests": "Vectors in a bounded sequence are evaluated by functionals in the dual unit ball.",
       "witness": "A bounded linear functional prescribes separated low and high values on selected vectors.",
       "consequence": "For real Banach spaces, the infinite independent configuration yields an ℓ₁ lower estimate. Rosenthal’s theorem gives the alternative: an ℓ₁ subsequence or a weakly Cauchy subsequence.",
-      "anchor": "route-heading"
+      "anchor": "route-geometry"
     },
     {
       "id": "dynamics",
@@ -118,19 +438,19 @@
       "tests": "One continuous observation is read at selected iteration times.",
       "witness": "An initial state realizes the low–high itinerary along its orbit.",
       "consequence": "A compact metrizable cascade is tame when no continuous observation has an independent sequence of iterates. Its limiting transformations are then of the first Baire class.",
-      "anchor": "route-heading"
+      "anchor": "route-dynamics"
     },
     {
       "id": "computation",
       "area": "Computation",
-      "x": 11,
+      "x": 13,
       "y": 50,
       "color": "#b7a7ff",
       "title": "The same Newton update on two domains",
       "tests": "For N(z) = (z + 1/z)/2, read the bounded real observation 2(Re z + Im z)/(1 + |z|²), with value zero at infinity.",
       "witness": "The witness is a real or complex initial input. Zero and infinity are sent to infinity.",
       "consequence": "On real inputs the observed orbits are monotone. On imaginary inputs every finite high–low request can be realized at times 0, 3, 6, … with the same separated thresholds.",
-      "anchor": "route-heading"
+      "anchor": "route-computation"
     },
     {
       "id": "quantum",
@@ -142,7 +462,7 @@
       "tests": "Fix an observable of two quantum systems. Each preparation of the first system defines an expectation-value function on preparations of the second.",
       "witness": "One preparation of the second system realizes a low–high prescription for the selected first-system preparations.",
       "consequence": "For the full preparation family of a bounded self-adjoint observable on separable Hilbert spaces, convex mixtures sharpen the BFT classification: in the tame case, hereditary separability of the response closure forces metrizability.",
-      "anchor": "route-heading"
+      "anchor": "route-quantum"
     }
   ]
 }

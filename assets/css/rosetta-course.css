@@ -3,13 +3,12 @@
 .course-opening{padding:2rem 0 2.5rem;border-bottom:1px solid #d4c4dd}
 .course-eyebrow,.course-kicker{font-family:var(--sans);font-size:.75rem;letter-spacing:.075em;color:var(--course-purple);margin:0 0 1.1rem}
 .course-eyebrow span{color:var(--course-pink);padding:0 .6rem}
-.course-page h1{font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.12;max-width:19ch;color:var(--course-purple);letter-spacing:-.025em}
+.course-page h1{text-wrap:balance;font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.12;max-width:19ch;color:var(--course-purple);letter-spacing:-.025em}
 .course-page h1 span{display:block;font-size:.67em;font-style:italic;line-height:1.3;margin-top:.45rem;color:var(--course-pink);letter-spacing:-.015em}
 .course-authors{font-family:var(--serif);font-size:1.05rem;margin:1.4rem 0;color:#695b70}
 .course-invitation{font-family:var(--serif);font-size:1.2rem;line-height:1.65;max-width:44rem;margin:0 0 1.6rem}
 .course-contact{color:var(--course-purple);font-size:.87rem;text-decoration:none;border-bottom:2px solid var(--course-pink);padding-bottom:.35rem;display:inline-block}
 .course-contact:hover{color:var(--course-pink)}
-.course-contact span{margin-left:.6rem}
 .course-page a:focus-visible{outline-color:var(--course-purple)}
 .course-page h2{font-family:var(--serif);color:var(--course-purple);font-size:1.65rem;font-weight:400;line-height:1.28;margin:0 0 1rem}
 .course-first-example{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;padding:3rem 0;align-items:center}
@@ -30,7 +29,7 @@
 .course-enquiries{border-top:1px solid #d4c4dd;padding:2rem 0;display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .course-enquiries p{max-width:36rem}.course-enquiries .course-contact{white-space:nowrap}
 @media(max-width:48rem){.course-unit{grid-template-columns:2rem 1fr;gap:1rem}.course-unit-description{grid-column:2}.course-first-example{grid-template-columns:1fr;gap:1rem}.course-first-example figure{max-width:34rem}.course-enquiries{display:block}.course-opening{padding-top:1rem}}
-@media print{.masthead,.colophon,.skip{display:none}.course-page{max-width:none;padding:0}.course-opening{padding-top:0}.course-page h1{font-size:28pt}.course-unit{break-inside:avoid}.course-contact{color:#5e2a6e}main{padding:0}.course-enquiries{padding-bottom:0}a[href^="mailto:"]{text-decoration:none}}
+@media print{.masthead,.colophon,.skip{display:none}.course-page{max-width:none;padding:0}.course-opening{padding-top:0}.course-page h1{text-wrap:balance;font-size:28pt}.course-unit{break-inside:avoid}.course-contact{color:#5e2a6e}main{padding:0}.course-enquiries{padding-bottom:0}a[href^="mailto:"]{text-decoration:none}}
 
 .course-pattern{padding:2.6rem 0 1.5rem;border-bottom:1px solid #d4c4dd}
 .course-pattern>p:not(.course-kicker){font-family:var(--serif);font-size:1.08rem;line-height:1.7;max-width:43rem}
@@ -59,33 +58,70 @@
 .hub-subject{position:absolute;left:var(--node-x);top:var(--node-y);transform:translate(-50%,-50%);width:clamp(84px,17%,170px);background:#2d1837;border:1.5px solid var(--node-ink);border-radius:2rem;padding:.65rem .4rem;color:var(--node-ink);font-family:var(--sans);font-size:clamp(.7rem,1.2vw,.92rem);line-height:1.3;cursor:pointer}
 .hub-subject:hover{background:#40224d}.hub-subject[aria-pressed=true]{box-shadow:0 0 0 3px #2d1837,0 0 0 4px var(--node-ink);font-weight:600}
 .hub-subject:focus-visible{outline:3px solid white;outline-offset:5px}
-.translation-readings{margin-bottom:1rem}.translation-reading{border-top:1px solid #d4c4dd;padding:.9rem 0}
-.translation-reading summary{cursor:pointer;font-family:var(--serif);font-size:1.25rem;color:#5e2a6e}
-.translation-reading summary span{display:block;font-size:1rem;font-style:italic;color:#695b70;margin:.35rem 0 0 1rem}
-.translation-reading dl{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:1.5rem 0 1rem}
-.translation-reading dt{color:#5e2a6e;font-size:.76rem;letter-spacing:.035em;margin-bottom:.45rem}
-.translation-reading dd,.translation-reading>p{font-family:var(--serif);font-size:1.05rem;line-height:1.7;margin:0}
-.translation-reading>p{max-width:46rem}.translation-reading>a{font-size:.83rem;color:#5e2a6e;display:inline-block;margin:1rem 0 .5rem}
 #limit-diagram svg{display:block;width:100%;height:auto}.limit-controls label{font-size:.85rem;color:#5e2a6e}.limit-controls input{display:block;width:100%;accent-color:#5e2a6e;margin:1rem 0}.limit-controls p{font-family:var(--sans)!important;font-size:.78rem!important;color:#695b70;line-height:1.6!important}
-@media(max-width:40rem){.translation-hub{aspect-ratio:1.24}.hub-subject{font-size:.72rem;min-width:86px;width:27%;max-width:110px;padding:.55rem .25rem}.hub-center{width:34%}.hub-center p{font-size:.68rem;margin-top:.5rem}.hub-pattern{gap:3px}.translation-reading dl{grid-template-columns:1fr;gap:1rem}}
+@media(max-width:40rem){.translation-hub{aspect-ratio:1.24}.hub-subject{font-size:.72rem;min-width:86px;width:27%;max-width:110px;padding:.55rem .25rem}.hub-center{width:34%}.hub-center p{font-size:.68rem;margin-top:.5rem}.hub-pattern{gap:3px}}
 @media print{.hub-subject{color:#302236;border-color:#5e2a6e}.translation-hub{background:#fdfcfa}.hub-spokes{display:none}.hub-center{background:white;color:#5e2a6e}.hub-center p{color:#5e2a6e}.limit-controls{display:none}}
 
-.translation-readings.is-interactive .translation-reading:not(.is-current){display:none}
 
 .hub-center .hub-word{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,2.2vw,1.8rem);line-height:1.25;letter-spacing:0;color:#f3ddef;margin:0}
 @media(max-width:40rem){.hub-center .hub-word{font-size:.88rem}.hub-center>p:not(.hub-word){font-size:.55rem}}
 
 #response-diagram svg{display:block;width:100%;height:auto}.course-first-example .response-formula{color:#5e2a6e;font-size:1.25rem;text-align:center;margin:1.3rem 0}
 
-/* Put the hub alongside the course title on large screens, not below an essay. */
-@media(min-width:70rem){
- .course-page{display:grid;grid-template-columns:.95fr 1.05fr;column-gap:2.2rem;align-items:start}
- .course-page>header{grid-column:1;grid-row:1;border-bottom:0}
- .course-page>.course-translations{grid-column:2;grid-row:1;padding-top:2rem}
- .course-page>.course-first-example,.course-page>.course-route,.course-page>.course-reading,.course-page>.course-enquiries{grid-column:1 / -1}
- .course-page>*{min-width:0}.course-opening h1{font-size:2.65rem}.course-invitation{font-size:1.1rem}
- .course-translations>p:not(.course-kicker){font-size:1rem}
- .course-translations .hub-subject{font-size:.69rem;width:24%;min-width:86px;padding:.55rem .25rem}
- .course-translations .hub-center .hub-word{font-size:1.2rem}
- .course-translations .hub-center>p:not(.hub-word){font-size:.6rem}
-}
+/* Opening: title beside the invitation, so nothing leaves a blank column. */
+.course-opening{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:1.2rem 3rem;align-items:end}
+.course-opening h1{margin-bottom:0}
+.course-intro .course-instructor{margin-top:0}
+.course-invitation{font-size:1.1rem}
+
+/* The hub and its reading side by side: a click changes what is in view. */
+.course-translations-intro>p:not(.course-kicker){font-family:var(--serif);font-size:1.05rem;line-height:1.7;max-width:43rem}
+.translation-stage{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:2.2rem;align-items:start;margin-top:1.6rem}
+.translation-stage .translation-hub{margin:0}
+.hub-subject{width:min(21%,150px);font-size:clamp(.66rem,1vw,.85rem);padding:.55rem .3rem}
+.translation-readings{min-width:0}
+.translation-reading{--reading-ink:#c6a1ff;border-top:3px solid var(--reading-ink);padding:1rem 0 .5rem}
+.translation-reading+.translation-reading{margin-top:1.6rem}
+.translation-readings.is-interactive .translation-reading:not(.is-current){display:none}
+.translation-readings.is-interactive .translation-reading+.translation-reading{margin-top:0}
+.reading-area{font-family:var(--sans);font-size:.75rem;letter-spacing:.075em;text-transform:uppercase;color:#5e2a6e;margin:0 0 .4rem}
+.translation-reading h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.3rem;line-height:1.3;color:#5e2a6e;margin:0}
+.translation-reading dl{display:grid;gap:1rem;margin:1.2rem 0 1rem}
+.translation-reading dl div{min-width:0}
+.translation-reading dt{color:#5e2a6e;font-size:.76rem;letter-spacing:.035em;margin-bottom:.35rem}
+.translation-reading dd,.translation-reading>p{font-family:var(--serif);font-size:1rem;line-height:1.65;margin:0}
+.reading-next{font-size:.83rem;color:#5e2a6e;display:inline-block;margin:1rem 0 .3rem}
+@media(max-width:60rem){.course-opening,.translation-stage{grid-template-columns:1fr}.translation-reading dl{grid-template-columns:1fr 1fr;gap:1.5rem}}
+@media(max-width:40rem){.translation-reading dl{grid-template-columns:1fr;gap:1rem}.hub-subject{width:27%;max-width:112px;font-size:.7rem;padding:.5rem .2rem}}
+
+/* Route steps: a target highlight, a lecture list and a small laboratory. */
+.course-route-note{font-family:var(--serif);font-size:1rem;color:#695b70;margin:0}
+.course-unit{scroll-margin-top:1.5rem}
+.course-unit:target .course-unit-title h3{text-decoration:underline;text-decoration-color:var(--area);text-underline-offset:.3em}
+.course-unit-body{min-width:0}
+.course-lectures{margin-top:1rem;border-top:1px solid #ece4ef;padding-top:.7rem}
+.course-lectures summary{cursor:pointer;font-family:var(--sans);font-size:.85rem;color:var(--area)}
+.course-lectures summary span{color:#695b70;margin-left:.6rem}
+.course-lectures h4{font-family:var(--serif);font-weight:400;font-size:1rem;color:var(--area);margin:1rem 0 .4rem}
+.course-lectures ol{list-style:none;margin:0;padding:0}
+.course-lectures li{font-family:var(--serif);font-size:.97rem;line-height:1.55;padding:.15rem 0 .15rem 3.2rem;text-indent:-3.2rem}
+.course-lectures li span{display:inline-block;width:3.2rem;text-indent:0;font-family:var(--sans);font-size:.78rem;color:#695b70}
+.step-lab{margin:1.2rem 0 0;padding:1rem 1.1rem;background:#f6f1f8;border-radius:3px}
+.step-lab h4{font-family:var(--sans);font-size:.75rem;letter-spacing:.075em;text-transform:uppercase;color:var(--area);margin:0 0 .6rem}
+.step-lab svg{display:block;width:100%;height:auto}
+.step-lab p{font-family:var(--serif);font-size:.95rem;line-height:1.6;margin:.6rem 0 0}
+.step-lab .lab-controls{display:flex;flex-wrap:wrap;gap:.5rem .9rem;align-items:center;font-family:var(--sans);font-size:.8rem;color:#5e2a6e;margin-top:.7rem}
+.step-lab button{font:inherit;color:var(--area);background:#fff;border:1.5px solid var(--area);border-radius:2rem;padding:.25rem .8rem;cursor:pointer}
+.step-lab button[aria-pressed=true]{background:var(--area);color:#fff}
+.step-lab input[type=range]{accent-color:var(--area);flex:1 1 10rem}
+.step-lab output{font-variant-numeric:tabular-nums}
+.step-lab-pointer{font-family:var(--serif);font-size:.95rem;margin:1rem 0 0}
+.step-lab-pointer a{color:var(--area)}
+@media(max-width:48rem){.course-unit-body{grid-column:2}}
+
+/* Model theory as the culmination of the route, not an aside. */
+.course-reading{border-left:0;max-width:none;padding:2.2rem 0;border-top:1px solid #d4c4dd}
+.course-reading p:not(.course-kicker){max-width:44rem}
+.course-book-credit{color:#695b70}
+.translation-stage .hub-center .hub-word{font-size:clamp(.95rem,1.6vw,1.35rem)}
+.translation-stage .hub-center>p:not(.hub-word){font-size:clamp(.55rem,.8vw,.66rem);margin-top:.5rem}

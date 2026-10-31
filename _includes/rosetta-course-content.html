@@ -1,39 +1,50 @@
 {% assign course = site.data.rosetta_course %}
 <article class="course-page wrap">
   <header class="course-opening">
-    <p class="course-eyebrow">{{ course.term | escape }} course announcement <span aria-hidden="true">/</span> {{ course.format | escape }}</p>
-    <h1>{{ course.title | escape }}<span>{{ course.subtitle | escape }}</span></h1>
-    <p class="course-instructor"><strong>Instructor:</strong> {{ course.instructor | escape }}</p>
-    <p class="course-assistant">Research assistant: {{ course.research_assistant | escape }}</p>
-    <p class="course-invitation">{{ course.invitation | escape }}</p>
-    <a class="course-contact" href="mailto:{{ course.contact_email }}?subject=Rosetta%20Stone%20course">Ask about the course <span aria-hidden="true">↗</span></a>
-    <a class="course-flyer" href="{{ '/assets/flyers/rosetta-stone-course.pdf' | relative_url }}?v=responses-qr-20261031">Printable flyer with QR code (PDF)</a>
+    <div class="course-title-block">
+      <p class="course-eyebrow">{{ course.term | escape }} course announcement <span aria-hidden="true">/</span> {{ course.format | escape }}</p>
+      <h1>{{ course.title | escape }}<span>{{ course.subtitle | escape }}</span></h1>
+    </div>
+    <div class="course-intro">
+      <p class="course-instructor"><strong>Instructor:</strong> {{ course.instructor | escape }}</p>
+      <p class="course-assistant">Research assistant: {{ course.research_assistant | escape }}</p>
+      <p class="course-invitation">{{ course.invitation | escape }}</p>
+      <a class="course-contact" href="mailto:{{ course.contact_email }}?subject=Rosetta%20Stone%20course">Ask about the course</a>
+      <a class="course-flyer" href="{{ '/assets/flyers/rosetta-stone-course.pdf' | relative_url }}?v=responses-qr-20261031">Printable flyer with QR code (PDF)</a>
+    </div>
   </header>
 
   <section class="course-translations" aria-labelledby="translations-heading">
-    <p class="course-kicker">A mathematical Rosetta Stone</p>
-    <h2 id="translations-heading">Follow a translation.</h2>
-    <p>Select a subject to see what the tests and witnesses become. Each branch gives a mathematical reading of prescribed values at a common input.</p>
-    <div class="translation-hub">
-      <svg class="hub-spokes" viewBox="0 0 1000 660" preserveAspectRatio="none" aria-hidden="true">
-        {% for t in course.translations %}<line data-spoke="{{ t.id }}" x1="500" y1="330" x2="{{ t.x | times: 10 }}" y2="{{ t.y | times: 6.6 }}" style="stroke:{{ t.color }}"/>{% endfor %}
-      </svg>
-      <div class="hub-center"><p class="hub-word">Limits and<br>independence</p><p>Several mathematical readings</p></div>
-      <div class="hub-subjects" role="group" aria-label="Mathematical translations">
+    <div class="course-translations-intro">
+      <p class="course-kicker">A mathematical Rosetta Stone</p>
+      <h2 id="translations-heading">Follow a translation.</h2>
+      <p>Select a subject to see what the tests and witnesses become. Each branch gives a mathematical reading of prescribed values at a common input.</p>
+    </div>
+    <div class="translation-stage">
+      <div class="translation-hub">
+        <svg class="hub-spokes" viewBox="0 0 1000 660" preserveAspectRatio="none" aria-hidden="true">
+          {% for t in course.translations %}<line data-spoke="{{ t.id }}" x1="500" y1="330" x2="{{ t.x | times: 10 }}" y2="{{ t.y | times: 6.6 }}" style="stroke:{{ t.color }}"/>{% endfor %}
+        </svg>
+        <div class="hub-center"><p class="hub-word">Limits and<br>independence</p><p>Several mathematical readings</p></div>
+        <div class="hub-subjects" role="group" aria-label="Mathematical translations">
+        {% for t in course.translations %}
+          <button type="button" class="hub-subject" data-translation="{{ t.id }}" style="--node-x:{{ t.x }}%;--node-y:{{ t.y }}%;--node-ink:{{ t.color }}" aria-controls="translation-{{ t.id }}" aria-pressed="{% if t.id == 'quantum' %}true{% else %}false{% endif %}">{{ t.area | escape }}</button>
+        {% endfor %}
+        </div>
+      </div>
+      <div class="translation-readings" aria-live="polite">
       {% for t in course.translations %}
-        <button type="button" class="hub-subject" data-translation="{{ t.id }}" style="--node-x:{{ t.x }}%;--node-y:{{ t.y }}%;--node-ink:{{ t.color }}" aria-controls="translation-{{ t.id }}" aria-pressed="{% if t.id == 'topology' %}true{% else %}false{% endif %}">{{ t.area | escape }}</button>
+        <section id="translation-{{ t.id }}" class="translation-reading{% if t.id == 'quantum' %} is-current{% endif %}" data-reading="{{ t.id }}" style="--reading-ink:{{ t.color }}" aria-labelledby="translation-{{ t.id }}-title">
+          <p class="reading-area">{{ t.area | escape }}</p>
+          <h3 id="translation-{{ t.id }}-title">{{ t.title | escape }}</h3>
+          <dl><div><dt>The tests</dt><dd>{{ t.tests | escape }}</dd></div><div><dt>The witness</dt><dd>{{ t.witness | escape }}</dd></div></dl>
+          <p>{{ t.consequence | escape }}</p>
+          {%- assign target = nil -%}
+          {%- for unit in course.route -%}{%- assign unit_anchor = 'route-' | append: unit.ink -%}{%- if unit_anchor == t.anchor -%}{%- assign target = unit -%}{%- endif -%}{%- endfor -%}
+          <a class="reading-next" href="#{{ t.anchor }}">{% if target %}Continue at step {{ target.number }}: {{ target.title | escape }}{% else %}Continue to the role of model theory{% endif %} <span aria-hidden="true">↓</span></a>
+        </section>
       {% endfor %}
       </div>
-    </div>
-    <div class="translation-readings">
-    {% for t in course.translations %}
-      <details id="translation-{{ t.id }}" class="translation-reading" data-reading="{{ t.id }}"{% if t.id == 'topology' %} open{% endif %}>
-        <summary>{{ t.area | escape }} <span>{{ t.title | escape }}</span></summary>
-        <dl><div><dt>The tests</dt><dd>{{ t.tests | escape }}</dd></div><div><dt>The witness</dt><dd>{{ t.witness | escape }}</dd></div></dl>
-        <p>{{ t.consequence | escape }}</p>
-        <a href="#{{ t.anchor }}">Continue in the course outline <span aria-hidden="true">↓</span></a>
-      </details>
-    {% endfor %}
     </div>
   </section>
 
@@ -60,27 +71,45 @@
   <section class="course-route" aria-labelledby="route-heading">
     <p class="course-kicker">The mathematical route</p>
     <h2 id="route-heading">A route through the mathematics.</h2>
+    <p class="course-route-note">Each lecture is one section of the course notes.</p>
     <ol>
       {% for unit in course.route %}
-      <li class="course-unit area-{{ unit.ink }}">
+      {%- assign first = unit.chapters.first.lectures.first.number -%}
+      {%- assign last = unit.chapters.last.lectures.last.number -%}
+      {%- assign count = 0 -%}{%- for c in unit.chapters -%}{%- assign count = count | plus: c.lectures.size -%}{%- endfor -%}
+      <li class="course-unit area-{{ unit.ink }}" id="route-{{ unit.ink }}">
         <span class="course-number" aria-hidden="true">{{ unit.number }}</span>
         <div class="course-unit-title"><p>{{ unit.area | escape }}</p><h3>{{ unit.title | escape }}</h3></div>
-        <p class="course-unit-description">{{ unit.text | escape }}</p>
+        <div class="course-unit-body">
+          <p class="course-unit-description">{{ unit.text | escape }}</p>
+          <div class="step-lab" data-lab="{{ unit.ink }}" hidden></div>
+          {%- if unit.ink == 'quantum' %}
+          <p class="step-lab-pointer"><a href="#limit-heading">The single-spin response above</a> is the first example of this step.</p>
+          {%- endif %}
+          <details class="course-lectures">
+            <summary>Lectures {{ first }}–{{ last }} <span>{{ count }} lectures</span></summary>
+            {%- for c in unit.chapters %}
+            <h4>{{ c.number }}. {{ c.title | escape }}</h4>
+            <ol>{% for l in c.lectures %}<li><span>{{ l.number }}</span> {{ l.title | escape }}</li>{% endfor %}</ol>
+            {%- endfor %}
+          </details>
+        </div>
       </li>
       {% endfor %}
     </ol>
   </section>
 
   <section class="course-reading" aria-labelledby="reading-heading">
-    <p class="course-kicker">A common language</p>
-    <h2 id="reading-heading">The role of model theory.</h2>
+    <p class="course-kicker">Where the route arrives</p>
+    <h2 id="reading-heading">Model theory: the common language.</h2>
     <p class="course-book-credit">Based on the book by {{ course.authors | escape }}.</p>
-    <p>The independence property was isolated by Shelah in model theory. Its absence, abbreviated NIP, connects the configurations studied throughout the course. We develop the mathematics in the language of each subject before returning to the logical interpretation.</p>
-    <p>Previous study of model theory is not required for the main development. Optional readings make the logical connections precise for students familiar with compactness, types, and saturation.</p>
+    <p>Every translation on this page reads one configuration: the instances of a single formula φ(<i>x</i>, <i>y</i>) whose truth values can be prescribed independently. Shelah isolated this configuration in model theory as the independence property. Its absence, NIP, is the dividing line that the course follows through each subject.</p>
+    <p>Model theory supplies the grammar that the translations share. It explains why one restriction governs pointwise closures, VC classes, ℓ₁ sequences, tame dynamics, and quantum responses. We develop each subject in its own language and then return to model theory, where the readings become instances of one property of a formula.</p>
+    <p>The main development assumes no previous course in model theory. Optional readings make the logical connections precise for students familiar with compactness, types, and saturation.</p>
   </section>
 
   <footer class="course-enquiries">
     <div><p class="course-kicker">Join the course</p><h2>For undergraduate and graduate students.</h2><p>Meeting and enrollment details will be announced here. For information, contact José Iovino.</p></div>
-    <a class="course-contact" href="mailto:{{ course.contact_email }}?subject=Rosetta%20Stone%20course">{{ course.contact_email }} <span aria-hidden="true">↗</span></a>
+    <a class="course-contact" href="mailto:{{ course.contact_email }}?subject=Rosetta%20Stone%20course">{{ course.contact_email }}</a>
   </footer>
 </article>
