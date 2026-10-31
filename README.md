@@ -33,12 +33,8 @@ the group and is not an official publication of the University.
 
 ## Course announcement
 
-The Rosetta Stone course page is `/courses/rosetta-stone/`, with a linked
-homepage announcement. Both use `_data/rosetta_course.json`; see
-[the contributor instructions](CONTRIBUTING.md#rosetta-stone-course-announcement)
-for updating it.
-
-The course page includes a color-coded translation hub, a power-function slider,
-and a printable flyer with a QR link. Course roles and translation copy are in
-the same data record. José Iovino is the instructor; Olivia Aubone is the research
-assistant. Book authorship is recorded separately.
+The Spring 2027 course announcement is at `/resources/rosetta-stone-course/`,
+with the clickable translation hub and quantum response controls directly on the
+page. `/courses/rosetta-stone/` remains a working alias. Both use a shared include
+and `_data/rosetta_course.json`. See the contributor instructions for updates.
+The printable flyer has a QR link to the main Resources landing page.

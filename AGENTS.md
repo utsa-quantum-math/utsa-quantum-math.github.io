@@ -292,47 +292,45 @@ one does not update the other.
 Anything that reintroduces a gatekeeper. If a proposed feature means a change
 has to wait on a person, it is the wrong feature.
 
-## Rosetta Stone course page
+## Rosetta Stone course announcement
 
-`_data/rosetta_course.json` is the single record for the dedicated course page
-at `/courses/rosetta-stone/` and the homepage announcement. The homepage uses
-`_includes/rosetta-course-announcement.html`; the course page is
-`courses/rosetta-stone.html`. Do not duplicate these listings or course copy.
-Unconfirmed meeting/enrollment details are omitted. The author's draft book
-is not authorized for redistribution merely by publishing this announcement.
+The main landing page is `/resources/rosetta-stone-course/`. Its resource record
+is `_resources/rosetta-stone-course.md`, under the canonical category `Course notes`
+(displayed as **Course lecture notes**). It renders the complete interactive page
+directly. `/courses/rosetta-stone/` remains a working alias with the same content.
+Both entry points include `_includes/rosetta-course-content.html`; do not maintain
+two copies of the page. The homepage announcement reads the same course data.
 
-`page.stylesheet` optionally adds a page-specific stylesheet through
-`_includes/head.html`. The course stylesheet is scoped to `.course-page`,
-uses purple structure and pink accents, and leaves the shared palette alone.
-The static x-to-the-nth-power illustration motivates Baire class one; it is
-not presented as a picture of the full BFT dichotomy. Keep its accessible SVG
-and HTML descriptions. No framework or animation is required.
+Edit `_data/rosetta_course.json` for the term, instructor, research assistant,
+book authors, contact address, route, and eight translation-hub readings. The
+current term is Spring 2027. José Iovino is the sole instructor; Olivia Aubone
+is the research assistant. Book authorship remains separate from teaching roles.
+Do not invent meeting times or enrollment details. The manuscript is not uploaded.
 
-The Rosetta course announcement is also listed in `_resources/rosetta-stone-course.md`
-under the existing canonical category `Course notes`. The Resources index displays
-this category as **Course lecture notes**; keep the stored category unchanged so
-other course resources remain in the same group. Its downloads link to the course
-page and `assets/flyers/rosetta-stone-course.pdf`. The original attached design was
-adapted without its unconfirmed course/room placeholders. The manuscript itself
-has not been uploaded. `assets/rosetta-course-pattern.svg` illustrates all eight
-patterns on three tests; finite and infinite independence remain distinct in the
-caption and surrounding prose.
+The clickable hub uses a typographic center: **Limits and independence**. The
+author rejected the dot-matrix motif, so do not restore it. The legacy pattern
+SVG remains at its original URL but is not displayed. Colors, labels and spoke
+coordinates come from the translation data. Spokes connect readings, not theorem
+implications. Quantum measurement is selected initially. The native `details`
+readings remain accessible without JavaScript.
 
-The course record distinguishes `instructor` (José Iovino), `research_assistant`
-(Olivia Aubone), and `authors` (the book authors). Do not infer teaching roles
-from the author list. The printable flyer uses the same role distinction.
-Its QR code links to the public course page, not to a temporary preview.
+The quantum response visual is the explicitly labeled single-spin model
+m(h) = tanh[β(h − a)]. β is inverse thermal energy and h,a use compatible energy
+units. At fixed β the offset family is pointwise ordered; three curves have at
+most four low–high patterns, not the eight required by independence. β→∞ gives
+a jump with value zero at h=a. Do not present this finite-spin, zero-temperature
+illustration as an Ising thermodynamic-limit theorem or a full bipartite response
+family. The static fallback is `assets/rosetta-course-response.svg`.
 
-The `translations` list in `_data/rosetta_course.json` supplies the clickable
-hub labels, coordinates, colors, tests, witnesses and consequences. Quantum
-measurement is selected initially. Spokes indicate readings of the common
-configuration, not theorem implications. Translation readings are native
-`details` elements and remain usable without JavaScript. `page.script` optionally
-loads a deferred page-local script from `_layouts/default.html`; the course uses
-`assets/js/rosetta-course.js`. This also enhances the static power-function
-illustration with a keyboard-operable exponent slider. Keep the static SVG
-fallback. There are no framework dependencies or autoplay animations.
+`page.stylesheet` adds scoped CSS through `_includes/head.html`; `page.script`
+adds a deferred page-local script through `_layouts/default.html`. The course
+uses `assets/css/rosetta-course.css` and `assets/js/rosetta-course.js`, with native
+keyboard-operable controls and no framework or autoplay animation. Version queries
+refresh changed assets without changing their stable public paths.
 
-The author rejected the dot-matrix motif. The landing-page hub and printable
-flyer now have a typographic center, with no dot grid. The legacy pattern SVG
-is retained at its old URL but is not displayed on the course page.
+The one-page letter-size printable flyer is
+`assets/flyers/rosetta-stone-course.pdf`. It names the same instructor and research
+assistant, uses a typographic hub, and contains a QR code to the main Resources
+landing page. Keep the human-readable URL alongside the code. The QR code was
+verified by decoding a rasterization of the final PDF. Regenerate and recheck it
+if the destination changes. Do not post the draft manuscript with the flyer.

@@ -1,9 +1,9 @@
 {
   "title": "The Independence Property of Model Theory",
   "subtitle": "A Mathematical Rosetta Stone",
-  "term": "Next semester",
+  "term": "Spring 2027",
   "format": "An advanced course for undergraduate and graduate students",
-  "path": "/courses/rosetta-stone/",
+  "path": "/resources/rosetta-stone-course/",
   "contact_email": "jose.iovino@utsa.edu",
   "authors": "Olivia Aubone and José Iovino",
   "summary": "A limit can lose continuity and still retain structure. Follow the restriction on independent patterns that connects pointwise limits with probability, Banach geometry, dynamics, quantum measurement, and numerical computation.",

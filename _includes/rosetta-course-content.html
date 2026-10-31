@@ -1,0 +1,86 @@
+{% assign course = site.data.rosetta_course %}
+<article class="course-page wrap">
+  <header class="course-opening">
+    <p class="course-eyebrow">{{ course.term | escape }} course announcement <span aria-hidden="true">/</span> {{ course.format | escape }}</p>
+    <h1>{{ course.title | escape }}<span>{{ course.subtitle | escape }}</span></h1>
+    <p class="course-instructor"><strong>Instructor:</strong> {{ course.instructor | escape }}</p>
+    <p class="course-assistant">Research assistant: {{ course.research_assistant | escape }}</p>
+    <p class="course-invitation">{{ course.invitation | escape }}</p>
+    <a class="course-contact" href="mailto:{{ course.contact_email }}?subject=Rosetta%20Stone%20course">Ask about the course <span aria-hidden="true">↗</span></a>
+    <a class="course-flyer" href="{{ '/assets/flyers/rosetta-stone-course.pdf' | relative_url }}?v=responses-qr-20261031">Printable flyer with QR code (PDF)</a>
+  </header>
+
+  <section class="course-translations" aria-labelledby="translations-heading">
+    <p class="course-kicker">A mathematical Rosetta Stone</p>
+    <h2 id="translations-heading">Follow a translation.</h2>
+    <p>Select a subject to see what the tests and witnesses become. Each branch gives a mathematical reading of prescribed values at a common input.</p>
+    <div class="translation-hub">
+      <svg class="hub-spokes" viewBox="0 0 1000 660" preserveAspectRatio="none" aria-hidden="true">
+        {% for t in course.translations %}<line data-spoke="{{ t.id }}" x1="500" y1="330" x2="{{ t.x | times: 10 }}" y2="{{ t.y | times: 6.6 }}" style="stroke:{{ t.color }}"/>{% endfor %}
+      </svg>
+      <div class="hub-center"><p class="hub-word">Limits and<br>independence</p><p>Several mathematical readings</p></div>
+      <div class="hub-subjects" role="group" aria-label="Mathematical translations">
+      {% for t in course.translations %}
+        <button type="button" class="hub-subject" data-translation="{{ t.id }}" style="--node-x:{{ t.x }}%;--node-y:{{ t.y }}%;--node-ink:{{ t.color }}" aria-controls="translation-{{ t.id }}" aria-pressed="{% if t.id == 'topology' %}true{% else %}false{% endif %}">{{ t.area | escape }}</button>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="translation-readings">
+    {% for t in course.translations %}
+      <details id="translation-{{ t.id }}" class="translation-reading" data-reading="{{ t.id }}"{% if t.id == 'topology' %} open{% endif %}>
+        <summary>{{ t.area | escape }} <span>{{ t.title | escape }}</span></summary>
+        <dl><div><dt>The tests</dt><dd>{{ t.tests | escape }}</dd></div><div><dt>The witness</dt><dd>{{ t.witness | escape }}</dd></div></dl>
+        <p>{{ t.consequence | escape }}</p>
+        <a href="#{{ t.anchor }}">Continue in the course outline <span aria-hidden="true">↓</span></a>
+      </details>
+    {% endfor %}
+    </div>
+  </section>
+
+  <section class="course-first-example" aria-labelledby="limit-heading">
+    <div>
+      <p class="course-kicker">Quantum responses: limits and independence</p>
+      <h2 id="limit-heading">Continuous responses can approach a jump.</h2>
+      <p>Consider one quantum spin with measured outcomes −1 and +1. In a simple thermal model, their weights are proportional to exp[−β(h − a)] and exp[β(h − a)], respectively. Here <i>h</i> is a field parameter expressed in energy units, <i>a</i> is an offset, and β is the inverse thermal energy. The mean response is</p>
+      <p class="response-formula"><i>m</i><sub>β,a</sub>(<i>h</i>) = tanh[β(<i>h</i> − <i>a</i>)].</p>
+      <p>Cooling increases β. Every finite-temperature curve is continuous, but its pointwise limit is −1 below <i>a</i>, +1 above <i>a</i>, and zero at <i>a</i>. At fixed β, varying <i>a</i> gives a pointwise ordered family. The witness is a common field value <i>h</i>. Three ordered curves realize at most four low–high prescriptions at fixed separated thresholds, whereas independence would require all eight.</p>
+      <p>The course develops the many-spin setting through thermodynamic limits and studies independence for families of quantum responses.</p>
+    </div>
+    <figure>
+      <div id="response-diagram"><img src="{{ '/assets/rosetta-course-response.svg' | relative_url }}" width="600" height="420" alt="Ordered S-shaped single-spin response curves sharpen towards a discontinuous limiting response as the inverse thermal energy increases."></div>
+      <div class="limit-controls" hidden>
+        <label for="response-beta">Inverse thermal energy β: <output id="response-beta-value">4</output></label><input id="response-beta" type="range" min="1" max="32" value="4">
+        <label for="response-offset">Offset <i>a</i>: <output id="response-offset-value">0</output></label><input id="response-offset" type="range" min="-0.8" max="0.8" step="0.05" value="0">
+        <p id="response-values" aria-live="polite"></p>
+      </div>
+      <figcaption>A single-spin illustration. Pink is the selected finite-temperature response; purple gives the two branches of its limiting jump. The limiting value at <i>h</i> = <i>a</i> is zero.</figcaption>
+    </figure>
+  </section>
+
+  <section class="course-route" aria-labelledby="route-heading">
+    <p class="course-kicker">The mathematical route</p>
+    <h2 id="route-heading">A route through the mathematics.</h2>
+    <ol>
+      {% for unit in course.route %}
+      <li class="course-unit area-{{ unit.ink }}">
+        <span class="course-number" aria-hidden="true">{{ unit.number }}</span>
+        <div class="course-unit-title"><p>{{ unit.area | escape }}</p><h3>{{ unit.title | escape }}</h3></div>
+        <p class="course-unit-description">{{ unit.text | escape }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="course-reading" aria-labelledby="reading-heading">
+    <p class="course-kicker">A common language</p>
+    <h2 id="reading-heading">The role of model theory.</h2>
+    <p class="course-book-credit">Based on the book by {{ course.authors | escape }}.</p>
+    <p>The independence property was isolated by Shelah in model theory. Its absence, abbreviated NIP, connects the configurations studied throughout the course. We develop the mathematics in the language of each subject before returning to the logical interpretation.</p>
+    <p>Previous study of model theory is not required for the main development. Optional readings make the logical connections precise for students familiar with compactness, types, and saturation.</p>
+  </section>
+
+  <footer class="course-enquiries">
+    <div><p class="course-kicker">Join the course</p><h2>For undergraduate and graduate students.</h2><p>Meeting and enrollment details will be announced here. For information, contact José Iovino.</p></div>
+    <a class="course-contact" href="mailto:{{ course.contact_email }}?subject=Rosetta%20Stone%20course">{{ course.contact_email }} <span aria-hidden="true">↗</span></a>
+  </footer>
+</article>
