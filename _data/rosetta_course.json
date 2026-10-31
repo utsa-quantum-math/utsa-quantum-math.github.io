@@ -44,5 +44,105 @@
       "text": "The same Newton formula behaves differently on real and complex inputs. A fixed observation excludes independence on the real domain and realizes every finite high–low prescription on selected imaginary inputs.",
       "ink": "computation"
     }
+  ],
+  "instructor": "José Iovino",
+  "research_assistant": "Olivia Aubone",
+  "translations": [
+    {
+      "id": "model",
+      "area": "Model theory",
+      "x": 50,
+      "y": 9,
+      "color": "#c6a1ff",
+      "title": "Truth patterns for one formula",
+      "tests": "The tests are instances of one fixed formula, with the object tuple chosen in finitely many ways.",
+      "witness": "A parameter tuple gives the truth values of those instances.",
+      "consequence": "The independence property permits every truth pattern on arbitrarily large finite families of instances. Its absence is NIP. This reading is optional and assumes the language of a first course in model theory.",
+      "anchor": "reading-heading"
+    },
+    {
+      "id": "topology",
+      "area": "Topology",
+      "x": 78,
+      "y": 21,
+      "color": "#ff87c0",
+      "title": "Pointwise closures of functions",
+      "tests": "The tests are continuous real functions, with fixed separated low and high thresholds.",
+      "witness": "A point in their common domain realizes the prescribed inequalities.",
+      "consequence": "For a countable pointwise bounded family on a compact metrizable space, excluding an infinite independent sequence gives a Rosenthal compact closure and sequential access to its points through BFT.",
+      "anchor": "limit-heading"
+    },
+    {
+      "id": "probability",
+      "area": "Probability",
+      "x": 89,
+      "y": 50,
+      "color": "#ffb36b",
+      "title": "Uniform control from finite samples",
+      "tests": "The tests ask whether a sample point belongs to a member of a family of measurable sets.",
+      "witness": "A sample point records a membership pattern. Shattering reverses the viewpoint: a set is chosen to prescribe membership on the sample.",
+      "consequence": "Finite VC dimension bounds the number of traces by a polynomial and, under the usual measurability hypotheses, gives uniform estimation of probabilities from independent samples.",
+      "anchor": "route-heading"
+    },
+    {
+      "id": "combinatorics",
+      "area": "Combinatorics",
+      "x": 78,
+      "y": 79,
+      "color": "#e4ef78",
+      "title": "Every subset, or a polynomial bound",
+      "tests": "Fix finitely many points. The tests ask whether a chosen set contains each point.",
+      "witness": "A set in the family realizes one subset of those points.",
+      "consequence": "Shattering means that all subsets occur. The Sauer–Shelah theorem bounds the number of traces on n points by the sum of the first d + 1 binomial coefficients when the VC dimension is at most d.",
+      "anchor": "route-heading"
+    },
+    {
+      "id": "geometry",
+      "area": "Banach geometry",
+      "x": 50,
+      "y": 91,
+      "color": "#66e0db",
+      "title": "Independence becomes a norm estimate",
+      "tests": "Vectors in a bounded sequence are evaluated by functionals in the dual unit ball.",
+      "witness": "A bounded linear functional prescribes separated low and high values on selected vectors.",
+      "consequence": "For real Banach spaces, the infinite independent configuration yields an ℓ₁ lower estimate. Rosenthal’s theorem gives the alternative: an ℓ₁ subsequence or a weakly Cauchy subsequence.",
+      "anchor": "route-heading"
+    },
+    {
+      "id": "dynamics",
+      "area": "Dynamics",
+      "x": 22,
+      "y": 79,
+      "color": "#8cb9ff",
+      "title": "A prescription along one orbit",
+      "tests": "One continuous observation is read at selected iteration times.",
+      "witness": "An initial state realizes the low–high itinerary along its orbit.",
+      "consequence": "A compact metrizable cascade is tame when no continuous observation has an independent sequence of iterates. Its limiting transformations are then of the first Baire class.",
+      "anchor": "route-heading"
+    },
+    {
+      "id": "computation",
+      "area": "Computation",
+      "x": 11,
+      "y": 50,
+      "color": "#b7a7ff",
+      "title": "The same Newton update on two domains",
+      "tests": "For N(z) = (z + 1/z)/2, read the bounded real observation 2(Re z + Im z)/(1 + |z|²), with value zero at infinity.",
+      "witness": "The witness is a real or complex initial input. Zero and infinity are sent to infinity.",
+      "consequence": "On real inputs the observed orbits are monotone. On imaginary inputs every finite high–low request can be realized at times 0, 3, 6, … with the same separated thresholds.",
+      "anchor": "route-heading"
+    },
+    {
+      "id": "quantum",
+      "area": "Quantum measurement",
+      "x": 22,
+      "y": 21,
+      "color": "#ff8c9f",
+      "title": "A fixed observable, many responses",
+      "tests": "Fix an observable of two quantum systems. Each preparation of the first system defines an expectation-value function on preparations of the second.",
+      "witness": "One preparation of the second system realizes a low–high prescription for the selected first-system preparations.",
+      "consequence": "For the full preparation family of a bounded self-adjoint observable on separable Hilbert spaces, convex mixtures sharpen the BFT classification: in the tame case, hereditary separability of the response closure forces metrizability.",
+      "anchor": "route-heading"
+    }
   ]
 }

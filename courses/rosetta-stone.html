@@ -3,7 +3,8 @@ layout: default
 title: "Rosetta Stone course"
 description: "An advanced course connecting pointwise limits, probability, Banach geometry, symmetry, dynamics, quantum measurement, and numerical computation."
 permalink: /courses/rosetta-stone/
-stylesheet: /assets/css/rosetta-course.css
+stylesheet: /assets/css/rosetta-course.css?v=hub-20261031
+script: /assets/js/rosetta-course.js?v=hub-20261031
 math: false
 ---
 {% assign course = site.data.rosetta_course %}
@@ -11,25 +12,38 @@ math: false
   <header class="course-opening">
     <p class="course-eyebrow">{{ course.term | escape }} <span aria-hidden="true">/</span> {{ course.format | escape }}</p>
     <h1>{{ course.title | escape }}<span>{{ course.subtitle | escape }}</span></h1>
-    <p class="course-authors">Based on the book by {{ course.authors | escape }}</p>
+    <p class="course-instructor"><strong>Instructor:</strong> {{ course.instructor | escape }}</p>
+    <p class="course-assistant">Research assistant: {{ course.research_assistant | escape }}</p>
     <p class="course-invitation">{{ course.invitation | escape }}</p>
     <a class="course-contact" href="mailto:{{ course.contact_email }}?subject=Rosetta%20Stone%20course">Ask about the course <span aria-hidden="true">↗</span></a>
-    <a class="course-flyer" href="{{ '/assets/flyers/rosetta-stone-course.pdf' | relative_url }}">Printable announcement (PDF)</a>
+    <a class="course-flyer" href="{{ '/assets/flyers/rosetta-stone-course.pdf' | relative_url }}?v=hub-qr-20261031">Printable flyer with QR code (PDF)</a>
   </header>
 
-  <section class="course-pattern" aria-labelledby="pattern-heading">
-    <p class="course-kicker">The configuration behind the connections</p>
-    <h2 id="pattern-heading">Three tests. Eight prescriptions.</h2>
-    <p>Each column below represents a witness realizing one prescription of high and low values on three tests. All eight prescriptions occur. For an infinite independent sequence of tests, every prescription on any finite selection must have a witness.</p>
-    <figure>
-      <img src="{{ '/assets/rosetta-course-pattern.svg' | relative_url }}" width="640" height="280" alt="All eight high–low patterns on three tests, displayed in eight columns of filled and open circles. Each column is one witness.">
-      <figcaption>The finite configuration has several mathematical readings. The same witness must meet all three tests in its column.</figcaption>
-    </figure>
-    <dl class="course-readings">
-      <div><dt>Combinatorics</dt><dd>The tests ask for membership in three sets. The witnesses realize every membership pattern.</dd></div>
-      <div><dt>Analysis</dt><dd>The tests are real functions. At each witness, their values lie below a fixed low threshold or above a fixed high threshold.</dd></div>
-      <div><dt>Dynamics</dt><dd>The witness is an initial state. One observation of its orbit meets the prescribed low or high test at each selected time.</dd></div>
-    </dl>
+  <section class="course-translations" aria-labelledby="translations-heading">
+    <p class="course-kicker">A mathematical Rosetta Stone</p>
+    <h2 id="translations-heading">Follow a translation.</h2>
+    <p>Select a subject to see what the tests and witnesses become. Each branch gives a mathematical reading of prescribed values at a common input.</p>
+    <div class="translation-hub">
+      <svg class="hub-spokes" viewBox="0 0 1000 660" preserveAspectRatio="none" aria-hidden="true">
+        {% for t in course.translations %}<line data-spoke="{{ t.id }}" x1="500" y1="330" x2="{{ t.x | times: 10 }}" y2="{{ t.y | times: 6.6 }}" style="stroke:{{ t.color }}"/>{% endfor %}
+      </svg>
+      <div class="hub-center"><p class="hub-word">Independent<br>prescriptions</p><p>Tests and witnesses</p></div>
+      <div class="hub-subjects" role="group" aria-label="Mathematical translations">
+      {% for t in course.translations %}
+        <button type="button" class="hub-subject" data-translation="{{ t.id }}" style="--node-x:{{ t.x }}%;--node-y:{{ t.y }}%;--node-ink:{{ t.color }}" aria-controls="translation-{{ t.id }}" aria-pressed="{% if t.id == 'topology' %}true{% else %}false{% endif %}">{{ t.area | escape }}</button>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="translation-readings">
+    {% for t in course.translations %}
+      <details id="translation-{{ t.id }}" class="translation-reading" data-reading="{{ t.id }}"{% if t.id == 'topology' %} open{% endif %}>
+        <summary>{{ t.area | escape }} <span>{{ t.title | escape }}</span></summary>
+        <dl><div><dt>The tests</dt><dd>{{ t.tests | escape }}</dd></div><div><dt>The witness</dt><dd>{{ t.witness | escape }}</dd></div></dl>
+        <p>{{ t.consequence | escape }}</p>
+        <a href="#{{ t.anchor }}">Continue in the course outline <span aria-hidden="true">↓</span></a>
+      </details>
+    {% endfor %}
+    </div>
   </section>
 
   <section class="course-first-example" aria-labelledby="limit-heading">
@@ -40,7 +54,8 @@ math: false
       <p>It is nevertheless a function of the first Baire class: a pointwise limit of continuous functions. We begin with this distinction and then study when an entire pointwise closure retains such regularity. The restriction on independent patterns that emerges will accompany us into other subjects.</p>
     </div>
     <figure>
-      <img src="{{ '/assets/rosetta-course-limit.svg' | relative_url }}" width="600" height="420" alt="The continuous graphs of x to increasing powers approach zero below one, but remain one at the endpoint. Purple curves approach a pink limiting graph with a jump at one.">
+      <div id="limit-diagram"><img src="{{ '/assets/rosetta-course-limit.svg' | relative_url }}" width="600" height="420" alt="The continuous graphs of x to increasing powers approach zero below one, but remain one at the endpoint. Purple curves approach a pink limiting graph with a jump at one."></div>
+      <div class="limit-controls" hidden><label for="limit-exponent">Exponent <i>n</i>: <output id="limit-n">8</output></label><input id="limit-exponent" type="range" min="1" max="64" value="8"><p id="limit-values" aria-live="polite"></p></div>
       <figcaption>A first example of Baire class one. The limiting value is zero below 1 and one at 1.</figcaption>
     </figure>
   </section>
@@ -62,6 +77,7 @@ math: false
   <section class="course-reading" aria-labelledby="reading-heading">
     <p class="course-kicker">A common language</p>
     <h2 id="reading-heading">The role of model theory.</h2>
+    <p class="course-book-credit">Based on the book by {{ course.authors | escape }}.</p>
     <p>The independence property was isolated by Shelah in model theory. Its absence, abbreviated NIP, connects the configurations studied throughout the course. We develop the mathematics in the language of each subject before returning to the logical interpretation.</p>
     <p>Previous study of model theory is not required for the main development. Optional readings make the logical connections precise for students familiar with compactness, types, and saturation.</p>
   </section>

@@ -141,3 +141,5 @@ h2.section {
 .course-announcement h2 a{color:#5e2a6e;text-decoration:none}.course-announcement h2 span{display:block;color:#bb246c;font-style:italic;font-size:.85em;margin-top:.2rem}
 .course-announcement>p:not(.course-announcement-term){font-family:var(--serif);font-size:1.05rem;line-height:1.65;max-width:34rem}
 .course-announcement-link{color:#5e2a6e;font-size:.85rem}.course-announcement a:focus-visible{outline-color:#5e2a6e}
+
+.course-announcement .course-announcement-instructor{font-family:var(--sans);font-size:.85rem;color:#5e2a6e}

@@ -317,3 +317,22 @@ adapted without its unconfirmed course/room placeholders. The manuscript itself
 has not been uploaded. `assets/rosetta-course-pattern.svg` illustrates all eight
 patterns on three tests; finite and infinite independence remain distinct in the
 caption and surrounding prose.
+
+The course record distinguishes `instructor` (José Iovino), `research_assistant`
+(Olivia Aubone), and `authors` (the book authors). Do not infer teaching roles
+from the author list. The printable flyer uses the same role distinction.
+Its QR code links to the public course page, not to a temporary preview.
+
+The `translations` list in `_data/rosetta_course.json` supplies the clickable
+hub labels, coordinates, colors, tests, witnesses and consequences. Quantum
+measurement is selected initially. Spokes indicate readings of the common
+configuration, not theorem implications. Translation readings are native
+`details` elements and remain usable without JavaScript. `page.script` optionally
+loads a deferred page-local script from `_layouts/default.html`; the course uses
+`assets/js/rosetta-course.js`. This also enhances the static power-function
+illustration with a keyboard-operable exponent slider. Keep the static SVG
+fallback. There are no framework dependencies or autoplay animations.
+
+The author rejected the dot-matrix motif. The landing-page hub and printable
+flyer now have a typographic center, with no dot grid. The legacy pattern SVG
+is retained at its old URL but is not displayed on the course page.

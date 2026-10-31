@@ -37,3 +37,8 @@ The Rosetta Stone course page is `/courses/rosetta-stone/`, with a linked
 homepage announcement. Both use `_data/rosetta_course.json`; see
 [the contributor instructions](CONTRIBUTING.md#rosetta-stone-course-announcement)
 for updating it.
+
+The course page includes a color-coded translation hub, a power-function slider,
+and a printable flyer with a QR link. Course roles and translation copy are in
+the same data record. José Iovino is the instructor; Olivia Aubone is the research
+assistant. Book authorship is recorded separately.
