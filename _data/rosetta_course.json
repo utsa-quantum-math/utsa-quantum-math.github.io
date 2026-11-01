@@ -369,22 +369,10 @@
   "research_assistant": "Olivia Aubone",
   "translations": [
     {
-      "id": "model",
-      "area": "Model theory",
-      "x": 50,
-      "y": 9,
-      "color": "#c6a1ff",
-      "title": "Truth patterns for one formula",
-      "tests": "The tests are instances of one fixed formula, with the object tuple chosen in finitely many ways.",
-      "witness": "A parameter tuple gives the truth values of those instances.",
-      "consequence": "The independence property permits every truth pattern on arbitrarily large finite families of instances. Its absence is NIP. This reading is optional and assumes the language of a first course in model theory.",
-      "anchor": "reading-heading"
-    },
-    {
       "id": "topology",
       "area": "Topology",
-      "x": 78,
-      "y": 21,
+      "x": 50,
+      "y": 9,
       "color": "#ff87c0",
       "title": "Pointwise closures of functions",
       "tests": "The tests are continuous real functions, with fixed separated low and high thresholds.",
@@ -395,13 +383,25 @@
     {
       "id": "probability",
       "area": "Probability",
-      "x": 87,
-      "y": 50,
+      "x": 78,
+      "y": 21,
       "color": "#ffb36b",
       "title": "Uniform control from finite samples",
       "tests": "The tests ask whether a sample point belongs to a member of a family of measurable sets.",
       "witness": "A sample point records a membership pattern. Shattering reverses the viewpoint: a set is chosen to prescribe membership on the sample.",
       "consequence": "Finite VC dimension bounds the number of traces by a polynomial and, under the usual measurability hypotheses, gives uniform estimation of probabilities from independent samples.",
+      "anchor": "route-topology"
+    },
+    {
+      "id": "games",
+      "area": "Games",
+      "x": 87,
+      "y": 50,
+      "color": "#c6a1ff",
+      "title": "Recovering a limiting value",
+      "tests": "In Kiss’s game for a function g on a Polish space, Player I chooses inputs x₀, x₁, …, each within 2⁻ⁿ of the last, so they converge to a limit x; after each input, Player II predicts g(x) by a real number tₙ.",
+      "witness": "A winning strategy for Player II: predictions, revised as often as needed, that converge to g(x) whatever path Player I takes.",
+      "consequence": "Kiss proved that Player II has a winning strategy exactly when g is of the first Baire class, and Player I has one otherwise. For a continuous g, predicting g(xₙ) wins. For the indicator of {0} on the real line, predicting 1 while |xₙ| ≤ 2¹⁻ⁿ and 0 otherwise wins, although predicting g(xₙ) loses. By BFT, when the tests contain no independent sequence, every pointwise limit is a function whose value at a limiting input Player II can recover in this way.",
       "anchor": "route-topology"
     },
     {
