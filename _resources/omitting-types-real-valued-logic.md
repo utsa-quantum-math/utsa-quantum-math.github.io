@@ -8,6 +8,9 @@ files:
   - text: "Omitting types for infinitary real-valued logic: a topological perspective"
     url: /assets/notes/Omitting_Types_Real_Valued_Logic.pdf
     label: PDF
+  - text: "arXiv:2611.02247"
+    url: https://arxiv.org/abs/2611.02247
+    label: arXiv
 tags: [logic, topology]
 ---
 
