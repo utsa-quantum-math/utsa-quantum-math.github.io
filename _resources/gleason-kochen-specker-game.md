@@ -8,6 +8,9 @@ files:
   - text: "Infinitary real-valued logic and a refinement of the Kochen–Specker theorem"
     url: /assets/notes/Gleason_Kochen_Specker_game.pdf
     label: PDF
+  - text: "arXiv:2611.05656"
+    url: https://arxiv.org/abs/2611.05656
+    label: arXiv
   - text: "How our finite obstructions refine the Kochen–Specker theorem: an interactive comparison"
     url: /assets/notes/Kochen_Specker_refinement.html
     label: Interactive
