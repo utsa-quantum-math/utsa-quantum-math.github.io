@@ -1,11 +1,11 @@
 ---
-title: "Infinitary real-valued logic and a refinement of the Kochen–Specker theorem"
+title: "Every obstruction to noncontextual hidden variables is finite"
 category: Student research notes
 contributor: "Olivia Aubone and José Iovino"
 rights: "© 2026 Olivia Aubone and José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
-summary: "We use infinitary real-valued logic and model-theoretic forcing to refine the Bell–Kochen–Specker theorem through finite obstructions that display the geometric identifications and quantitative probability commitments behind contextuality. A model existence game organizes these obstructions in a well-founded tree, even though every finite set of axioms of the dispersion-free theory has a model."
+summary: "For sixty years the impossibility of noncontextual hidden variables has been certified by finite configurations, and the passage from Gleason's analytic theorem to finite obstructions has gone through compactness. We show that finite obstructions do not depend on compactness. Quantum probability on separable Hilbert space has a natural axiomatization in infinitary real-valued logic for which compactness fails: no finite set of axioms excludes noncontextual hidden variables, yet the whole theory excludes them in every model, standard or not. Finite obstructions exist nonetheless, for every refutation: they come from model existence, as the leaves of well-founded game trees. The same logic defines exactly the σ-projective sets of probabilities, so ZFC does not decide whether every such set is Lebesgue measurable."
 files:
-  - text: "Infinitary real-valued logic and a refinement of the Kochen–Specker theorem"
+  - text: "Every obstruction to noncontextual hidden variables is finite"
     url: /assets/notes/Gleason_Kochen_Specker_game.pdf
     label: PDF
   - text: "arXiv:2611.05656"
@@ -20,4 +20,4 @@ files:
 tags: [quantum foundations, logic]
 ---
 
-We use infinitary real-valued logic and model-theoretic forcing to refine the Bell–Kochen–Specker theorem through finite obstructions that display the geometric identifications and quantitative probability commitments behind contextuality. A model existence game organizes these obstructions in a well-founded tree, even though every finite set of axioms of the dispersion-free theory has a model.
+For sixty years the impossibility of noncontextual hidden variables has been certified by finite configurations, and the passage from Gleason's analytic theorem to finite obstructions has gone through compactness. We show that finite obstructions do not depend on compactness. Quantum probability on separable Hilbert space has a natural axiomatization in infinitary real-valued logic for which compactness fails: no finite set of axioms excludes noncontextual hidden variables, yet the whole theory excludes them in every model, standard or not. Finite obstructions exist nonetheless, for every refutation: they come from model existence, as the leaves of well-founded game trees. The same logic defines exactly the σ-projective sets of probabilities, so ZFC does not decide whether every such set is Lebesgue measurable.
