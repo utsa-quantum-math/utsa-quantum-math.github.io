@@ -8,6 +8,9 @@ files:
   - text: "A Stone–Weierstrass theorem for Polish spaces, given by logic"
     url: /assets/notes/Stone_Weierstrass_Polish_Spaces.pdf
     label: PDF
+  - text: "arXiv:2611.08901"
+    url: https://arxiv.org/abs/2611.08901
+    label: arXiv
 tags: [analysis, topology, logic]
 ---
 
