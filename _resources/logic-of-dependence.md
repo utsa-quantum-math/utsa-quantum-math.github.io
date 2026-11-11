@@ -31,7 +31,7 @@ rights: "© 2026 José Iovino. All rights reserved. Work in progress: please lin
 summary: "A gentle introduction to classification theory (in the sense of logic) written for students and researchers.
 It includes stable theories, NIP theories, and simple unstable theories. 
 The text is accessible to undergraduate and graduate students. 
-It presupposes familiarity with the basic of first-order logic, including the compactness theorem, ultraporoducts, and saturated extension. The text contains many exercises and illustrations."
+It presupposes familiarity with the basics of first-order logic, including the compactness theorem, ultraproducts, and saturated extensions. The text contains many exercises and illustrations."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -55,4 +55,4 @@ tags: [dependence, independence, stability, NIP, simplicity, VC-dimension, forki
 A gentle introduction to classification theory (in the sense of logic) written for students and researchers.
 It includes stable theories, NIP theories, and simple unstable theories. 
 The text is accessible to undergraduate and graduate students. 
-It presupposes familiarity with the basic of first-order logic, including the compactness theorem, ultraporoducts, and saturated extension. The text contains many exercises and illustrations.
+It presupposes familiarity with the basics of first-order logic, including the compactness theorem, ultraproducts, and saturated extensions. The text contains many exercises and illustrations.
