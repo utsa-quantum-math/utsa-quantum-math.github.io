@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rado graph and its extension property</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{--plum:#780078;--pink:#be5096;--ink:#2a1630;--muted:#6d5a72;--bg:#fdfbfe;--card:#ffffff;--line:#d9c8e3;--head:#780078;--edge:rgba(120,0,120,.10)}
+@media (prefers-color-scheme: dark){:root{--ink:#f2e9f5;--muted:#c4b2cb;--bg:#1b1220;--card:#251a2b;--line:#4a3653;--head:#d68fd6;--edge:rgba(214,143,214,.14)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:28px 16px 48px}
+a{color:var(--pink)} .back{font-size:14px}
+h1{color:var(--head);font-weight:600;font-size:30px;margin:8px 0 4px}
+.lede{color:var(--muted);margin:0 0 14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+button{font:inherit;font-size:15px;border:1px solid var(--plum);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+button.on{background:var(--plum);color:#fff}
+.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:14px}
+@media (max-width:720px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+svg{width:100%;height:auto;display:block}
+.v{cursor:pointer}
+.bits{font-family:ui-monospace,Menlo,monospace;font-size:15px;word-break:break-all;line-height:1.9}
+.bits span{display:inline-block;min-width:1.15em;text-align:center;border-radius:4px}
+.u{background:var(--pink);color:#fff}.vv{background:var(--plum);color:#fff}
+.muted{color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/resources/combinatorial-topological-games/">← Combinatorial and topological games</a>
+  <h1>The Rado graph and its extension property</h1>
+  <p class="lede">The Rado graph is the Fraïssé limit of the finite graphs. Its defining property: for any two disjoint finite sets <i>U</i> and <i>V</i> of vertices, some vertex outside <i>U</i> ∪ <i>V</i> is adjacent to every vertex of <i>U</i> and to no vertex of <i>V</i>. Click the vertices below to put them in <i>U</i> (pink), in <i>V</i> (purple) or in neither, and the page finds such a vertex.</p>
+  <div class="row">
+    <button id="rado" class="on">Rado’s construction</button>
+    <button id="coins">Coin flips</button>
+    <button id="reflip" style="display:none">Flip new coins</button>
+    <button id="edges">Show all edges</button>
+    <button id="clear">Clear U and V</button>
+  </div>
+  <div class="grid">
+    <div class="card"><svg id="sv" viewBox="0 0 440 440"></svg></div>
+    <div class="card" id="info"></div>
+  </div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const NV=32, NC=400; // vertices drawn; vertices searched in the coin-flip graph
+let mode="rado", showAll=false, state=new Array(NV).fill(0), coins=null;
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function radoAdj(i,j){ if(i===j)return false; const a=Math.min(i,j),b=Math.max(i,j); return a<53 && Math.floor(b/Math.pow(2,a))%2===1; }
+function flip(){ coins=[]; for(let i=0;i<NC;i++){coins.push(new Uint8Array(NC))}
+  for(let i=0;i<NC;i++)for(let j=i+1;j<NC;j++){const c=Math.random()<.5?1:0;coins[i][j]=c;coins[j][i]=c} }
+function adj(i,j){ return mode==="rado"?radoAdj(i,j):(i<NC&&j<NC&&i!==j&&coins[i][j]===1); }
+function sets(){const U=[],V=[];state.forEach((s,i)=>{if(s===1)U.push(i);if(s===2)V.push(i)});return [U,V]}
+function ok(w,U,V){ if(U.includes(w)||V.includes(w))return false; return U.every(u=>adj(w,u))&&V.every(v=>!adj(w,v)); }
+function smallest(U,V,lim){ for(let w=0;w<lim;w++) if(ok(w,U,V)) return w; return null; }
+function pos(i){const t=-Math.PI/2+2*Math.PI*i/NV;return [220+170*Math.cos(t),220+170*Math.sin(t)]}
+function draw(){
+  const [U,V]=sets(), plum=css('--plum'), pink=css('--pink'), ink=css('--ink'), muted=css('--muted'), card=css('--card'), edge=css('--edge');
+  let w=null, wr=null;
+  if(U.length+V.length>0){ w=smallest(U,V,mode==="rado"?(1<<22):NC);
+    if(mode==="rado"){ const M=Math.max(...U,...V)+1; wr=Math.pow(2,M)+U.reduce((s,u)=>s+Math.pow(2,u),0); if(w===null) w=U.reduce((s,u)=>s+Math.pow(2,u),0); } }
+  let s="";
+  if(showAll){for(let i=0;i<NV;i++)for(let j=i+1;j<NV;j++)if(adj(i,j)){const [a,b]=pos(i),[c,d]=pos(j);s+=`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${edge}"/>`}}
+  let wx=220,wy=220;
+  if(w!==null&&w<NV){[wx,wy]=pos(w)}
+  if(w!==null){ for(const u of U){const [a,b]=pos(u);s+=`<line x1="${wx}" y1="${wy}" x2="${a}" y2="${b}" stroke="${pink}" stroke-width="2"/>`}
+    for(const v of V){const [a,b]=pos(v);s+=`<line x1="${wx}" y1="${wy}" x2="${a}" y2="${b}" stroke="${plum}" stroke-width="1" stroke-dasharray="4 4"/>`} }
+  for(let i=0;i<NV;i++){const [x,y]=pos(i);const f=state[i]===1?pink:state[i]===2?plum:card;const tc=state[i]?"#fff":ink;
+    s+=`<g class="v" onclick="tog(${i})"><circle cx="${x}" cy="${y}" r="12" fill="${f}" stroke="${plum}" stroke-width="${w===i?3.5:1.2}"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" fill="${tc}">${i}</text></g>`}
+  if(w!==null&&w>=NV){ s+=`<circle cx="220" cy="220" r="26" fill="${card}" stroke="${plum}" stroke-width="3"/><text x="220" y="225" text-anchor="middle" font-size="13" fill="${ink}">${w}</text>`; }
+  $('sv').innerHTML=s;
+  info(U,V,w,wr);
+}
+function bits(n,U,V){ const b=n.toString(2); let s=""; for(let k=b.length-1;k>=0;k--){const pos=k;const ch=b[b.length-1-k];const cls=U.includes(pos)?"u":V.includes(pos)?"vv":"";s+=`<span class="${cls}" title="digit ${pos}">${ch}</span>`} return s; }
+function info(U,V,w,wr){
+  let h="";
+  const fmt=a=>a.length?"{"+a.join(", ")+"}":"∅";
+  h+=`<p><i>U</i> = ${fmt(U)}<br><i>V</i> = ${fmt(V)}</p>`;
+  if(!U.length&&!V.length){ h+=`<p class="muted">Choose some vertices.</p>`; }
+  else if(mode==="rado"){
+    h+=`<p>In Rado’s construction, vertices <i>i</i> &lt; <i>j</i> are adjacent when the <i>i</i>-th binary digit of <i>j</i> is 1, counting from 0 at the right.</p>`;
+    if(w!==null){ h+=`<p>The smallest vertex with the required adjacencies is <b>${w}</b>`+(w>=NV?" (drawn in the middle)":"")+`.</p>`;
+      if(w>Math.max(...U,...V)) h+=`<p class="bits">${w} = ${bits(w,U,V)}<sub>2</sub></p><p class="muted">Its digits are 1 at the positions in <i>U</i> (pink) and 0 at the positions in <i>V</i> (purple).</p>`;
+      else h+=`<p class="muted">This vertex is smaller than some vertices of <i>U</i> ∪ <i>V</i>, so for those the adjacency is read from their digits instead.</p>`; }
+    h+=`<p>The book’s witness is <i>j</i> = 2<sup><i>m</i></sup> + Σ<sub><i>u</i>∈<i>U</i></sub> 2<sup><i>u</i></sup> with <i>m</i> larger than every element of <i>U</i> ∪ <i>V</i>; here <i>j</i> = ${wr}.</p>`;
+  } else {
+    const k=U.length+V.length;
+    h+=`<p>Each pair of vertices among 0, …, ${NC-1} was joined by the flip of a fair coin. A vertex outside <i>U</i> ∪ <i>V</i> has the required adjacencies with probability 2<sup>−${k}</sup> = 1/${Math.pow(2,k)}.</p>`;
+    h+= w!==null?`<p>The first such vertex is <b>${w}</b>`+(w>=NV?" (drawn in the middle)":"")+`.</p>`:`<p>No vertex below ${NC} works for these coins; with more vertices one would appear with probability 1.</p>`;
+  }
+  $('info').innerHTML=h;
+}
+function tog(i){state[i]=(state[i]+1)%3;draw()}
+$('rado').onclick=()=>{mode="rado";$('rado').classList.add('on');$('coins').classList.remove('on');$('reflip').style.display="none";draw()};
+$('coins').onclick=()=>{mode="coins";if(!coins)flip();$('coins').classList.add('on');$('rado').classList.remove('on');$('reflip').style.display="";draw()};
+$('reflip').onclick=()=>{flip();draw()};
+$('edges').onclick=()=>{showAll=!showAll;$('edges').classList.toggle('on',showAll);draw()};
+$('clear').onclick=()=>{state.fill(0);draw()};
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+state[1]=1;state[4]=1;state[2]=2;state[6]=2;
+draw();
+</script>
+</body>
+</html>

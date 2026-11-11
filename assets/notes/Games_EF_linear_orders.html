@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ehrenfeucht–Fraïssé game on finite linear orders</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{--plum:#780078;--pink:#be5096;--lav:#e6d9f2;--ink:#2a1630;--muted:#6d5a72;--bg:#fdfbfe;--card:#ffffff;--line:#d9c8e3;--head:#780078}
+@media (prefers-color-scheme: dark){:root{--ink:#f2e9f5;--muted:#c4b2cb;--bg:#1b1220;--card:#251a2b;--line:#4a3653;--lav:#3d2a49;--head:#d68fd6}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:28px 16px 48px}
+a{color:var(--pink)} .back{font-size:14px}
+h1{color:var(--head);font-weight:600;font-size:30px;margin:8px 0 4px}
+.lede{color:var(--muted);margin:0 0 14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+label{font-size:15px} select{font:inherit;font-size:15px;padding:2px 6px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+button{font:inherit;font-size:15px;border:1px solid var(--plum);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+button.on{background:var(--plum);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+svg{width:100%;height:auto;display:block}
+.status{font-size:16px;margin-top:8px;min-height:2.6em}
+.theory{font-size:15px;color:var(--muted)}
+.dot{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/resources/combinatorial-topological-games/">← Combinatorial and topological games</a>
+  <h1>The Ehrenfeucht–Fraïssé game on finite linear orders</h1>
+  <p class="lede">The orders are <i>L<sub>m</sub></i> = {1, …, <i>m</i>} and <i>L<sub>m′</sub></i> = {1, …, <i>m′</i>}. In each round Player I picks an element of either order and Player II answers in the other. Player II wins if, after <i>n</i> rounds, the matching preserves order and equality.</p>
+  <div class="row">
+    <label>m <select id="m"></select></label>
+    <label>m′ <select id="mp"></select></label>
+    <label>rounds n <select id="n"></select></label>
+  </div>
+  <div class="row">
+    <button id="asI" class="on">You are Player I (Spoiler)</button>
+    <button id="asII">You are Player II (Duplicator)</button>
+    <button id="hint">Show a winning move</button>
+    <button id="reset">Start again</button>
+  </div>
+  <div class="card">
+    <svg id="sv" viewBox="0 0 860 230"></svg>
+    <div class="status" id="status"></div>
+  </div>
+  <div class="card theory" id="theory"></div>
+</div>
+<script>
+// Core logic, shared by the page and the tests.
+function sortedPairs(P,m,mp){ // P: list of [a,b]; add endpoints
+  const pts=[[0,0],...P,[m+1,mp+1]];
+  return pts;
+}
+// Duplicator: answer x in side s (0 = top L_m, 1 = bottom L_m'), j = rounds left including this one.
+function duplicate(P,m,mp,s,x,j){
+  const pts=sortedPairs(P,m,mp);
+  const me=s===0?0:1, ot=1-me;
+  for(const p of pts) if(p[me]===x) return p[ot];
+  let lo=null,hi=null;
+  for(const p of pts){ if(p[me]<x&&(lo===null||p[me]>lo[me]))lo=p; if(p[me]>x&&(hi===null||p[me]<hi[me]))hi=p; }
+  const l=x-lo[me], r=hi[me]-x, d=hi[me]-lo[me], dp=hi[ot]-lo[ot], h=Math.pow(2,j-1);
+  let y;
+  if(d===dp) y=lo[ot]+l;
+  else if(l<h) y=lo[ot]+l;
+  else if(r<h) y=hi[ot]-r;
+  else y=lo[ot]+h;
+  if(!(y>lo[ot]&&y<hi[ot])){ // no legal good answer: take any point of the gap, or the left end
+    y = (hi[ot]-lo[ot]>1)? lo[ot]+1 : lo[ot];
+    if(y<1) y=1; const N=ot===0?m:mp; if(y>N) y=N;
+  }
+  return y;
+}
+// Is the matching a partial isomorphism (order and equality preserved)?
+function isPartialIso(P){
+  for(const p of P)for(const q of P){ if((p[0]<q[0])!==(p[1]<q[1]))return false; if((p[0]===q[0])!==(p[1]===q[1]))return false; }
+  return true;
+}
+// Spoiler (Player I): returns [side,x] following the hint of the exercise.
+function spoil(P,m,mp,j){
+  const pts=sortedPairs(P,m,mp).slice();
+  if(!isPartialIso(P)) return [0,1];
+  pts.sort((u,v)=>u[0]-v[0]);
+  // remove duplicates by top coordinate
+  const U=[];for(const p of pts){if(!U.length||U[U.length-1][0]!==p[0])U.push(p)}
+  const h=Math.pow(2,j-1), H=Math.pow(2,j);
+  for(let i=0;i+1<U.length;i++){
+    const d=U[i+1][0]-U[i][0], dp=U[i+1][1]-U[i][1];
+    if(d!==dp&&Math.min(d,dp)<H){
+      if(d<dp){ const off=Math.min(h,Math.floor(dp/2)); return [1,U[i][1]+off]; }
+      else { const off=Math.min(h,Math.floor(d/2)); return [0,U[i][0]+off]; }
+    }
+  }
+  return null; // tuples are j-similar: Spoiler has no winning move
+}
+function secondPlayerWins(m,mp,n){return m===mp||(m>=Math.pow(2,n)-1&&mp>=Math.pow(2,n)-1)}
+
+
+const $=id=>document.getElementById(id);
+for(let i=1;i<=24;i++){$('m').add(new Option(i,i));$('mp').add(new Option(i,i))}
+for(let i=1;i<=4;i++)$('n').add(new Option(i,i));
+$('m').value=7;$('mp').value=8;$('n').value=3;
+let m,mp,n,P,role="I",pending=null,over=false,hintMove=null;
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function xs(i,N){const L=40,R=820;return N===1?(L+R)/2:L+(i-1)*(R-L)/(N-1)}
+function start(){
+  m=+$('m').value;mp=+$('mp').value;n=+$('n').value;P=[];pending=null;over=false;hintMove=null;
+  const win=secondPlayerWins(m,mp,n);
+  $('theory').innerHTML="<b>Who should win.</b> Player II has a winning strategy exactly when <i>m</i> = <i>m′</i> or both <i>m</i> and <i>m′</i> are at least 2<sup><i>n</i></sup> − 1 = "+(Math.pow(2,n)-1)+" (the proposition on linear orders and Exercise 3 of that section). Here "+(win?"<b>Player II</b> can always win: her strategy keeps the gaps between matched elements equal, or both at least 2<sup><i>j</i></sup> when <i>j</i> rounds remain.":"<b>Player I</b> can always win: he plays in the longer of two corresponding gaps whose lengths differ while one of them is shorter than 2<sup><i>j</i></sup>.")+" The computer plays the other side with these strategies.";
+  if(role==="II") spoilerMove(); else say("Round 1 of "+n+". Pick an element of either order.");
+  draw();
+}
+function say(s){$('status').innerHTML=s}
+function finish(){
+  over=true;const ok=isPartialIso(P);
+  say((ok?"The matching preserves order and equality: <b>Player II wins</b>.":"The matching does not preserve order or equality: <b>Player I wins</b>.")+" Start again, or change m, m′ or n.");
+}
+function spoilerMove(){
+  const j=n-P.length; let mv=spoil(P,m,mp,j);
+  if(!mv){ // no winning move: play a harmless element
+    mv=[0,1+((P.length*5)%m)];
+  }
+  pending={side:mv[0],x:mv[1]};
+  say("Round "+(P.length+1)+" of "+n+". Player I picked "+mv[1]+" in "+(mv[0]?"L<sub>m′</sub>":"L<sub>m</sub>")+". Answer with an element of "+(mv[0]?"L<sub>m</sub>":"L<sub>m′</sub>")+".");
+}
+function click(side,x){
+  if(over)return; hintMove=null;
+  if(role==="I"){
+    const j=n-P.length, y=duplicate(P,m,mp,side,x,j);
+    P.push(side?[y,x]:[x,y]);
+    if(P.length===n) finish(); else say("Player II answered "+y+". Round "+(P.length+1)+" of "+n+".");
+  } else {
+    if(!pending||side===pending.side)return;
+    P.push(pending.side?[x,pending.x]:[pending.x,x]); pending=null;
+    if(P.length===n) finish(); else spoilerMove();
+  }
+  draw();
+}
+function draw(){
+  const sv=$('sv'),plum=css('--plum'),pink=css('--pink'),ink=css('--ink'),line=css('--line'),muted=css('--muted');
+  let s="";
+  const yT=60,yB=170;
+  s+=`<text x="10" y="${yT+5}" fill="${ink}" font-size="15">L<tspan dy="4" font-size="11">m</tspan></text>`;
+  s+=`<text x="10" y="${yB+5}" fill="${ink}" font-size="15">L<tspan dy="4" font-size="11">m'</tspan></text>`;
+  s+=`<line x1="40" y1="${yT}" x2="820" y2="${yT}" stroke="${line}"/><line x1="40" y1="${yB}" x2="820" y2="${yB}" stroke="${line}"/>`;
+  P.forEach((p,k)=>{s+=`<line x1="${xs(p[0],m)}" y1="${yT}" x2="${xs(p[1],mp)}" y2="${yB}" stroke="${pink}" stroke-width="2"/>`;
+    const mx=(xs(p[0],m)+xs(p[1],mp))/2;s+=`<text x="${mx+4}" y="${(yT+yB)/2}" fill="${pink}" font-size="13">${k+1}</text>`});
+  const used0=new Set(P.map(p=>p[0])),used1=new Set(P.map(p=>p[1]));
+  for(let i=1;i<=m;i++){const on=used0.has(i)||(pending&&pending.side===0&&pending.x===i);const h=hintMove&&hintMove[0]===0&&hintMove[1]===i;
+    s+=`<g class="dot" onclick="click(0,${i})"><circle cx="${xs(i,m)}" cy="${yT}" r="${h?13:10}" fill="${on?plum:css('--card')}" stroke="${h?pink:plum}" stroke-width="${h?3:1.5}"/><text x="${xs(i,m)}" y="${yT-18}" text-anchor="middle" fill="${muted}" font-size="12">${i}</text></g>`}
+  for(let i=1;i<=mp;i++){const on=used1.has(i)||(pending&&pending.side===1&&pending.x===i);const h=hintMove&&hintMove[0]===1&&hintMove[1]===i;
+    s+=`<g class="dot" onclick="click(1,${i})"><circle cx="${xs(i,mp)}" cy="${yB}" r="${h?13:10}" fill="${on?plum:css('--card')}" stroke="${h?pink:plum}" stroke-width="${h?3:1.5}"/><text x="${xs(i,mp)}" y="${yB+28}" text-anchor="middle" fill="${muted}" font-size="12">${i}</text></g>`}
+  sv.innerHTML=s;
+}
+$('asI').onclick=()=>{role="I";$('asI').classList.add('on');$('asII').classList.remove('on');start()};
+$('asII').onclick=()=>{role="II";$('asII').classList.add('on');$('asI').classList.remove('on');start()};
+$('reset').onclick=start;['m','mp','n'].forEach(id=>$(id).onchange=start);
+$('hint').onclick=()=>{if(over)return;
+  if(role==="I"){const mv=spoil(P,m,mp,n-P.length);if(mv){hintMove=mv;say("A winning move for Player I: "+mv[1]+" in "+(mv[0]?"L<sub>m′</sub>":"L<sub>m</sub>")+".")}else say("No move wins for Player I from here: the matched tuples are similar for the rounds that remain.")}
+  else {if(!pending)return;const y=duplicate(P,m,mp,pending.side,pending.x,n-P.length);hintMove=[1-pending.side,y];say("Player II’s strategy answers "+y+(secondPlayerWins(m,mp,n)?".":"; Player I can still win from here."))}
+  draw()};
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+start();
+</script>
+</body>
+</html>
