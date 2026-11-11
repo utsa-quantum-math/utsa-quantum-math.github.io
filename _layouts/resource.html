@@ -30,7 +30,7 @@ layout: default
   <section class="refs">
     <ul>
       {%- for f in page.files %}
-      <li>{{ f.text }}{% if f.url %} <a href="{{ f.url | relative_url }}">{{ f.label | default: "download" }}</a>{% endif %}</li>
+      <li>{{ f.text }}{% if f.url %} {% if f.label == "arXiv" %}<a class="badge-preprint" href="{{ f.url | relative_url }}"><svg class="badge-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.5 1.5h6l3 3v10h-9z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M9.5 1.5v3h3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M5.5 8h5M5.5 10.2h5M5.5 12.4h3.2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>arXiv</a>{% else %}<a href="{{ f.url | relative_url }}">{{ f.label | default: "download" }}</a>{% endif %}{% endif %}</li>
       {%- endfor %}
     </ul>
   </section>
