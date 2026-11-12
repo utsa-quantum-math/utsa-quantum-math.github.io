@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nine-qubit patch: errors, syndromes and corrections</title>
+<style>
+:root{color-scheme:light;font:20px/1.5 system-ui;color:#0c2340;background:#fdfcfa}body{max-width:1150px;margin:auto;padding:24px}h1{font: bold 2rem Georgia}button{font:inherit;padding:8px 14px;cursor:pointer;border:2px solid #0c2340;border-radius:6px;background:white;margin:4px}button:focus-visible{outline:4px solid #f15a22;outline-offset:3px}.panels{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.panel{border-top:4px solid #0c2340;padding:12px}svg{width:100%;max-height:320px}#result{border-left:6px solid #f15a22;padding:12px;background:#f4f1ea}p{max-width:75ch}small{font-size:.8rem}a{color:#002a5c}.qubit{cursor:pointer} .qubit:focus{outline:none;stroke-width:4;stroke:#f15a22}@media(max-width:750px){.panels{grid-template-columns:1fr}svg{max-height:240px}}
+</style>
+<h1>Same syndrome. Different corrections.</h1>
+<p>Toggle <strong>X errors</strong> and corrections on the nine-qubit surface patch.
+Blue faces and bars are Z checks; orange ones are X checks. A red ring marks an X operator.</p>
+<div><button id="preset1">Example: error X₁</button><button id="preset2">Example: error X₅</button><button id="reset">Clear</button></div>
+<div class="panels"><section class="panel"><h2>Actual error</h2><div id="error"></div><p id="esupport"></p></section>
+<section class="panel"><h2>Correction</h2><div id="correction"></div><p id="csupport"></p></section>
+<section class="panel"><h2>Residual</h2><div id="residual"></div><p id="rsupport"></p></section></div>
+<p id="syndrome" aria-live="polite"></p><p id="result" aria-live="polite"></p>
+<div><button id="c1">Correct with X₁</button><button id="c2">Correct with X₂</button><button id="c47">Correct with X₄X₇</button><button id="minimum">Minimum-weight correction</button></div>
+<p><strong>Question:</strong> which corrections restore the checks, and which restore every code state?</p>
+<details><summary>What is being computed?</summary><p>The syndrome is H<sub>Z</sub>x.
+Success means the residual lies in row(H<sub>X</sub>); a zero-syndrome residual outside that space is a logical X.
+The decoder enumerates all 512 X supports, choosing the smallest weight with this syndrome (ties by integer order).
+This is a minimum-weight error decoder under uniform independent X noise with probability below 1/2.</p>
+<p>The residual display uses the actual error as teaching ground truth. A decoder observes only the syndrome, so it cannot perform that success test in an experiment. Checks are perfect; this demo models X errors only.</p></details>
+<p><small>Companion to Eduardo Dueñez’s QEC lecture, November 13, 2026.
+<a href="https://utsa-quantum-math.github.io/talks/2026-11-13-duenez/">Slides and seminar notes</a>.
+Keyboard: Tab to a qubit, then Enter or Space. Runs offline without dependencies.</small></p>
+<script src="patch-model.js"></script><script>
+const M=PatchModel;let error=1,correction=0;
+const supports=x=>Array.from({length:9},(_,i)=>i+1).filter(q=>x&(1<<(q-1))).join(', ')||'none';
+function svg(mask,kind){let out='<svg viewBox="-45 -50 290 290" role="group" aria-label="'+kind+' patch">';
+const sq=(x,y,color)=>out+=`<rect x="${x}" y="${y}" width="80" height="80" fill="${color}" stroke="#bbb"/>`;
+sq(0,0,'#dce9f8');sq(80,80,'#dce9f8');sq(80,0,'#ffe2d1');sq(0,80,'#ffe2d1');
+out+='<g stroke-width="8"><path d="M0,-20H80 M80,180H160" stroke="#d75b20"/><path d="M-20,80V160 M180,0V80" stroke="#426994"/></g>';
+const labels=[[40,40,'B₁'],[120,120,'B₂'],[-20,120,'B₃'],[180,40,'B₄']];
+const s=M.syndrome(kind==='Correction'?correction:kind==='Residual'?(error^correction):error);
+labels.forEach(([x,y,label],i)=>{out+=`<text x="${x}" y="${y}" text-anchor="middle" fill="${s[i]?'#a01919':'#244464'}" font-size="16">${label}${s[i]?' −':''}</text>`});
+for(let q=1;q<=9;q++){let x=((q-1)%3)*80,y=Math.floor((q-1)/3)*80,on=!!(mask&(1<<(q-1))),active=kind!=='Residual';out+=`<g ${active?`class="qubit" tabindex="0" role="button" aria-pressed="${on}" aria-label="Toggle ${kind} qubit ${q}" data-kind="${kind}" data-q="${q}"`:''}><circle cx="${x}" cy="${y}" r="17" fill="white" stroke="${on?'#b11d1d':'#0c2340'}" stroke-width="${on?5:2}"/><text x="${x}" y="${y+6}" text-anchor="middle" font-size="18">${q}</text></g>`}return out+'</svg>'}
+function draw(){document.getElementById('error').innerHTML=svg(error,'Error');document.getElementById('correction').innerHTML=svg(correction,'Correction');document.getElementById('residual').innerHTML=svg(error^correction,'Residual');
+for(const [id,x] of [['e',error],['c',correction],['r',error^correction]])document.getElementById(id+'support').textContent='Support: '+supports(x);
+document.getElementById('syndrome').textContent='Z-check bits (B₁, B₂, B₃, B₄): error '+M.syndrome(error).join('')+' · correction '+M.syndrome(correction).join('');
+document.getElementById('result').textContent=({inconsistent:'Checks disagree: the correction does not return the state to the code.',success:'Success: the residual is a stabilizer and fixes every code state.',logical:'Logical error: all checks are restored, but the encoded state can change.'})[M.status(error,correction)];}
+function toggle(target){const q=Number(target.dataset.q);if(target.dataset.kind==='Error')error^=1<<(q-1);else correction^=1<<(q-1);draw();document.querySelector(`[data-kind="${target.dataset.kind}"][data-q="${q}"]`).focus()}
+document.addEventListener('click',e=>{const t=e.target.closest('.qubit');if(t)toggle(t)});
+document.addEventListener('keydown',e=>{const t=e.target.closest('.qubit');if(t&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggle(t)}});
+for(const [id,e,c]of [['preset1',1,0],['preset2',16,0],['reset',0,0]])document.getElementById(id).onclick=()=>{error=e;correction=c;draw()};
+for(const [id,c]of [['c1',1],['c2',2],['c47',72]])document.getElementById(id).onclick=()=>{correction=c;draw()};
+document.getElementById('minimum').onclick=()=>{correction=M.decode(M.syndrome(error));draw()};draw();
+</script></html>

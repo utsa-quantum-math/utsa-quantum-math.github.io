@@ -10,6 +10,12 @@ files:
   - text: "Session 1: explicit calculations"
     url: /assets/notes/qec-session-1.pdf
     label: PDF
+  - text: "Final lecture: from parity checks to surface-code decoding"
+    url: /assets/notes/qec-finale/slides.pdf
+    label: PDF
+  - text: "Interactive nine-qubit patch"
+    url: /assets/notes/qec-finale/patch-demo.html
+    label: Interactive
 tags: [quantum error correction]
 ---
 These notes accompany a series of talks in the Quantum Error Correction Seminar at UTSA (Fall 2026). Pure states are points of complex projective spaces; quantum error correction is developed using linear lifts over $\mathbb{C}$ and binary linear algebra over $\mathbb{F}_2$, followed by a problem of classical statistical inference. Surface codes are treated in some detail, and later sections discuss belief propagation, quantum low-density parity-check codes, repeated measurements, and the statistical comparison of decoders. Undergraduate linear algebra and elementary probability are the only prerequisites.
