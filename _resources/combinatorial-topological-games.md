@@ -13,7 +13,7 @@ summary: "A gentle introduction to topological games prepared for researchers an
 
 files:
   - text: "The notes are a work in progress, so I (JI) would love to hear your suggestions for improvement"
-    url: /assets/notes/Combinatorial_and_Topological_Games.pdf
+    url: /assets/notes/combinatorial_topological_games_book.pdf
     label: PDF
   - text: "Play the Ehrenfeucht–Fraïssé game on finite linear orders against the strategies of the book"
     url: /assets/notes/Games_EF_linear_orders.html

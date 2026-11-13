@@ -28,8 +28,7 @@ contributor: "José Iovino"
 rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
 
 # One plain-text sentence, shown on the index row.
-summary: "Notes for students and researchers on the the problem of hidden variables in quantum mechanics and the Bell–Kochen–Specker theorem. Bell's proof and the Kochen-pecker's  proof are linked by the compactness theorem of propositional logic.
-The history of the problem and its connection to logi are traced in detail."
+summary: "We examine two proofs of the Bell–Kochen–Specker theorem, which rules out non-contextual hidden variables in quantum mechanics. Bell’s proof combines Gleason’s Theorem with elementary topology and is infinitary; Kochen and Specker’s proof exhibits a finite configuration of rays and is constructive. The two arguments were found independently in the mid-1960s. We show that the compactness theorem of propositional logic links them: compactness converts Bell’s argument into a proof of the existence of a finite configuration of the kind that Kochen and Specker built by hand. We also show that quantum measures have no counterpart of Dirac measures and, unlike classical measures, do not form a lattice. In a timeline we trace the history of the problem of hidden variables."
 
 # For a single external link (a book, a repo, a website). Omit if this
 # resource is one or more local files instead — use `files:` for those.
@@ -41,7 +40,7 @@ The history of the problem and its connection to logi are traced in detail."
 # local PDF as another entry in the same list.
 files:
   - text: "Topological and logical aspects of the problem of hidden variables in quantum mechanics"
-    url: /assets/notes/Bell-Kochen-Specker.pdf
+    url: /assets/notes/hidden_variables.pdf
     label: PDF
   # - text: "arXiv preprint"
   #   url: https://arxiv.org/abs/0000.00000
@@ -50,5 +49,4 @@ files:
 tags: [quantum foundations, logic]
 ---
 
-Notes for students on the the problem of hidden variables in quantum mechanics and the Bell–Kochen–Specker theorem. Bell's proof and the Kochen-pecker's  proof are linked by the compactness theorem of propositional logic.
-The history of the problem and its connection to logi are traced in detail.
+We examine two proofs of the Bell–Kochen–Specker theorem, which rules out non-contextual hidden variables in quantum mechanics. Bell’s proof combines Gleason’s Theorem with elementary topology and is infinitary; Kochen and Specker’s proof exhibits a finite configuration of rays and is constructive. The two arguments were found independently in the mid-1960s. We show that the compactness theorem of propositional logic links them: compactness converts Bell’s argument into a proof of the existence of a finite configuration of the kind that Kochen and Specker built by hand. We also show that quantum measures have no counterpart of Dirac measures and, unlike classical measures, do not form a lattice. In a timeline we trace the history of the problem of hidden variables.
