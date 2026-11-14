@@ -76,7 +76,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <h1>Deep computations, iteration by iteration</h1>
   <p>A computation is a map applied over and over. Its <em>deep computations</em> are the limits of its iterates along ultrafilters, taken point by point. These examples come from the paper <em>Complexity of deep computations via topology of function spaces</em> by Dueñez, Iovino, Matos-Wiederhold, Salvetti and Tall. Move the sliders and watch the limits form.</p>
   <div class="levels" aria-label="The levels of the hierarchy">
-    <span>stable</span><span>NIP₃: metrizable</span><span>NIP₂: hereditarily separable</span><span>NIP₁: first countable</span><span>NIP</span><span>not NIP</span>
+    <span>stable</span><span>NIP<sup>met</sup>: metrizable</span><span>NIP<sup>hs</sup>: hereditarily separable</span><span>NIP<sup>fc</sup>: first countable</span><span>NIP</span><span>not NIP</span>
   </div>
 </header>
 
@@ -101,7 +101,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
     <canvas id="logBif" class="wide" width="1100" height="440" aria-label="Bifurcation diagram coloured by level"></canvas>
     <p class="cap">The long-run values of every orbit, for each r from 2.5 to 4, coloured by level: sky blue up to r<sub>∞</sub> ≈ 3.5699, pink beyond. The vertical line marks the current r.</p>
   </div>
-  <p class="why"><strong>What to see.</strong> For r ≤ 1 every orbit falls to 0, and the limit is the constant 0, a continuous map: the computation is stable. For 1 &lt; r ≤ 3 the iterates converge to the map that sends 0 and 1 to 0 and every other point to 1 − 1/r. That limit jumps at 0 and at 1, so it is not continuous, yet it is a limit of a <em>sequence</em> of computations: the level is NIP₃ but not stable. Past r = 3 the attracting cycles double, to periods 2, 4, 8, …, up to the Feigenbaum parameter r<sub>∞</sub> ≈ 3.5699. Every period is still a power of 2, every orbit settles onto a cycle, and the deep computations still form a metrizable space: NIP₃, not stable (at r<sub>∞</sub> itself the paper gives a sketch). Beyond r<sub>∞</sub>, even inside the windows where a single cycle attracts almost every orbit, some iterate folds two intervals over both of them, a horseshoe, and independent sequences appear: the computation is <strong>not NIP</strong>.</p>
+  <p class="why"><strong>What to see.</strong> For r ≤ 1 every orbit falls to 0, and the limit is the constant 0, a continuous map: the computation is stable. For 1 &lt; r ≤ 3 the iterates converge to the map that sends 0 and 1 to 0 and every other point to 1 − 1/r. That limit jumps at 0 and at 1, so it is not continuous, yet it is a limit of a <em>sequence</em> of computations: the level is NIP<sup>met</sup> but not stable. Past r = 3 the attracting cycles double, to periods 2, 4, 8, …, up to the Feigenbaum parameter r<sub>∞</sub> ≈ 3.5699. Every period is still a power of 2, every orbit settles onto a cycle, and the deep computations still form a metrizable space: NIP<sup>met</sup>, not stable (at r<sub>∞</sub> itself the paper gives a sketch). Beyond r<sub>∞</sub>, even inside the windows where a single cycle attracts almost every orbit, some iterate folds two intervals over both of them, a horseshoe, and independent sequences appear: the computation is <strong>not NIP</strong>.</p>
 </section>
 
 <section id="euclid">
@@ -139,7 +139,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
     </div>
     <div class="readout" id="bits"></div>
   </div>
-  <p class="why"><strong>What to see.</strong> Far along the line, the algorithm behaves like one of two limit maps, R⁺ and R⁻. They agree at every pixel except where the line passes exactly through a pixel corner, and there they round in opposite directions. Set ρ = 0 to put a corner on the line and switch the rounding. These pairs of limits make a double arrow circle, which is hereditarily separable but not metrizable: the level is <strong>NIP₂ but not NIP₃</strong>. Drawing a line in space runs two such algorithms at once and drops one level, to <strong>NIP₁ but not NIP₂</strong>.</p>
+  <p class="why"><strong>What to see.</strong> Far along the line, the algorithm behaves like one of two limit maps, R⁺ and R⁻. They agree at every pixel except where the line passes exactly through a pixel corner, and there they round in opposite directions. Set ρ = 0 to put a corner on the line and switch the rounding. These pairs of limits make a double arrow circle, which is hereditarily separable but not metrizable: the level is <strong>NIP<sup>hs</sup> but not NIP<sup>met</sup></strong>. Drawing a line in space runs two such algorithms at once and drops one level, to <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>.</p>
 </section>
 
 <section id="doubling">
@@ -167,11 +167,11 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
     </div>
     <div class="readout" id="spRead"></div>
   </div>
-  <p class="why"><strong>What to see.</strong> Iterates approach every target from all four sides, and each side yields its own limit, a pair of one-sided rotations. These limits form a product of two double arrow circles. A compact metrizable set of such limits must be countable, because every metrizable subset of the double arrow circle is countable. So the limits contain no Cantor set, which rules out the Alexandroff duplicate D(2<sup>ℕ</sup>). By Todorčević's trichotomy they contain instead a copy of D̂(S(2<sup>ℕ</sup>)), built on the split Cantor set: the level is <strong>NIP₁ but not NIP₂</strong>.</p>
+  <p class="why"><strong>What to see.</strong> Iterates approach every target from all four sides, and each side yields its own limit, a pair of one-sided rotations. These limits form a product of two double arrow circles. A compact metrizable set of such limits must be countable, because every metrizable subset of the double arrow circle is countable. So the limits contain no Cantor set, which rules out the Alexandroff duplicate D(2<sup>ℕ</sup>). By Todorčević's trichotomy they contain instead a copy of D̂(S(2<sup>ℕ</sup>)), built on the split Cantor set: the level is <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>.</p>
 </section>
 
 <section id="family">
-  <h2>6. A family of Euclidean steps: the other way to reach NIP₁</h2>
+  <h2>6. A family of Euclidean steps: the other way to reach NIP<sup>fc</sup></h2>
   <p class="lede">Section 2 applied one continued fraction to every input. Here we choose a branch c = (c₁, c₂, …) of 1s and 2s and, for each finite part t of it, a word of partial quotients built from blocks c<sub>j</sub>, …, c₁ followed by j ones. Each word gives a Möbius map g<sub>t</sub>. Moving along the branch, the maps flatten onto a constant a and keep one spike: the number r(c) is sent near the golden ratio φ.</p>
   <div class="plate">
     <div class="pattern" id="famPat" role="group" aria-label="Digits of the branch"></div>
@@ -184,7 +184,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
     </div>
     <div class="readout" id="famRead"></div>
   </div>
-  <p class="why"><strong>What to see.</strong> Along the branch, the maps converge to the map that sends r(c) to φ and every other point to a. Approaching the same branch from the side, they converge to the constant a: the spike disappears. This is the pattern of convergence of the Alexandroff duplicate D̂(2<sup>ℕ</sup>), and indeed the closure of this countable family is a copy of it. The family is therefore <strong>NIP₁ but not NIP₂</strong>, and it contains the duplicate D(2<sup>ℕ</sup>) that the line in space cannot. Whether a single iterated map can do the same is an open question of the paper.</p>
+  <p class="why"><strong>What to see.</strong> Along the branch, the maps converge to the map that sends r(c) to φ and every other point to a. Approaching the same branch from the side, they converge to the constant a: the spike disappears. This is the pattern of convergence of the Alexandroff duplicate D̂(2<sup>ℕ</sup>), and indeed the closure of this countable family is a copy of it. The family is therefore <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>, and it contains the duplicate D(2<sup>ℕ</sup>) that the line in space cannot. Whether a single iterated map can do the same is an open question of the paper.</p>
 </section>
 
 <section id="newton">
@@ -222,7 +222,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
 <section id="figures">
   <h2>The figures of the paper</h2>
   <p class="lede">The same three examples, as they appear in Section 5 of the paper.</p>
-  <figure><img src="logistic_levels.png" alt="Bifurcation diagram of the logistic family coloured by level, and a cobweb for r = 2.8" width="1050" height="420"><figcaption>The logistic family: stable for r ≤ 1, NIP₃ but not stable for 1 &lt; r ≤ 3, not NIP at r = 4.</figcaption></figure>
+  <figure><img src="logistic_levels.png" alt="Bifurcation diagram of the logistic family coloured by level, and a cobweb for r = 2.8" width="1050" height="420"><figcaption>The logistic family: stable for r ≤ 1, NIP<sup>met</sup> but not stable for 1 &lt; r ≤ 3, not NIP at r = 4.</figcaption></figure>
   <figure><img src="euclid_equality.png" alt="The maps of the continued fraction algorithm flattening onto −1/φ with a spike at η" width="1050" height="405"><figcaption>The Euclidean algorithm: the maps M<sub>k</sub><sup>−1</sup> converge to exact equality tests.</figcaption></figure>
   <figure><img src="doubling_independence.png" alt="Values of sin²(πx) every third step of the doubling map, following three patterns" width="1050" height="330"><figcaption>The doubling map: every pattern of highs and lows is realized.</figcaption></figure>
 </section>
@@ -265,8 +265,8 @@ function drawLog(){
   ctx.fillStyle=C.plum;ctx.beginPath();ctx.arc(X2(x),Y2(x),6,0,7);ctx.fill();
   let lvl;
   if(rr<=1)lvl='stable: the limit is continuous';
-  else if(rr<=3)lvl='NIP₃, not stable: the limit jumps at 0 and 1';
-  else if(rr<RINF)lvl='NIP₃, not stable: orbits settle onto cycles of period 2^k';
+  else if(rr<=3)lvl='NIP<sup>met</sup>, not stable: the limit jumps at 0 and 1';
+  else if(rr<RINF)lvl='NIP<sup>met</sup>, not stable: orbits settle onto cycles of period 2^k';
   else lvl='not NIP: a horseshoe gives independent sequences';
   document.getElementById('logBadge').innerHTML='level: <b>'+lvl+'</b>';
   drawBif(rr);
