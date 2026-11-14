@@ -22,10 +22,14 @@ tags: [deep computations, NIP, Rosenthal compacta, Todorčević's trichotomy, Ar
 .dc-figs{display:flex;flex-direction:column;gap:1.1rem;position:relative}
 .dc-figs figure{margin:0}
 .dc-figs img{width:100%;height:auto;display:block;background:#fff;border:1px solid #e3dfe8;border-radius:6px;cursor:zoom-in;transform-origin:right top;transition:transform .25s ease,box-shadow .25s ease;position:relative;z-index:1}
-.dc-figs img:hover,.dc-figs img:focus{transform:scale(2.3);z-index:20;box-shadow:0 12px 36px rgba(40,20,60,.28);outline:none}
+.dc-figs img:hover,.dc-figs img:focus{transform:scale(1.03);box-shadow:0 6px 18px rgba(40,20,60,.18);outline:none}
+.dc-lightbox{position:fixed;inset:0;background:rgba(20,12,28,.82);display:flex;align-items:center;justify-content:center;padding:4vmin;z-index:1000;cursor:zoom-out}
+.dc-lightbox[hidden]{display:none}
+.dc-lightbox img{max-width:100%;max-height:100%;background:#fff;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.dc-lightbox .dc-close{position:absolute;top:1rem;right:1.2rem;color:#fff;font:600 1rem/1 system-ui,sans-serif;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.45rem .8rem;cursor:pointer}
 .dc-figs figcaption{font-size:.78rem;line-height:1.45;color:#6a6170;margin-top:.35rem}
 .dc-note{font-size:.85rem}
-@media (max-width:44rem){.dc-grid{grid-template-columns:1fr}.dc-figs img:hover,.dc-figs img:focus{transform:none;box-shadow:none}}
+@media (max-width:44rem){.dc-grid{grid-template-columns:1fr}}
 </style>
 
 <div class="dc-grid">
@@ -36,6 +40,21 @@ tags: [deep computations, NIP, Rosenthal compacta, Todorčević's trichotomy, Ar
 <div class="dc-figs">
 <figure><a href="/assets/resources/deep-computations/map-trichotomy.png"><img src="/assets/resources/deep-computations/map-trichotomy.png" alt="Todorčević's trichotomy and its realizations" tabindex="0"></a><figcaption>Todorčević's trichotomy and its realizations.</figcaption></figure>
 <figure><a href="/assets/resources/deep-computations/map-routes.png"><img src="/assets/resources/deep-computations/map-routes.png" alt="The seven canonical families and their realizations" tabindex="0"></a><figcaption>The seven canonical families and their realizations. Arrows: departing below, along the branch, departing above; arrows ending at one dot share a limit, and an open dot is the same for every branch.</figcaption></figure>
-<p class="dc-note">Hover over a diagram to magnify it, or click it to open it at full size. The <a href="/assets/resources/deep-computations/index.html">interactive figures</a> are on a separate page.</p>
+<p class="dc-note">Click a diagram to enlarge it. The <a href="/assets/resources/deep-computations/index.html">interactive figures</a> are on a separate page.</p>
 </div>
 </div>
+
+<div class="dc-lightbox" id="dc-lightbox" hidden role="dialog" aria-modal="true" aria-label="Enlarged diagram"><button class="dc-close" type="button" aria-label="Close">Close ✕</button><img alt=""></div>
+<script>
+(function(){
+  var box=document.getElementById('dc-lightbox'); if(!box) return;
+  var big=box.querySelector('img'), last=null;
+  function open(a,img){ last=a; big.src=a.getAttribute('href'); big.alt=img.alt; box.hidden=false; box.querySelector('.dc-close').focus(); document.body.style.overflow='hidden'; }
+  function close(){ box.hidden=true; big.removeAttribute('src'); document.body.style.overflow=''; if(last) last.focus(); }
+  document.querySelectorAll('.dc-figs a').forEach(function(a){
+    a.addEventListener('click',function(e){ var img=a.querySelector('img'); if(!img) return; e.preventDefault(); open(a,img); });
+  });
+  box.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !box.hidden) close(); });
+})();
+</script>
