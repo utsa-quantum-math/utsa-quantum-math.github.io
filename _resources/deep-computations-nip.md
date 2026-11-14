@@ -38,6 +38,8 @@ tags: [deep computations, NIP, Rosenthal compacta, Todorčević's trichotomy, Ar
 @media (max-width:52rem){.dc-grid{grid-template-columns:1fr;width:auto;left:auto;transform:none}.dc-figs{order:-1}}
 </style>
 
+<div class="actions"><a class="btn primary" href="/assets/notes/ComplexityViaTopology.pdf">PDF</a><a class="btn" href="https://arxiv.org/abs/2601.00528">arXiv:2601.00528</a><a class="btn" href="/assets/resources/deep-computations/index.html">Interactive figures</a></div>
+
 <div class="dc-grid">
 <div class="dc-abstract">
 <h2>Abstract</h2>
