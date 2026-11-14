@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Deep Computations Explorer</title>
+<title>Trichotomy Explorer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
@@ -64,6 +64,18 @@ figure img{width:100%;height:auto;background:#ffffff;border-radius:6px}
 figcaption{font-size:13px;color:var(--muted)}
 .why{margin:0;max-width:68ch;font-size:15px}
 .why strong{color:var(--plum);font-weight:700}
+.lvl{margin:0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:14px}
+.lvl .lv,nav .lv{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:999px;background:var(--plum);color:#fff}
+.lvl .cmp{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--plum);color:var(--plum)}
+.lvl .tst{color:var(--muted);font-style:italic}
+.part{border-top:3px solid var(--plum);padding-top:14px}
+.part h2{font-family:var(--display);font-weight:600;font-size:clamp(24px,3.4vw,32px);margin:0 0 6px;color:var(--plum)}
+.part p{margin:0;max-width:68ch;color:var(--muted)}
+#map nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}
+#map nav a{display:flex;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--rule);border-radius:8px;border-bottom-width:1px;background:var(--surface)}
+#map nav a:hover,#map nav a:focus-visible{border-color:var(--plum)}
+figure.map{background:#fff;border:1px solid var(--rule);border-top:4px solid var(--plum);border-radius:10px;padding:12px;box-shadow:0 8px 24px rgba(60,30,90,.10)}
+figure.map img{border-radius:4px;max-width:760px;margin:0 auto}
 footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:14px}
 @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
 </style>
@@ -73,19 +85,28 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
 
 <div class="wrap">
 <header>
-  <h1>Deep computations, iteration by iteration</h1>
-  <p>A computation is a map applied over and over. Its <em>deep computations</em> are the limits of its iterates along ultrafilters, taken point by point. These examples come from the paper <em>Complexity of deep computations via topology of function spaces</em> by Dueñez, Iovino, Matos-Wiederhold, Salvetti and Tall. Move the sliders and watch the limits form.</p>
-  <div class="levels" aria-label="The levels of the hierarchy">
-    <span>stable</span><span>NIP<sup>met</sup>: metrizable</span><span>NIP<sup>hs</sup>: hereditarily separable</span><span>NIP<sup>fc</sup>: first countable</span><span>NIP</span><span>not NIP</span>
-  </div>
+  <h1>Todorčević's trichotomy, algorithm by algorithm</h1>
+  <p>Run a computation forever and look at its limits, point by point: these are its <em>deep computations</em>. Todorčević's trichotomy sorts the possible spaces of limits into four alternatives, each telling how many observations it takes to tell the limits apart, and each realized here by a classical algorithm that you can run. The examples come from <em>Complexity of deep computations via topology of function spaces</em> by Dueñez, Iovino, Matos-Wiederhold, Salvetti and Tall.</p>
 </header>
 
-<nav aria-label="Examples">
-  <a href="#logistic">1. The logistic map</a><a href="#euclid">2. The Euclidean algorithm</a><a href="#bresenham">3. Drawing a line</a><a href="#doubling">4. The doubling map</a><a href="#space">5. A line in space</a><a href="#family">6. A family of Euclidean steps</a><a href="#newton">7. Newton's method for cubics</a><a href="#thue">8. Thue–Morse</a><a href="#figures">Figures of the paper</a>
-</nav>
+<section id="map">
+  <figure class="map"><a href="map-trichotomy.png"><img src="map-trichotomy.png" alt="Todorčević's trichotomy and its realizations" width="1063" height="881"></a><figcaption>Todorčević's trichotomy and its realizations.</figcaption></figure>
+  <nav aria-label="Alternatives">
+    <a href="#logistic"><span class="lv">NIP<sup>met</sup></span> 1. The logistic map</a>
+    <a href="#bresenham"><span class="lv">NIP<sup>hs</sup></span> 2. Drawing a line</a>
+    <a href="#space"><span class="lv">NIP<sup>fc</sup></span> 3. A line in space</a>
+    <a href="#family"><span class="lv">NIP<sup>fc</sup></span> 4. A family of Euclidean steps</a>
+    <a href="#euclid"><span class="lv">NIP</span> 5. The Euclidean algorithm</a>
+    <a href="#beyond"><span class="lv">not NIP</span> 6–8. Beyond the classification</a>
+    <a href="#routes"><span class="lv">D<sub>1</sub>–D<sub>7</sub></span> The finer classification</a>
+  </nav>
+</section>
+
+<div class="part" id="alternatives"><h2>The four alternatives</h2><p>From the top of the tree to the bottom: each step down needs more observations to tell the limits apart.</p></div>
 
 <section id="logistic">
-  <h2>1. The logistic map: one family, several levels</h2>
+  <h2>1. The logistic map: the metrizable levels, and beyond</h2>
+  <p class="lvl"><span class="lv">stable, NIP<sup>met</sup></span> <span class="tst">One countable set of tests separates all the limits, for r below r<sub>∞</sub>.</span></p>
   <p class="lede">The map f(x) = r·x·(1 − x) sends [0, 1] into itself. For small r its iterates settle down; at r = 4 they scramble every input. The left panel draws the n-th iterate as a function of the starting point, the right panel follows one orbit.</p>
   <div class="plate">
     <div class="canvases">
@@ -104,8 +125,63 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <p class="why"><strong>What to see.</strong> For r ≤ 1 every orbit falls to 0, and the limit is the constant 0, a continuous map: the computation is stable. For 1 &lt; r ≤ 3 the iterates converge to the map that sends 0 and 1 to 0 and every other point to 1 − 1/r. That limit jumps at 0 and at 1, so it is not continuous, yet it is a limit of a <em>sequence</em> of computations: the level is NIP<sup>met</sup> but not stable. Past r = 3 the attracting cycles double, to periods 2, 4, 8, …, up to the Feigenbaum parameter r<sub>∞</sub> ≈ 3.5699. Every period is still a power of 2, every orbit settles onto a cycle, and the deep computations still form a metrizable space: NIP<sup>met</sup>, not stable (at r<sub>∞</sub> itself the paper gives a sketch). Beyond r<sub>∞</sub>, even inside the windows where a single cycle attracts almost every orbit, some iterate folds two intervals over both of them, a horseshoe, and independent sequences appear: the computation is <strong>not NIP</strong>.</p>
 </section>
 
+<section id="bresenham">
+  <h2>2. Drawing a line: the split Cantor set</h2>
+  <p class="lvl"><span class="lv">NIP<sup>hs</sup>, not NIP<sup>met</sup></span> <span class=cmp>contains S(2<sup>ℕ</sup>)</span> <span class="tst">No countable set of tests separates all the limits, yet each limit is determined by countably many.</span></p>
+  <p class="lede">Bresenham's algorithm draws the line y = αx + ρ on a pixel screen. At each step it moves one pixel right and decides whether to move one up. The state is the accumulated error, which moves by α each step: a rotation of the circle.</p>
+  <div class="plate">
+    <canvas id="bre" class="wide" width="1100" height="440" aria-label="Pixels drawn by Bresenham's algorithm"></canvas>
+    <div class="controls">
+      <label for="alpha">slope α <span class="v" id="av"></span><input id="alpha" type="range" min="0.05" max="0.95" step="0.001" value="0.618"></label>
+      <label for="rho">offset ρ <span class="v" id="rhov"></span><input id="rho" type="range" min="0" max="0.999" step="0.001" value="0"></label>
+      <label for="tie">at an exact corner
+        <select id="tie"><option value="up">round up (the limit R⁺)</option><option value="down">round down (the limit R⁻)</option></select>
+      </label>
+    </div>
+    <div class="readout" id="bits"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> Far along the line, the algorithm behaves like one of two limit maps, R⁺ and R⁻. They agree at every pixel except where the line passes exactly through a pixel corner, and there they round in opposite directions. Set ρ = 0 to put a corner on the line and switch the rounding. These pairs of limits make a double arrow circle, which is hereditarily separable but not metrizable: the level is <strong>NIP<sup>hs</sup> but not NIP<sup>met</sup></strong>. Drawing a line in space runs two such algorithms at once and drops one level, to <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>.</p>
+</section>
+
+<section id="space">
+  <h2>3. Drawing a line in space: the extended duplicate of the split Cantor set</h2>
+  <p class="lvl"><span class="lv">NIP<sup>fc</sup>, not NIP<sup>hs</sup></span> <span class=cmp>contains D̂(S(2<sup>ℕ</sup>))</span> <span class="tst">A continuum of limits stays apart under finitely many tests each.</span></p>
+  <p class="lede">To draw a line in space with direction (1, α, β), Bresenham's algorithm runs the planar algorithm in two coordinates at once. Its state is a pair of errors, a point of the square [0, 1)², and each step adds (α, β). When 1, α, β are independent over the rationals, the orbit (nα, nβ) fills the square densely.</p>
+  <div class="plate">
+    <div class="canvases">
+      <div><canvas id="sp" width="600" height="600" aria-label="Orbit of the pair of errors"></canvas><p class="cap">The states (nα, nβ) mod 1 for n ≤ N. Click to move the target; the box shows the iterates that come close to it, coloured by the side from which they come in each coordinate.</p></div>
+      <div><canvas id="spq" width="600" height="600" aria-label="Approach sides"></canvas><p class="cap">The same iterates, magnified around the target. Each quadrant gives a different limit: (R⁺, R⁺), (R⁺, R⁻), (R⁻, R⁺) or (R⁻, R⁻).</p></div>
+    </div>
+    <div class="controls">
+      <label for="spN">number of steps N <span class="v" id="spNv"></span><input id="spN" type="range" min="200" max="20000" step="100" value="6000"></label>
+      <label for="spD">box half-width δ <span class="v" id="spDv"></span><input id="spD" type="range" min="0.005" max="0.08" step="0.001" value="0.03"></label>
+    </div>
+    <div class="readout" id="spRead"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> Iterates approach every target from all four sides, and each side yields its own limit, a pair of one-sided rotations. These limits form a product of two double arrow circles. A compact metrizable set of such limits must be countable, because every metrizable subset of the double arrow circle is countable. So the limits contain no Cantor set, which rules out the Alexandroff duplicate D(2<sup>ℕ</sup>). By Todorčević's trichotomy they contain instead a copy of D̂(S(2<sup>ℕ</sup>)), built on the split Cantor set: the level is <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>.</p>
+</section>
+
+<section id="family">
+  <h2>4. A family of Euclidean steps: the Alexandroff duplicate</h2>
+  <p class="lvl"><span class="lv">NIP<sup>fc</sup>, not NIP<sup>hs</sup></span> <span class=cmp>contains D(2<sup>ℕ</sup>)</span> <span class="tst">The other alternative at the same level: the baseline moves with the exceptional input.</span></p>
+  <p class="lede">Section 5 below applies one continued fraction to every input. Here we choose a branch c = (c₁, c₂, …) of 1s and 2s and, for each finite part t of it, a word of partial quotients built from blocks c<sub>j</sub>, …, c₁ followed by j ones. Each word gives a Möbius map g<sub>t</sub>. Moving along the branch, the maps flatten onto a constant a and keep one spike: the number r(c) is sent near the golden ratio φ.</p>
+  <div class="plate">
+    <div class="pattern" id="famPat" role="group" aria-label="Digits of the branch"></div>
+    <canvas id="fam" class="wide" width="1100" height="500" aria-label="Graph of g_t"></canvas>
+    <div class="controls">
+      <label for="famN">length of t <span class="v" id="famNv"></span><input id="famN" type="range" min="2" max="10" step="1" value="5"></label>
+      <label for="famMode">how t approaches the branch
+        <select id="famMode"><option value="init">along the branch (initial segments)</option><option value="side">from the side (a digit changed near the end)</option></select>
+      </label>
+    </div>
+    <div class="readout" id="famRead"></div>
+  </div>
+  <p class="why"><strong>What to see.</strong> Along the branch, the maps converge to the map that sends r(c) to φ and every other point to a. Approaching the same branch from the side, they converge to the constant a: the spike disappears. This is the pattern of convergence of the Alexandroff duplicate D̂(2<sup>ℕ</sup>), and indeed the closure of this countable family is a copy of it. The family is therefore <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>, and it contains the duplicate D(2<sup>ℕ</sup>) that the line in space cannot. Whether a single iterated map can do the same is an open question of the paper.</p>
+</section>
+
 <section id="euclid">
-  <h2>2. The Euclidean algorithm: an exact equality test as a limit</h2>
+  <h2>5. The Euclidean algorithm: exact equality tests and the Alexandroff compactification</h2>
+  <p class="lvl"><span class="lv">NIP, not NIP<sup>fc</sup></span> <span class=cmp>contains A(2<sup>ℕ</sup>)</span> <span class="tst">Some limit escapes every countable set of tests: equality tests share one baseline.</span></p>
   <p class="lede">The continued fraction algorithm writes a number η = [a₀; a₁, a₂, …] by repeating two steps, x ↦ x − a and x ↦ 1/x. After k + 1 steps it has applied a Möbius map M<sub>k</sub><sup>−1</sup>, which sends η to its tail η<sub>k+1</sub> = [a<sub>k+1</sub>; a<sub>k+2</sub>, …]. Here we apply the same map to <em>every</em> input. Both axes are the projective line, from ∞ through 0 back to ∞.</p>
   <div class="plate">
     <canvas id="euc" class="wide" width="1100" height="500" aria-label="Graph of the map M_k inverse"></canvas>
@@ -125,25 +201,11 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <p class="why"><strong>What to see.</strong> In the middle of a long run of 1s, the map sends every point except η close to −1/φ ≈ −0.618 and sends η close to φ ≈ 1.618. In the limit it is an <strong>exact equality test</strong>: it asks whether the input equals η. There is one such test for each of uncountably many η, and they all crowd around the constant map −1/φ. That is why the space of deep computations of the Euclidean algorithm is <strong>NIP but not first countable</strong>. No single Möbius map can do this: the iterates of one map converge, or cycle, and their limits form a countable set.</p>
 </section>
 
-<section id="bresenham">
-  <h2>3. Drawing a line: two ways to round</h2>
-  <p class="lede">Bresenham's algorithm draws the line y = αx + ρ on a pixel screen. At each step it moves one pixel right and decides whether to move one up. The state is the accumulated error, which moves by α each step: a rotation of the circle.</p>
-  <div class="plate">
-    <canvas id="bre" class="wide" width="1100" height="440" aria-label="Pixels drawn by Bresenham's algorithm"></canvas>
-    <div class="controls">
-      <label for="alpha">slope α <span class="v" id="av"></span><input id="alpha" type="range" min="0.05" max="0.95" step="0.001" value="0.618"></label>
-      <label for="rho">offset ρ <span class="v" id="rhov"></span><input id="rho" type="range" min="0" max="0.999" step="0.001" value="0"></label>
-      <label for="tie">at an exact corner
-        <select id="tie"><option value="up">round up (the limit R⁺)</option><option value="down">round down (the limit R⁻)</option></select>
-      </label>
-    </div>
-    <div class="readout" id="bits"></div>
-  </div>
-  <p class="why"><strong>What to see.</strong> Far along the line, the algorithm behaves like one of two limit maps, R⁺ and R⁻. They agree at every pixel except where the line passes exactly through a pixel corner, and there they round in opposite directions. Set ρ = 0 to put a corner on the line and switch the rounding. These pairs of limits make a double arrow circle, which is hereditarily separable but not metrizable: the level is <strong>NIP<sup>hs</sup> but not NIP<sup>met</sup></strong>. Drawing a line in space runs two such algorithms at once and drops one level, to <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>.</p>
-</section>
+<div class="part" id="beyond"><h2>Beyond the classification</h2><p>When a computation realizes every finite pattern of high and low values, it has the independence property, and its limits leave the first Baire class: neither classification applies.</p></div>
 
 <section id="doubling">
-  <h2>4. The doubling map: any pattern you like</h2>
+  <h2>6. The doubling map: any pattern you like</h2>
+  <p class="lvl"><span class="lv">not NIP</span> <span class="tst">Every finite pattern is realized, so no classification applies.</span></p>
   <p class="lede">The doubling map x ↦ 2x (mod 1) shifts binary digits one place left. We watch the value of sin²(πx) every third step, and call it high (H) when it is at least 3/4 and low (L) when it is at most 1/4. Choose a pattern of highs and lows; the page builds a starting point that follows it.</p>
   <div class="plate">
     <div class="pattern" id="pat" role="group" aria-label="Pattern of highs and lows"></div>
@@ -153,42 +215,9 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <p class="why"><strong>What to see.</strong> Every pattern is realized: for H the next three binary digits of the starting point are 011, for L they are 000. A family of functions that follows every finite pattern contains an <strong>independent sequence</strong>, and then no subsequence of the iterates converges pointwise. The doubling map, the logistic map at r = 4 and Newton's method for z² − 1 on the Riemann sphere are all <strong>not NIP</strong> for this reason.</p>
 </section>
 
-<section id="space">
-  <h2>5. Drawing a line in space: four ways to round</h2>
-  <p class="lede">To draw a line in space with direction (1, α, β), Bresenham's algorithm runs the planar algorithm in two coordinates at once. Its state is a pair of errors, a point of the square [0, 1)², and each step adds (α, β). When 1, α, β are independent over the rationals, the orbit (nα, nβ) fills the square densely.</p>
-  <div class="plate">
-    <div class="canvases">
-      <div><canvas id="sp" width="600" height="600" aria-label="Orbit of the pair of errors"></canvas><p class="cap">The states (nα, nβ) mod 1 for n ≤ N. Click to move the target; the box shows the iterates that come close to it, coloured by the side from which they come in each coordinate.</p></div>
-      <div><canvas id="spq" width="600" height="600" aria-label="Approach sides"></canvas><p class="cap">The same iterates, magnified around the target. Each quadrant gives a different limit: (R⁺, R⁺), (R⁺, R⁻), (R⁻, R⁺) or (R⁻, R⁻).</p></div>
-    </div>
-    <div class="controls">
-      <label for="spN">number of steps N <span class="v" id="spNv"></span><input id="spN" type="range" min="200" max="20000" step="100" value="6000"></label>
-      <label for="spD">box half-width δ <span class="v" id="spDv"></span><input id="spD" type="range" min="0.005" max="0.08" step="0.001" value="0.03"></label>
-    </div>
-    <div class="readout" id="spRead"></div>
-  </div>
-  <p class="why"><strong>What to see.</strong> Iterates approach every target from all four sides, and each side yields its own limit, a pair of one-sided rotations. These limits form a product of two double arrow circles. A compact metrizable set of such limits must be countable, because every metrizable subset of the double arrow circle is countable. So the limits contain no Cantor set, which rules out the Alexandroff duplicate D(2<sup>ℕ</sup>). By Todorčević's trichotomy they contain instead a copy of D̂(S(2<sup>ℕ</sup>)), built on the split Cantor set: the level is <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>.</p>
-</section>
-
-<section id="family">
-  <h2>6. A family of Euclidean steps: the other way to reach NIP<sup>fc</sup></h2>
-  <p class="lede">Section 2 applied one continued fraction to every input. Here we choose a branch c = (c₁, c₂, …) of 1s and 2s and, for each finite part t of it, a word of partial quotients built from blocks c<sub>j</sub>, …, c₁ followed by j ones. Each word gives a Möbius map g<sub>t</sub>. Moving along the branch, the maps flatten onto a constant a and keep one spike: the number r(c) is sent near the golden ratio φ.</p>
-  <div class="plate">
-    <div class="pattern" id="famPat" role="group" aria-label="Digits of the branch"></div>
-    <canvas id="fam" class="wide" width="1100" height="500" aria-label="Graph of g_t"></canvas>
-    <div class="controls">
-      <label for="famN">length of t <span class="v" id="famNv"></span><input id="famN" type="range" min="2" max="10" step="1" value="5"></label>
-      <label for="famMode">how t approaches the branch
-        <select id="famMode"><option value="init">along the branch (initial segments)</option><option value="side">from the side (a digit changed near the end)</option></select>
-      </label>
-    </div>
-    <div class="readout" id="famRead"></div>
-  </div>
-  <p class="why"><strong>What to see.</strong> Along the branch, the maps converge to the map that sends r(c) to φ and every other point to a. Approaching the same branch from the side, they converge to the constant a: the spike disappears. This is the pattern of convergence of the Alexandroff duplicate D̂(2<sup>ℕ</sup>), and indeed the closure of this countable family is a copy of it. The family is therefore <strong>NIP<sup>fc</sup> but not NIP<sup>hs</sup></strong>, and it contains the duplicate D(2<sup>ℕ</sup>) that the line in space cannot. Whether a single iterated map can do the same is an open question of the paper.</p>
-</section>
-
 <section id="newton">
   <h2>7. Newton's method for two cubics</h2>
+  <p class="lvl"><span class="lv">not NIP</span> <span class="tst">Independence along the Newton fractal.</span></p>
   <p class="lede">Newton's method for a polynomial p replaces z by z − p(z)/p′(z). We colour each starting point of the plane by the root its n-th Newton step is closest to: for q(z) = z³ − 2z + 2 a grey region also appears, the points drawn into the cycle 0 → 1 → 0; for u(z) = z³ − 1 the three roots are the cube roots of unity.</p>
   <div class="plate">
     <div class="canvases">
@@ -207,6 +236,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
 
 <section id="thue">
   <h2>8. The Thue–Morse sequence: orderly, yet not tame</h2>
+  <p class="lvl"><span class="lv">not NIP</span> <span class="tst">Minimal and uniquely ergodic, yet not tame.</span></p>
   <p class="lede">The Thue–Morse sequence t<sub>n</sub> is the parity of the number of ones in the binary expansion of n: 0110 1001 1001 0110 … The two-sided sequences all of whose blocks occur in it form a minimal system under the shift.</p>
   <div class="plate">
     <canvas id="tmS" class="wide" style="aspect-ratio:1100/140" width="1100" height="140" aria-label="The Thue–Morse sequence"></canvas>
@@ -219,15 +249,21 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <p class="why"><strong>What to see.</strong> The bars are the correlations c(n) of the sign (−1)<sup>t</sup> with its shift by n; they obey c(2n) = c(n) and c(2n+1) = −½(c(n) + c(n+1)). The curve is the average of c(n)² over n &lt; N, and it tends to 0. So the sign is orthogonal to every eigenfunction of the shift. A minimal tame system would be measure-theoretically isomorphic to its maximal equicontinuous factor, whose eigenfunctions span everything (Glasner; Huang; Kerr and Li). Hence Thue–Morse is <strong>not tame</strong>, and its computation structure is <strong>not NIP</strong>, although it is minimal, has a single invariant measure and is built by the simplest of substitution rules. The proof is in Appendix A of the paper.</p>
 </section>
 
+<section id="routes">
+  <h2>The finer classification: seven ways to approach a limit</h2>
+  <p class="lede">The heptachotomy of Argyros, Dodos and Kanellopoulos keeps the indexing of a family of computations by the binary tree, and asks which of three routes, along a branch, departing below or departing above, lead to a common limit. Selected computations of the same algorithms realize all seven canonical families.</p>
+  <figure class="map"><a href="map-routes.png"><img src="map-routes.png" alt="The seven canonical families and their realizations" width="1263" height="744"></a><figcaption>The seven canonical families; arrows meeting at a dot share a limit, and an open dot is the same for every branch.</figcaption></figure>
+</section>
+
 <section id="figures">
   <h2>The figures of the paper</h2>
-  <p class="lede">The same three examples, as they appear in Section 5 of the paper.</p>
+  <p class="lede">Three of the examples, as they appear in Section 4 of the paper.</p>
   <figure><img src="logistic_levels.png" alt="Bifurcation diagram of the logistic family coloured by level, and a cobweb for r = 2.8" width="1050" height="420"><figcaption>The logistic family: stable for r ≤ 1, NIP<sup>met</sup> but not stable for 1 &lt; r ≤ 3, not NIP at r = 4.</figcaption></figure>
   <figure><img src="euclid_equality.png" alt="The maps of the continued fraction algorithm flattening onto −1/φ with a spike at η" width="1050" height="405"><figcaption>The Euclidean algorithm: the maps M<sub>k</sub><sup>−1</sup> converge to exact equality tests.</figcaption></figure>
   <figure><img src="doubling_independence.png" alt="Values of sin²(πx) every third step of the doubling map, following three patterns" width="1050" height="330"><figcaption>The doubling map: every pattern of highs and lows is realized.</figcaption></figure>
 </section>
 
-<footer>Interactive companion to the paper by E. Dueñez, J. Iovino, T. Matos-Wiederhold, L. Salvetti and F. D. Tall (arXiv:2601.00528). The proofs are in Section 5 and Appendix A of <a href="https://utsa-quantum-math.github.io/assets/notes/ComplexityViaTopology.pdf">the paper</a>.</footer>
+<footer>Interactive companion to the paper by E. Dueñez, J. Iovino, T. Matos-Wiederhold, L. Salvetti and F. D. Tall (arXiv:2601.00528). The proofs are in Section 4 and Appendix A of <a href="https://utsa-quantum-math.github.io/assets/notes/ComplexityViaTopology.pdf">the paper</a>.</footer>
 </div>
 
 <script>
