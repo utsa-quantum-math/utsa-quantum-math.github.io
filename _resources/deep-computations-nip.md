@@ -18,18 +18,23 @@ tags: [deep computations, NIP, Rosenthal compacta, Todorčević's trichotomy, Ar
 ---
 
 <style>
-.dc-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:1.5rem;align-items:start}
-.dc-figs{display:flex;flex-direction:column;gap:1.1rem;position:relative}
-.dc-figs figure{margin:0}
-.dc-figs img{width:100%;height:auto;display:block;background:#fff;border:1px solid #e3dfe8;border-radius:6px;cursor:zoom-in;transform-origin:right top;transition:transform .25s ease,box-shadow .25s ease;position:relative;z-index:1}
-.dc-figs img:hover,.dc-figs img:focus{transform:scale(1.03);box-shadow:0 6px 18px rgba(40,20,60,.18);outline:none}
-.dc-lightbox{position:fixed;inset:0;background:rgba(20,12,28,.82);display:flex;align-items:center;justify-content:center;padding:4vmin;z-index:1000;cursor:zoom-out}
+.dc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:2rem;align-items:start;width:min(68rem,calc(100vw - 3rem));position:relative;left:50%;transform:translateX(-50%);margin:1rem 0 1.5rem}
+.dc-abstract h2{font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;color:#6a6170;margin-top:0}
+.dc-abstract p{font-size:.9rem;line-height:1.6;color:#4a4350}
+.dc-figs{display:flex;flex-direction:column;gap:1.4rem}
+.dc-figs figure{margin:0;background:#fff;border:1px solid #d9cfe6;border-top:4px solid #5b3f8c;border-radius:10px;padding:.9rem .9rem .7rem;box-shadow:0 8px 24px rgba(60,30,90,.12)}
+.dc-figs a{position:relative;display:block}
+.dc-figs img{width:100%;height:auto;display:block;background:#fff;border-radius:4px;cursor:zoom-in;transition:transform .2s ease}
+.dc-figs a:hover img,.dc-figs a:focus img{transform:scale(1.02)}
+.dc-figs a::after{content:"\2922\00a0 Click to enlarge";position:absolute;right:.5rem;bottom:.5rem;font:600 .75rem/1 system-ui,sans-serif;color:#fff;background:#5b3f8c;padding:.4rem .6rem;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25);opacity:.92}
+.dc-figs figcaption{font-size:.85rem;line-height:1.45;color:#3d3546;margin-top:.6rem;font-weight:600}
+.dc-figs figcaption span{font-weight:400;color:#6a6170}
+.dc-note{font-size:.85rem;color:#6a6170}
+.dc-lightbox{position:fixed;inset:0;background:rgba(20,12,28,.88);display:flex;align-items:center;justify-content:center;padding:2vmin;z-index:1000;cursor:zoom-out}
 .dc-lightbox[hidden]{display:none}
-.dc-lightbox img{max-width:100%;max-height:100%;background:#fff;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
-.dc-lightbox .dc-close{position:absolute;top:1rem;right:1.2rem;color:#fff;font:600 1rem/1 system-ui,sans-serif;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.45rem .8rem;cursor:pointer}
-.dc-figs figcaption{font-size:.78rem;line-height:1.45;color:#6a6170;margin-top:.35rem}
-.dc-note{font-size:.85rem}
-@media (max-width:44rem){.dc-grid{grid-template-columns:1fr}}
+.dc-lightbox img{width:min(96vw,1400px);max-height:94vh;object-fit:contain;background:#fff;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.dc-lightbox .dc-close{position:absolute;top:1rem;right:1.2rem;color:#fff;font:600 1rem/1 system-ui,sans-serif;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:.5rem .9rem;cursor:pointer}
+@media (max-width:52rem){.dc-grid{grid-template-columns:1fr;width:auto;left:auto;transform:none}.dc-figs{order:-1}}
 </style>
 
 <div class="dc-grid">
@@ -39,8 +44,8 @@ tags: [deep computations, NIP, Rosenthal compacta, Todorčević's trichotomy, Ar
 </div>
 <div class="dc-figs">
 <figure><a href="/assets/resources/deep-computations/map-trichotomy.png"><img src="/assets/resources/deep-computations/map-trichotomy.png" alt="Todorčević's trichotomy and its realizations" tabindex="0"></a><figcaption>Todorčević's trichotomy and its realizations.</figcaption></figure>
-<figure><a href="/assets/resources/deep-computations/map-routes.png"><img src="/assets/resources/deep-computations/map-routes.png" alt="The seven canonical families and their realizations" tabindex="0"></a><figcaption>The seven canonical families and their realizations. Arrows: departing below, along the branch, departing above; arrows ending at one dot share a limit, and an open dot is the same for every branch.</figcaption></figure>
-<p class="dc-note">Click a diagram to enlarge it. The <a href="/assets/resources/deep-computations/index.html">interactive figures</a> are on a separate page.</p>
+<figure><a href="/assets/resources/deep-computations/map-routes.png"><img src="/assets/resources/deep-computations/map-routes.png" alt="The seven canonical families and their realizations" tabindex="0"></a><figcaption>The seven canonical families and their realizations. <span>Arrows: departing below, along the branch, departing above; arrows ending at one dot share a limit, and an open dot is the same for every branch.</span></figcaption></figure>
+<p class="dc-note">The <a href="/assets/resources/deep-computations/index.html">interactive figures</a> are on a separate page.</p>
 </div>
 </div>
 
