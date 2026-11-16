@@ -36,7 +36,7 @@ summary: "In this memoir we show that Shelah’s dividing lines become, through 
 # local PDF as another entry in the same list.
 files:
   - text: "Shelah's dividing lines in quantum measurement"
-    url: /assets/notes/Qbipartite_survey.pdf
+    url: /assets/notes/Qbipartite.pdf
     label: PDF
   # - text: "arXiv preprint"
   #   url: https://arxiv.org/abs/0000.00000
