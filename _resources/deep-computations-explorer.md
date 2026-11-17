@@ -2,7 +2,7 @@
 title: "Deep Computations Explorer"
 subtitle: "Interactive figures"
 category: Software
-contributor: "Eduardo Dueñez, José Iovino, Tonatiuh Matos-Wiederhold, Luciano Salvetti, and Franklin D. Tall"
+contributor: "Eduardo Dueñez, Tonatiuh Matos-Wiederhold, Luciano Salvetti, and Franklin D. Tall"
 summary: "Interactive companion to Complexity of deep computations via topology of function spaces: the logistic map, the Euclidean algorithm, Bresenham's line algorithm and the doubling map, with the limits of their iterates."
 files:
   - text: "Open the interactive figures"
