@@ -14,7 +14,8 @@ permalink: /resources/
   {%- if site.resources.size > 0 -%}
   {%- comment -%}
     Sections listed in `order` come first, in that order; any other
-    category follows, alphabetically.
+    category follows, alphabetically. Within a section, resources with a
+    `position` come first, in that order; the rest follow by title.
   {%- endcomment -%}
   {%- assign order = "Student research|Student seminar notes|Course notes|Preprints" | split: "|" -%}
   {%- assign groups = site.resources | group_by: "category" | sort: "name" -%}
@@ -23,7 +24,7 @@ permalink: /resources/
   {%- if g %}
   <h2 class="section"{% if g.name == "Course notes" %} id="course-lecture-notes"{% endif %}>{% if g.name == "Course notes" %}Course lecture notes{% else %}{{ g.name }}{% endif %}</h2>
   <ul class="talk-list">
-    {%- assign items = g.items | sort: "title" -%}
+    {%- assign withpos = g.items | where_exp: "r", "r.position" | sort: "position" -%}{%- assign nopos = g.items | where_exp: "r", "r.position == nil" | sort: "title" -%}{%- assign items = withpos | concat: nopos -%}
     {%- for r in items %}{% include resource-row.html resource=r %}{% endfor -%}
   </ul>
   {%- endif -%}
@@ -32,7 +33,7 @@ permalink: /resources/
   {%- unless order contains g.name %}
   <h2 class="section">{{ g.name | default: "Other" }}</h2>
   <ul class="talk-list">
-    {%- assign items = g.items | sort: "title" -%}
+    {%- assign withpos = g.items | where_exp: "r", "r.position" | sort: "position" -%}{%- assign nopos = g.items | where_exp: "r", "r.position == nil" | sort: "title" -%}{%- assign items = withpos | concat: nopos -%}
     {%- for r in items %}{% include resource-row.html resource=r %}{% endfor -%}
   </ul>
   {%- endunless -%}

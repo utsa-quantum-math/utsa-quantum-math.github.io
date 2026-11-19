@@ -1,7 +1,7 @@
 ---
 published: true
 title: "Todorčević's trichotomy for quantum deep computations"
-category: Course notes
+category: Preprints
 contributor: "José Iovino"
 summary: "In this paper we extend the classification of deep computations by Todorčević's trichotomy from classical algorithms to quantum channels observed through a bipartite observable. The answers of the chosen probes need not determine what the same probes report after a channel acts, and we therefore close the observations under the channels. The resulting orbit types are the least enrichment on which every channel acts continuously, and on them the extendibility axiom of the classical theory becomes a theorem. The classification then depends on the observations. Local and comparison probes give the same quantum walk different levels; measure-and-prepare instruments on a binary tree realize every class of the trichotomy through families equivalent to canonical ones; and one additional probe can restore first countability. Idealized inputs separate limits that agree on every actual preparation. For countable families without the independence property (NIP) that preserve a bound on the expected energy and are closed under rational mixtures, convexity makes the compactum of limits metrizable whenever it is hereditarily separable. For arbitrary families of probes and channels, the NIP characterizes universal Monte Carlo computability; for countable families, it yields a law of large numbers for idealized random preparations, uniform over the computations at each output coordinate."
 files:
