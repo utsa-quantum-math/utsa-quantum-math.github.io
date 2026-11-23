@@ -10,7 +10,7 @@ top_links:
     url: /assets/notes/GKS.pdf
   - text: "arXiv:2611.05656"
     url: https://arxiv.org/abs/2611.05656
-  - text: "Read the note: Can quantum outcomes be fixed in advance?"
+  - text: "Read the note: How logic refutes a hidden world"
     url: /assets/notes/GKS-contributions.pdf
   - text: "Watch the refutation game"
     url: /assets/notes/GKS_game_animation.html
@@ -18,7 +18,7 @@ files:
   - text: "Finite refutations in countably additive quantum probability"
     url: /assets/notes/GKS.pdf
     label: PDF
-  - text: "Can quantum outcomes be fixed in advance? A note on what the paper brings to physics, logic and mathematics"
+  - text: "How logic refutes a hidden world: a note on what the paper brings to physics, logic and mathematics"
     url: /assets/notes/GKS-contributions.pdf
     label: PDF
   - text: "arXiv:2611.05656"
