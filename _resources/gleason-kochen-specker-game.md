@@ -44,8 +44,9 @@ tags: [quantum foundations, logic]
 
 ## For contrast: a fixed finite configuration
 
-In three dimensions, a fixed finite configuration of rays refutes predetermined outcomes; our computer search found one with 49 rays, using coordinates in {0, ±1, ±2, ±5}. In the infinite-dimensional, countably additive setting of the paper, no finite set of axioms does: the refutation must adapt to the builder's answers, and it must branch infinitely.
-
-<div class="ks49-embed" style="margin:1rem 0 1.5rem">
+<div class="ks49-embed" style="margin:1rem 0 0">
 <iframe src="/assets/notes/Kochen_Specker_set.html" title="A fixed finite configuration of 49 rays: an interactive picture" loading="lazy" style="display:block;width:100%;height:900px;border:1px solid #e3dce8;border-radius:10px;background:#fff"></iframe>
 </div>
+
+<p style="margin:.4rem 0 1.5rem;font-size:.95rem;color:#5b5360">A fixed finite configuration of 49 rays, found by our computer search, refutes predetermined outcomes in three dimensions. In the paper's infinite-dimensional, countably additive setting no finite set of axioms does, and the refutation must adapt to the builder's answers and branch infinitely.</p>
+
