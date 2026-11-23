@@ -8,6 +8,8 @@ summary: "The page shows an interactive picture of a 49-ray Kochen–Specker set
 top_links:
   - text: "Read the paper (PDF)"
     url: /assets/notes/GKS.pdf
+  - text: "arXiv:2611.05656"
+    url: https://arxiv.org/abs/2611.05656
   - text: "Read the note: Can quantum outcomes be fixed in advance?"
     url: /assets/notes/GKS-contributions.pdf
   - text: "Explore the 49-ray Kochen–Specker set"
