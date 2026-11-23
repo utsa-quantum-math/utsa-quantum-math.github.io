@@ -9,7 +9,7 @@ files:
   - text: "Finite refutations in countably additive quantum probability"
     url: /assets/notes/GKS.pdf
     label: PDF
-  - text: "What the paper brings to physics, logic and mathematics: a note"
+  - text: "Can quantum outcomes be fixed in advance? A note on what the paper brings to physics, logic and mathematics"
     url: /assets/notes/GKS-contributions.pdf
     label: PDF
   - text: "arXiv:2611.05656"
