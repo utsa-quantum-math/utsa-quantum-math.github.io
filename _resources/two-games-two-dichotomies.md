@@ -10,6 +10,7 @@ files:
     url: /assets/notes/Banach_stability_dichotomy.pdf
     label: PDF
 tags: [Banach spaces, logic, games]
+files_first: true
 ---
 
 We characterize stability and independence in separable Banach spaces by two games in which Player II tries to determine the value of a type action at the limit of the moves of Player I. In the commitment game the announcements of Player II are binding intervals; winning it for every action detects continuity of the type actions and characterizes stability. In the revision game the announcements may be revised, and at tolerance zero the game is Kiss’s game; winning it for every action detects Baire class one and characterizes the absence of an independent sequence of positive gap. In Tsirelson’s space Player II wins the revision game for every action, and Player I wins the commitment game for some action. An infinite ladder of gap δ places some action at uniform distance at least δ/2 from every polynomial in finitely many norms, and gives Player I a winning strategy at every tolerance below δ. An independent sequence of gap δ gives Player I a winning strategy at every tolerance below δ/2, and yields 2<sup>𝔠</sup> distinct actions. A common gap for parameter-free ladders in every block subspace excludes, with a quantitative margin, infinite-dimensional subspaces close to stable spaces. In the absence of a stable block subspace, one can pass to a block subspace all of whose block subspaces carry ladders of one common gap, with parameters from one fixed finite-dimensional space.

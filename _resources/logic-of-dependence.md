@@ -52,6 +52,7 @@ files:
   #   label: arXiv
 
 tags: [dependence, independence, stability, NIP, simplicity, VC-dimension, forking, random graph, Fraïssé limits, model theory]
+files_first: true
 ---
 
 A gentle introduction to classification theory (in the sense of logic) written for students and researchers.

@@ -48,6 +48,7 @@ files:
   #   label: arXiv
 
 tags: [quantum foundations, logic]
+files_first: true
 ---
 
 We examine two proofs of the Bell–Kochen–Specker theorem, which rules out non-contextual hidden variables in quantum mechanics. Bell’s proof combines Gleason’s Theorem with elementary topology and is infinitary; Kochen and Specker’s proof exhibits a finite configuration of rays and is constructive. The two arguments were found independently in the mid-1960s. We show that the compactness theorem of propositional logic links them: compactness converts Bell’s argument into a proof of the existence of a finite configuration of the kind that Kochen and Specker built by hand. We also show that quantum measures have no counterpart of Dirac measures and, unlike classical measures, do not form a lattice. In a timeline we trace the history of the problem of hidden variables.

@@ -10,6 +10,7 @@ files:
     url: /assets/notes/QuantumDeepComputations.pdf
     label: PDF
 tags: [deep computations, quantum channels, NIP, Rosenthal compacta, Todorčević's trichotomy, Argyros–Dodos–Kanellopoulos heptachotomy]
+files_first: true
 ---
 
 <div class="actions"><a class="btn primary" href="/assets/notes/QuantumDeepComputations.pdf">PDF</a></div>

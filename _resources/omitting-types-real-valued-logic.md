@@ -13,6 +13,7 @@ files:
     url: https://arxiv.org/abs/2611.02247
     label: arXiv
 tags: [logic, topology]
+files_first: true
 ---
 
 In this paper we adopt a topological perspective to extend two theorems of classical infinitary logic to the infinitary logic of Keisler’s general real-valued structures: the omitting types theorem and Scott’s theorem. There the formulas need not be uniformly bounded, and no moduli of continuity are required, as they are in the metric extensions of the classical theorems; neither equality nor a metric is required. The omitting types theorem holds for every countable fragment, because the space of Henkin types of the fragment is Čech-complete. Scott’s theorem characterizes every structure with countable sorts, among all structures, up to approximate equivalence, and the classes of this equivalence are Borel sets in the Polish space of structures on the natural numbers. With the monoid of surjections of the natural numbers in place of the group of permutations, we also prove López-Escobar’s theorem for classical infinitary logic without equality.

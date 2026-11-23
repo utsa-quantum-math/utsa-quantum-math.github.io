@@ -34,6 +34,7 @@ files:
     url: /assets/notes/Kochen_Specker_set.html
     label: Interactive
 tags: [quantum foundations, logic]
+files_first: true
 ---
 
 ## The refutation game

@@ -24,6 +24,7 @@ files:
     label: Interactive
 
 tags: [topology, Baire category, topological games, Banach–Mazur game, Choquet game, Schmidt game, metric number theory, homogeneous dynamics, computational complexity, Ramsey theory, Banach spaces, topological groups]
+files_first: true
 ---
 
 A gentle introduction to topological games prepared for researchers and students. Part I presents a self-contained introduction to the Banach–Mazur and strong Choquet games, Baire spaces and complete metrizability; the later parts tell how these games, and their relatives, solved longstanding problems in number theory, dynamics, functional analysis, set theory, Ramsey theory, combinatorics, logic and the theory of computation. The last part tells the story of the Scottish Book.

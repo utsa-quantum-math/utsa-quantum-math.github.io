@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article class="wrap">
+<article class="wrap{% if page.files_first %} files-first{% endif %}">
 
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="{{ '/resources/' | relative_url }}">Resources</a>
@@ -32,8 +32,7 @@ layout: default
   {%- endif %}
 
   {%- if page.rights %}<p class="rights">{{ page.rights }}</p>{% endif %}
-  {%- if content != "" %}<div class="prose">{{ content }}</div>{% endif %}
-
+  {%- capture file_list %}
   {%- if page.files and page.files.size > 0 %}
   <section class="refs">
     <ul>
@@ -43,6 +42,11 @@ layout: default
     </ul>
   </section>
   {%- endif %}
+  {%- endcapture %}
+  {%- if page.files_first %}{{ file_list }}{% endif %}
+  {%- if content != "" %}<div class="prose">{{ content }}</div>{% endif %}
+  {%- unless page.files_first %}{{ file_list }}{% endunless %}
+
 
   {%- if page.tags and page.tags.size > 0 %}
   <div class="tags">

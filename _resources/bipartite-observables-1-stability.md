@@ -44,6 +44,7 @@ files:
     label: arXiv
 
 tags: [stability, model theory, quantum information, double limits, Grothendieck]
+files_first: true
 ---
 
 This is the first of three papers that read the dividing lines of Shelah's classification theory as properties of bipartite quantum observables, through their expectation functions on product states. Here we study stability: the independence of the expectation from the order in which the preparations of the two systems are idealized. We show that stability is characterized by weak compactness, by factorization through a reflexive Banach space, and by the uniform simulation of idealized preparations by finite mixtures of actual ones, with the probing system idealized first. A uniform version of stability, which bounds at every margin the finite staircases of responses, governs adaptive discrimination and the online prediction of thresholded expectations; for the swap test, Hong–Ou–Mandel coincidences and discrete equality tests, whose expectations factor through a Hilbert space, the bounds are explicit and independent of dimension.
