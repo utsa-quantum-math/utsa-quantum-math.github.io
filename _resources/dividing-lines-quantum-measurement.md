@@ -16,6 +16,7 @@ title: "Shelah's dividing lines in quantum measurement: 30 variations in three p
 # out and the resource lands under "Other". Spell an existing category exactly
 # as it already appears elsewhere — a typo silently starts a second group.
 category: Preprints
+position: 4
 
 # Who provided it. Plain text, not resolved against _people/ — a resource can
 # come from someone with no record here, and this is attribution, not a byline.
