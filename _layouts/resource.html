@@ -23,6 +23,14 @@ layout: default
   </div>
   {%- endif %}
 
+  {%- if page.top_links and page.top_links.size > 0 %}
+  <div class="actions">
+    {%- for t in page.top_links %}
+    <a class="btn{% if forloop.first %} primary{% endif %}" href="{{ t.url | relative_url }}">{{ t.text }}</a>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
   {%- if page.rights %}<p class="rights">{{ page.rights }}</p>{% endif %}
   {%- if content != "" %}<div class="prose">{{ content }}</div>{% endif %}
 
