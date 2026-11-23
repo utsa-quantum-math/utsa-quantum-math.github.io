@@ -21,6 +21,9 @@ files:
   - text: "arXiv:2611.05656"
     url: https://arxiv.org/abs/2611.05656
     label: arXiv
+  - text: "The refutation game, animated: one play of the strategy, step by step"
+    url: /assets/notes/GKS_game_animation.html
+    label: Interactive
   - text: "How our finite obstructions refine the Kochen–Specker theorem: an interactive comparison"
     url: /assets/notes/Kochen_Specker_refinement.html
     label: Interactive
