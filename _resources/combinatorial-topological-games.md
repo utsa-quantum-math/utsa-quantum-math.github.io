@@ -4,6 +4,7 @@ title: "Combinatorial and topological games"
 subtitle: "Baire spaces and applications in classical mathematics"
 
 category: Student seminar notes
+author_sort: "Iovino  Combinatorial and topological games"
 
 contributor: "José Iovino"
 

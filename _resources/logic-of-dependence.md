@@ -18,6 +18,7 @@ subtitle: "An introduction to the logic of dependence and independence"
 # out and the resource lands under "Other". Spell an existing category exactly
 # as it already appears elsewhere — a typo silently starts a second group.
 category: Course notes
+author_sort: "Iovino  Tame and wild theories"
 position: 5
 
 # Who provided it. Plain text, not resolved against _people/ — a resource can

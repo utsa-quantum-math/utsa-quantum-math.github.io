@@ -18,6 +18,7 @@ subtitle: "Lecture notes"
 # out and the resource lands under "Other". Spell an existing category exactly
 # as it already appears elsewhere — a typo silently starts a second group.
 category: Student seminar notes
+author_sort: "Iovino  Topological and logical aspects of the problem of hidden variables"
 
 # Who provided it. Plain text, not resolved against _people/ — a resource can
 # come from someone with no record here, and this is attribution, not a byline.

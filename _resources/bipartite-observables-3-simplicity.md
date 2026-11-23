@@ -16,7 +16,7 @@ title: "Classification of bipartite observables III: simplicity, mixtures and qu
 # out and the resource lands under "Other". Spell an existing category exactly
 # as it already appears elsewhere — a typo silently starts a second group.
 category: Preprints
-position: 7
+author_sort: "Duenez Iovino  Classification of bipartite observables III"
 
 # Who provided it. Plain text, not resolved against _people/ — a resource can
 # come from someone with no record here, and this is attribution, not a byline.

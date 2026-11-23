@@ -16,7 +16,7 @@ title: "Classification of bipartite observables I: stable and uniformly stable o
 # out and the resource lands under "Other". Spell an existing category exactly
 # as it already appears elsewhere — a typo silently starts a second group.
 category: Preprints
-position: 5
+author_sort: "Duenez Iovino  Classification of bipartite observables I"
 
 # Who provided it. Plain text, not resolved against _people/ — a resource can
 # come from someone with no record here, and this is attribution, not a byline.

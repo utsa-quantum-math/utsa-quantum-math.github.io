@@ -1,7 +1,7 @@
 ---
 title: "Coherent extension and the countable classical excess"
 category: Preprints
-position: 3
+author_sort: "Iovino  Coherent extension and the countable classical excess"
 contributor: "José Iovino"
 rights: "© 2026 José Iovino. All rights reserved. Work in progress: please link to this page rather than posting copies."
 summary: "We show that exact countable classical simulation of the Lipschitz Cantor system of our earlier paper is defeated by two successive demands, the second chosen after the modeler has answered the first, although the system has classical excess 0 and countable simulations at every positive error. The answer to the first demand determines a finite prepare-and-measure test that no completion passes. We characterize countable classical simulation by coherent extension: a system of countable dimension has a countable classical simulation at a prescribed error exactly when finite partial simulations extend coherently. Coherence means that some nonempty family of finite partial simulations lets every member grow, within the family, to cover any further stage and to leave arbitrarily little preparation mass unassigned, without revising the masses and responses already assigned. A transfinite derivative removes the commitments that cannot be so extended; its first level recovers the countably additive classical excess, and the commitments at its fixed point are exactly the restrictions of countable simulations at the prescribed error. The failure for the Lipschitz Cantor system is invisible to every numerical level of this hierarchy and is detected by its second level. We translate the two-demand obstruction into a winning strategy in the refutation game of Aubone and Iovino for real-valued infinitary logic."

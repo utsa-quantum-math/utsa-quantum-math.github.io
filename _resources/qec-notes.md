@@ -1,6 +1,7 @@
 ---
 title: "An introduction to quantum error correction for mathematicians"
 category: Course notes
+author_sort: "Duenez  An introduction to quantum error correction"
 position: 1
 contributor: "Eduardo Dueñez"
 summary: "Notes for the Fall 2026 Quantum Error Correction Seminar: stabilizer codes, surface codes and their decoding, belief propagation, and quantum LDPC codes, assuming only undergraduate linear algebra and elementary probability."

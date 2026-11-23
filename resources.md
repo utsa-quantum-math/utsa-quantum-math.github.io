@@ -14,8 +14,10 @@ permalink: /resources/
   {%- if site.resources.size > 0 -%}
   {%- comment -%}
     Sections listed in `order` come first, in that order; any other
-    category follows, alphabetically. Within a section, resources with a
-    `position` come first, in that order; the rest follow by title.
+    category follows, alphabetically. Within a section, resources are
+    sorted alphabetically by author: each resource's `author_sort` gives the
+    authors' last names in order, two spaces, then the title (single-author
+    works come before joint works of the same first author).
   {%- endcomment -%}
   {%- assign order = "Preprints|Student research|Student seminar notes|Course notes" | split: "|" -%}
   {%- assign groups = site.resources | group_by: "category" | sort: "name" -%}
@@ -24,7 +26,7 @@ permalink: /resources/
   {%- if g %}
   <h2 class="section"{% if g.name == "Course notes" %} id="course-lecture-notes"{% endif %}>{% if g.name == "Course notes" %}Course lecture notes{% else %}{{ g.name }}{% endif %}</h2>
   <ul class="talk-list">
-    {%- assign withpos = g.items | where_exp: "r", "r.position" | sort: "position" -%}{%- assign nopos = g.items | where_exp: "r", "r.position == nil" | sort: "title" -%}{%- assign items = withpos | concat: nopos -%}
+    {%- assign items = g.items | sort: "author_sort", "last" -%}
     {%- for r in items %}{% include resource-row.html resource=r %}{% endfor -%}
   </ul>
   {%- endif -%}
@@ -33,7 +35,7 @@ permalink: /resources/
   {%- unless order contains g.name %}
   <h2 class="section">{{ g.name | default: "Other" }}</h2>
   <ul class="talk-list">
-    {%- assign withpos = g.items | where_exp: "r", "r.position" | sort: "position" -%}{%- assign nopos = g.items | where_exp: "r", "r.position == nil" | sort: "title" -%}{%- assign items = withpos | concat: nopos -%}
+    {%- assign items = g.items | sort: "author_sort", "last" -%}
     {%- for r in items %}{% include resource-row.html resource=r %}{% endfor -%}
   </ul>
   {%- endunless -%}
